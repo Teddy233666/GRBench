@@ -1,0 +1,46 @@
+name: Validate repository
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-validation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: Install validation dependencies
+        run: python3 -m pip install -r requirements-dev.txt
+      - name: Compile Python
+        run: python3 -m compileall -q benchmark adapters tools
+      - name: Test Kuzu measurement contract
+        run: python3 -m unittest discover -s adapters/kuzu -p 'test_*.py' -v
+      - name: Test OrientDB credential handling
+        run: python3 -m unittest discover -s adapters/orientdb -p 'test_*.py' -v
+      - name: Check shell syntax
+        run: |
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+          done < <(find adapters -type f -name '*.sh' -print0)
+      - name: Check ArangoDB JavaScript wrappers
+        run: |
+          while IFS= read -r -d '' file; do
+            node --check "$file"
+          done < <(find adapters/arangodb -type f -name '*.js' -print0)
+      - name: Audit query semantic signatures
+        run: python3 tools/audit_query_semantics.py
+      - name: Check published result path sanitization
+        run: python3 tools/sanitize_result_paths.py
+      - name: Regenerate manifests
+        run: python3 tools/generate_manifests.py
+      - name: Reject manifest drift
+        run: git diff --exit-code -- benchmark/manifests results/manifests
+      - name: Validate repository contract
+        run: python3 tools/validate_repository.py --strict-paths

@@ -1,0 +1,97 @@
+sql_file,median_time_sec,cpu_peak,cpu_avg,mem_peak_mb,mem_avg_mb,status
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,4.5364 ,73.9000 ,68.5667 ,32006.3000 ,31856.8520 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,2.6467 ,67.2000 ,66.8333 ,32025.3000 ,32022.8967 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,2.2221 ,65.8000 ,65.2333 ,32043.2000 ,32041.2933 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2a.sql,2.5428 ,64.1000 ,63.8667 ,32054.2000 ,32050.2067 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2b.sql,1.8639 ,63.0000 ,62.3333 ,32054.5000 ,32054.2033 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2c.sql,1.7895 ,63.0000 ,62.0818 ,32051.2000 ,32051.0937 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3a.sql,2.5389 ,64.3000 ,63.9125 ,32053.7000 ,32049.8452 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3b.sql,1.8576 ,62.8000 ,62.2897 ,32054.1000 ,32053.8761 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3c.sql,1.7822 ,63.2000 ,62.0146 ,32050.8000 ,32050.7322 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4a.sql,1.8528 ,99.6000 ,97.6000 ,34612.1000 ,33717.3933 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4b.sql,1.1828 ,94.5000 ,92.1167 ,34978.9000 ,34100.8200 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4c.sql,1.0927 ,94.5000 ,91.0869 ,34978.2000 ,34124.0987 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5a.sql,1.2968 ,88.1000 ,87.6823 ,31611.5000 ,31610.2875 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5b.sql,1.3076 ,87.0000 ,86.3279 ,31611.3000 ,31609.8762 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5c.sql,1.3215 ,85.2000 ,84.8192 ,31611.0000 ,31609.7543 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6a.sql,0.9761 ,84.2000 ,83.8257 ,31633.0000 ,31629.1568 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6b.sql,0.9257 ,83.8000 ,83.7812 ,31633.2000 ,31632.6541 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6c.sql,0.9123 ,83.9000 ,83.8346 ,31633.2000 ,31632.7654 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7a.sql,0.7797 ,99.4000 ,99.1667 ,31739.2000 ,31738.4500 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7b.sql,0.7280 ,98.4000 ,98.1333 ,31740.4000 ,31739.3700 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7c.sql,0.6692 ,97.7000 ,97.3500 ,31740.4000 ,31740.1667 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8a.sql,2.4733 ,96.3000 ,92.5931 ,32227.5000 ,32060.7901 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8b.sql,1.5545 ,92.0000 ,91.7167 ,32229.0000 ,32164.7300 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8c.sql,1.5009 ,91.2000 ,90.8500 ,32227.6000 ,32163.4350 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9a.sql,3.0956 ,90.3000 ,87.1278 ,33210.9000 ,32937.5700 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9b.sql,1.4350 ,86.0000 ,85.8833 ,33210.6000 ,33145.5083 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9c.sql,1.4813 ,85.5000 ,85.2500 ,33208.4000 ,33143.5900 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10a.sql,1.0669 ,98.8000 ,94.9000 ,32099.4000 ,32093.3667 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10b.sql,1.0635 ,88.0000 ,85.1667 ,32102.2000 ,32099.6133 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10c.sql,1.0544 ,79.9000 ,77.6667 ,32104.6000 ,32103.2433 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11a.sql,1.0189 ,73.5000 ,71.4667 ,32104.9000 ,32103.5433 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11b.sql,0.6801 ,67.7000 ,66.1667 ,32103.8000 ,32103.2000 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11c.sql,0.6600 ,63.0000 ,61.8000 ,32102.8000 ,32102.7967 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12a.sql,1.0955 ,59.5000 ,58.1333 ,32103.7000 ,32103.3400 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12b.sql,1.0378 ,56.1000 ,55.2000 ,32103.0000 ,32102.3500 ,OK
+legacy_core/tasks/graindb_task_copy/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12c.sql,0.8169 ,53.5000 ,52.7333 ,32104.0000 ,32102.5400 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13a.sql,1.6350 ,99.5000 ,99.1333 ,34082.1000 ,34081.3467 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13b.sql,1.5793 ,98.3000 ,97.9333 ,34083.6000 ,34082.9361 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13c.sql,1.5390 ,97.2000 ,96.9000 ,34084.5000 ,34083.6850 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14a.sql,1.5746 ,96.4000 ,96.0444 ,34084.6000 ,34083.5717 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14b.sql,1.5722 ,95.3000 ,95.0000 ,34084.5000 ,34083.3833 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14c.sql,1.5567 ,94.5000 ,93.8278 ,34085.2000 ,34083.9833 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15a.sql,1.5713 ,96.2000 ,95.9877 ,34084.3000 ,34083.2146 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15b.sql,1.5689 ,95.5000 ,94.9654 ,34084.8000 ,34083.6547 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15c.sql,1.5535 ,94.3000 ,93.7865 ,34084.9000 ,34083.7654 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16a.sql,1.2991 ,87.7000 ,87.3167 ,31610.8000 ,31609.6117 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.sql,1.2860 ,86.6000 ,85.9500 ,31610.6000 ,31609.2317 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16c.sql,1.2756 ,84.8000 ,84.4500 ,31610.3000 ,31609.1817 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17a.sql,0.9549 ,83.8000 ,83.4667 ,31632.3000 ,31628.4883 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17b.sql,0.9049 ,83.4000 ,83.4000 ,31632.5000 ,31631.9700 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17c.sql,0.8901 ,83.5000 ,83.4667 ,31632.5000 ,31632.0867 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18a.sql,0.4621 ,83.5000 ,83.2667 ,31631.7000 ,31631.5433 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.sql,0.4603 ,82.7000 ,82.4667 ,31632.1000 ,31631.3267 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18c.sql,0.4558 ,82.0000 ,81.7333 ,31632.4000 ,31632.2467 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19a.sql,0.7942 ,99.4000 ,99.1667 ,31740.0000 ,31738.3500 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19b.sql,0.6646 ,97.5000 ,97.2000 ,31742.3000 ,31741.7100 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19c.sql,0.5781 ,96.5000 ,96.1333 ,31740.6000 ,31740.1800 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20a.sql,0.7657 ,95.3000 ,95.1000 ,31741.6000 ,31741.2633 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20b.sql,0.7158 ,94.7000 ,94.4667 ,31740.0000 ,31739.3200 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20c.sql,0.6952 ,94.0000 ,93.7667 ,31741.5000 ,31741.3467 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21a.sql,0.9731 ,93.3000 ,92.7833 ,31741.6000 ,31741.2900 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21b.sql,0.9292 ,92.5000 ,92.4833 ,31743.2000 ,31742.5150 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21c.sql,0.9037 ,91.7000 ,91.7000 ,31742.9000 ,31742.3333 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22a.sql,0.5206 ,98.6000 ,98.0000 ,31606.3000 ,31605.6133 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22b.sql,0.5143 ,96.9000 ,96.4000 ,31609.2000 ,31608.4567 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22c.sql,0.5140 ,95.5000 ,95.0000 ,31610.0000 ,31609.8033 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23a.sql,0.5541 ,94.1000 ,93.6333 ,31610.4000 ,31609.6200 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23b.sql,0.5293 ,92.8000 ,92.4000 ,31610.0000 ,31609.6300 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23c.sql,0.5092 ,91.6000 ,91.2667 ,31609.7000 ,31609.1967 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24a.sql,0.5681 ,90.5000 ,90.1667 ,31610.7000 ,31610.6433 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24b.sql,0.5471 ,89.5000 ,89.2000 ,31611.0000 ,31610.9900 ,OK
+legacy_core/tasks/graindb_task_copy/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24c.sql,0.5225 ,88.6000 ,88.3000 ,31611.4000 ,31610.7033 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/25a.sql,0.0607 ,73.6000 ,73.2000 ,33843.5000 ,33842.8467 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/25b.sql,0.0581 ,72.5000 ,72.1000 ,33844.9000 ,33844.3933 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/25c.sql,0.0474 ,71.4000 ,71.0333 ,33846.6000 ,33845.5033 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/26a.sql,0.8047 ,70.0000 ,68.2067 ,34082.4000 ,34040.4853 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/26b.sql,0.7865 ,67.9000 ,67.9000 ,34084.4000 ,34083.7133 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/26c.sql,0.7772 ,68.0000 ,67.9667 ,34083.8000 ,34083.6133 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/27a.sql,1.5596 ,68.3000 ,68.1333 ,34084.5000 ,34083.4550 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/27b.sql,0.9489 ,68.3000 ,68.2500 ,34084.1000 ,34083.7317 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/27c.sql,0.9177 ,68.5000 ,68.4333 ,34085.4000 ,34084.1533 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/28a.sql,1.0438 ,68.8000 ,68.6500 ,34085.4000 ,34084.7717 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/28b.sql,1.0274 ,68.5000 ,68.3500 ,34086.0000 ,34084.6017 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/28c.sql,0.9133 ,68.3000 ,68.2667 ,34086.2000 ,34085.2633 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/29a.sql,0.0657 ,68.4000 ,67.9667 ,34084.7000 ,34084.2200 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/29b.sql,0.0644 ,67.3000 ,67.0333 ,34086.2000 ,34085.6633 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/29c.sql,0.0572 ,66.5000 ,66.2667 ,34085.9000 ,34085.5667 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/30a.sql,0.8330 ,65.8000 ,65.7667 ,34085.3000 ,34085.0033 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/30b.sql,0.7804 ,65.9000 ,65.8667 ,34084.6000 ,34084.2700 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/30c.sql,0.7758 ,65.9000 ,65.8333 ,34084.2000 ,34083.9033 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/31a.sql,0.7721 ,65.9000 ,65.8667 ,34085.1000 ,34084.1900 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/31b.sql,0.7625 ,66.0000 ,65.9333 ,34087.5000 ,34087.0467 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/31c.sql,0.5198 ,66.0000 ,65.9000 ,34087.5000 ,34086.3800 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/32a.sql,0.4659 ,65.8000 ,65.7000 ,34087.6000 ,34087.4967 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/32b.sql,0.4371 ,65.5000 ,65.4000 ,34089.4000 ,34088.6900 ,OK
+legacy_core/tasks/graindb_task_copy/Pure_Graph_Queries/32c.sql,0.4383 ,65.2000 ,65.0333 ,34088.6000 ,34088.2867 ,OK

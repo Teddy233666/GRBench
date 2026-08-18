@@ -1,0 +1,97 @@
+file,time_sec,cpu_peak,cpu_avg,mem_peak_mb,mem_avg_mb,status
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.js,0.321141,1.4,1.4,560.89,557.3,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.js,0.320696,10.4,3.65,560.89,553.19,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.js,0.32012,10.4,2.99,562.02,554.66,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2a.js,0.322366,13.4,4.32,562.02,556.06,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2b.js,0.322225,13.4,3.88,562.02,556.57,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2c.js,0.320385,13.4,4.04,562.02,556.61,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3a.js,0.321283,13.4,3.8,562.02,554.19,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3b.js,0.32093,13.4,3.68,563.14,554.65,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3c.js,0.316752,14.4,4.39,563.14,555,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4a.js,0.317483,14.4,4.23,563.14,555.28,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4b.js,0.31635,14.4,4.28,563.14,555.41,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/4c.js,0.315659,14.4,4.17,563.14,555.74,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5a.js,0.313807,14.4,4.07,563.14,555.2,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5b.js,0.313533,14.5,4.52,563.14,555.35,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/5c.js,0.308932,14.5,4.42,563.14,554.89,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6a.js,0.314768,14.5,4.35,563.14,555.08,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6b.js,0.31347,14.5,4.26,563.14,554.67,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Ho/6c.js,0.313467,14.5,4.19,563.14,554.85,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7a.js,0.318843,14.5,4.23,563.14,555.09,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7b.js,0.318035,14.5,4.17,563.14,555.28,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7c.js,0.314525,14.5,4.11,563.14,554.95,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8a.js,0.317996,14.5,4.06,563.14,554.64,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8b.js,0.315948,14.5,4,563.14,554.77,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8c.js,0.313411,14.5,4.05,563.14,554.86,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9a.js,0.318961,14.5,3.97,563.14,554.73,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9b.js,0.316962,14.5,4.11,563.14,554.63,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9c.js,0.316078,14.5,4.04,563.14,554.53,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10a.js,0.629992,14.5,4.39,563.14,554.85,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10b.js,0.549728,14.5,4.43,563.14,555.09,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10c.js,0.542428,14.5,4.35,563.14,555.29,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11a.js,0.626427,14.5,4.51,563.14,555.46,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11b.js,0.624493,14.5,4.43,563.14,555.57,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11c.js,0.622816,14.5,4.36,563.14,555.67,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12a.js,0.621191,14.5,4.45,563.14,555.77,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12b.js,0.615381,14.5,4.38,563.14,555.87,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12c.js,0.614363,14.5,4.61,563.14,555.96,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13a.js,0.324044,14.5,4.56,563.14,556.02,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13b.js,0.322638,14.5,4.51,563.14,556.09,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13c.js,0.321015,14.5,4.46,563.14,556.14,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14a.js,0.320814,14.5,4.61,563.14,556.19,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14b.js,0.320296,14.5,4.56,563.14,556.01,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14c.js,0.320146,14.5,4.55,563.14,#,TIMEOUT
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15a.js,0.321401,14.5,4.49,563.14,555.83,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15b.js,0.316297,14.5,4.45,563.14,555.64,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15c.js,0.313649,14.5,4.42,563.14,555.46,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16a.js,0.315162,14.5,4.39,563.14,555.48,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.js,0.315004,14.5,4.42,563.14,555.53,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16c.js,0.312779,14.5,4.39,563.14,555.57,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17a.js,0.318736,14.5,4.36,563.14,555.59,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17b.js,0.314432,14.5,4.43,563.14,555.42,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17c.js,0.314156,14.5,4.4,563.14,555.44,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18a.js,0.316366,14.5,4.38,563.14,555.45,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.js,0.314426,14.5,4.36,563.14,555.47,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18c.js,0.30706,14.5,4.34,563.14,555.48,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19a.js,0.316782,14.5,4.31,563.14,555.33,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19b.js,0.314914,14.5,4.28,563.14,555.18,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19c.js,0.293122,14.5,4.26,563.14,555.21,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20a.js,0.317555,14.5,4.29,563.14,555.25,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20b.js,0.316664,14.5,4.27,563.14,555.27,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20c.js,0.314123,14.5,4.25,563.14,555.28,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21a.js,0.314852,14.5,4.23,563.14,555.15,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21b.js,0.313682,14.5,4.21,563.14,555.01,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21c.js,0.313621,14.5,4.21,563.14,554.88,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22a.js,0.618777,14.5,4.18,563.14,554.94,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22b.js,0.6183,14.5,4.25,563.14,554.73,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22c.js,0.616733,14.5,4.22,563.14,554.79,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23a.js,0.611581,14.5,4.19,563.14,554.72,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23b.js,0.609962,14.5,4.21,563.14,554.65,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23c.js,0.608407,14.5,4.18,563.14,554.46,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24a.js,0.615216,14.5,4.25,563.14,554.52,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24b.js,0.612751,14.5,4.25,563.14,554.47,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24c.js,0.604129,14.5,4.22,563.14,554.53,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/25a.js,0.354761,14.5,4.23,563.14,554.55,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/25b.js,0.354574,14.5,4.21,563.14,554.57,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/25c.js,0.347058,14.5,4.2,563.14,554.59,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/26a.js,2.607107,14.5,4.29,563.14,554.53,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/26b.js,2.604487,14.5,4.29,563.14,554.59,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/26c.js,2.584272,14.5,4.27,563.14,554.66,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/27a.js,2.603374,14.5,4.31,563.14,554.73,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/27b.js,2.603125,14.5,4.28,563.14,554.68,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/27c.js,2.598894,14.5,4.37,563.14,554.63,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/28a.js,0.312367,14.5,4.36,563.14,554.54,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/28b.js,0.311234,14.5,4.41,563.14,554.56,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/28c.js,0.308353,14.5,4.39,563.14,554.58,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/29a.js,0.358164,14.5,4.38,563.14,554.6,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/29b.js,0.356896,14.5,4.36,563.14,554.62,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/29c.js,0.355817,14.5,4.35,563.14,554.65,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/30a.js,2.606251,14.5,4.39,563.14,554.69,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/30b.js,2.605142,14.5,4.36,563.14,554.75,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/30c.js,2.598511,14.5,4.45,563.14,554.8,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/31a.js,0.310325,14.5,4.43,563.14,554.81,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/31b.js,0.30852,14.5,4.45,563.14,554.82,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/31c.js,0.308002,14.5,4.43,563.14,554.74,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/32a.js,0.320412,14.5,4.42,563.14,554.76,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/32b.js,0.31486,14.5,4.46,563.14,554.78,OK
+legacy_core/tasks/arangodb_task/agensgraph_task/Pure_Graph_Queries/32c.js,0.314126,14.5,4.45,563.14,554.79,OK

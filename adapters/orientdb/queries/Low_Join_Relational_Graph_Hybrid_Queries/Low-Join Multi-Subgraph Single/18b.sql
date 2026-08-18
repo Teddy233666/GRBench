@@ -1,0 +1,21 @@
+SELECT
+    $q0[0].v AS p3,
+    $q1[0].v AS newsfeed,
+    $q2[0].v AS minNobel
+LET
+    $q0 = (SELECT MIN(paperid) AS v
+FROM (
+    MATCH {class:Papers, as:p, where:(paperid = 'W2122344208')}.out('PaperReferences'){class:Papers, as:ref, where:(citation_count < 80)} RETURN ref.paperid AS paperid
+)),
+    $q1 = (SELECT MIN(newsfeed) AS v
+FROM (
+    MATCH {class:Papers, as:p, where:(paperid = 'W2122344208')}.out('PaperReferences'){class:Papers, as:ref, where:(citation_count < 80)}, {as:p}.out('link_newsfeed'){class:Newsfeed_Metadata, as:n} RETURN n.newsfeed_id AS newsfeed
+)),
+    $q2 = (SELECT MIN(laureate_id) AS v
+FROM link_nobellaureates
+WHERE paperid IN (
+    SELECT paperid
+FROM (
+    MATCH {class:Papers, as:p, where:(paperid = 'W2122344208')}.out('PaperReferences'){class:Papers, as:ref, where:(citation_count < 80)} RETURN p.paperid AS paperid
+)
+));

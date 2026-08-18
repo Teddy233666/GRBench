@@ -1,0 +1,17 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.cypher text eol=lf
+*.js text eol=lf
+*.java text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.csv text eol=lf
+*.tsv text eol=lf
+*.cff text eol=lf
+results/**/*.csv whitespace=-trailing-space
+*.xlsx binary
+*.xls binary
+*.jar binary
+*.zip binary
+*.gz binary

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use GRBench, cite this software and the SciSciNet dataset."
+title: "GRBench"
+type: software
+authors:
+  - name: "GRBench contributors"
+version: 0.1.0
+date-released: 2026-08-18
+license: Apache-2.0

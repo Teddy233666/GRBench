@@ -1,0 +1,97 @@
+sql_file,time_sec,cpu_peak,cpu_avg,mem_peak_mb,mem_avg_mb,status
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,23.601039,310.5,269.15,39243.4,39102.53,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,22.887748,323.5,264.66,39202.5,39047.68,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,22.629517,363.7,269.45,39173.7,39013.64,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2a.sql,18.987254,298.4,261.2,38566.1,38544.49,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2b.sql,18.643854,318.5,269.53,38566.2,38538.14,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2c.sql,17.631387,359.2,267.29,38565.6,38544.1,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3a.sql,443.343376,406.4,175.81,41726.3,41162.05,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3b.sql,391.650086,369.3,172.71,41727.1,41142.25,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3c.sql,29.394745,385.5,229.12,41726.8,39556.36,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4a.sql,11.207377,317.2,256.22,38518.1,38481.86,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4b.sql,9.467988,408.8,268.67,38535.1,38486.59,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4c.sql,6.898343,287.3,234.53,38417.7,38408.8,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5a.sql,10.315572,354.3,267.41,38567.8,38533.35,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5b.sql,9.138347,322.3,265.48,38567.5,38534.56,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5c.sql,8.900376,434.9,277.87,38568.8,38535.89,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6a.sql,10.621422,367.4,262.57,38571.5,38545.74,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6b.sql,10.111411,381,267.43,38571.3,38546.8,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6c.sql,8.86766,403.1,260.11,38572,38546.59,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7a.sql,16.893847,356.3,270.71,38567.6,38551.99,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7b.sql,16.528821,362.2,267.82,38567.2,38552.61,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7c.sql,16.220773,373.9,263.79,38567.7,38552.64,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8a.sql,75.290075,356.3,118.93,38572.3,38563.16,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8b.sql,67.192903,391.6,126.61,38564.8,38554.8,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8c.sql,18.449235,375.8,252.62,38565.8,38536.6,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9a.sql,71.022439,404.1,128.97,38565.5,38556.07,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9b.sql,63.04776,339.1,127.57,38542.9,38399.35,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9c.sql,16.316553,289,227.35,38531.3,38409.55,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10a.sql,2.479934,341.8,209.78,38378.2,38371.56,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10b.sql,1.934697,356.1,205.76,38377.6,38375.36,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10c.sql,1.594948,256.1,155.48,38375.9,38374.36,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11a.sql,2.501239,399.2,196.19,38378.7,38377.36,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11b.sql,1.80877,314.8,201.3,38378.7,38377.46,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11c.sql,1.645085,211.2,160.65,38375.9,38374.52,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12a.sql,1.790997,277.8,189.93,38378.8,38377.44,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12b.sql,1.764295,366.8,211.28,38379.2,38377.87,OK
+legacy_core/tasks/postgresql_task/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12c.sql,1.606588,398.8,196.17,38377.7,38376.27,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13a.sql,21.499222,334.8,272.1,39216.9,39032,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13b.sql,21.460149,323.2,264.64,39175.1,39018.07,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13c.sql,21.22594,375,274.76,39146.8,38989.52,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14a.sql,17.220437,400.9,272.21,38538.6,38518.01,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14b.sql,16.32787,357.3,267.39,38539.1,38521.35,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14c.sql,14.384732,306.3,266.88,38539.6,38521.13,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15a.sql,20.624794,288.1,247.67,42611.5,42126.58,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15b.sql,20.208293,348.7,251.49,42613,42185.26,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15c.sql,19.240657,408.9,262.72,42611.9,42198.43,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16a.sql,6.040432,427.1,270.4,38549.3,38488.9,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.sql,5.862994,354.2,257.57,38531.7,38471.77,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16c.sql,5.502933,317.4,246.48,38402.1,38385.5,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17a.sql,7.892847,384.3,254.07,41048.9,40277.44,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17b.sql,7.692165,352.4,243.68,40700.4,40007.86,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17c.sql,7.19324,346.5,252.33,39332.6,39082.22,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18a.sql,9.035672,309.5,232.23,41048.5,40186.02,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.sql,8.930298,384.4,225.32,40703.5,40021.53,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18c.sql,7.296831,333.7,251.99,39257.7,39037.03,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19a.sql,16.983424,83.4,83.4,38353.5,38353.5,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19b.sql,16.729965,299.7,266.87,38538.9,38524.28,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19c.sql,16.014611,383.5,277.54,38538.2,38519.88,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20a.sql,16.859697,429.1,277.42,38554.9,38540.72,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20b.sql,16.215676,354.6,275.01,38557,38542.97,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20c.sql,15.626904,389.7,278.03,38557.1,38542.67,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21a.sql,16.591853,326.6,266.33,38561.5,38547.28,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21b.sql,16.441935,326.8,268.98,38562.4,38548.09,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21c.sql,14.651604,330.8,263.96,38563.6,38545.32,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22a.sql,2.661064,226.9,156.38,38358,38357.02,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22b.sql,2.445038,279.9,164.08,38358.2,38356.84,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22c.sql,2.089886,269.8,163.9,38357.6,38356.66,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23a.sql,2.439466,350.1,208.33,38360,38359.57,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23b.sql,1.748156,371.1,199.72,38363.2,38362.29,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23c.sql,1.59701,197.9,153.72,38360.7,38360.11,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24a.sql,1.570655,359.1,196.18,38364.5,38362.96,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24b.sql,1.494109,322,206.97,38364.1,38363.08,OK
+legacy_core/tasks/postgresql_task/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24c.sql,1.475447,357.2,211.55,38362.3,38361.22,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/25a.sql,0.052227,84,84,38357.9,38357.9,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/25b.sql,0.049811,84,84,38361.2,38361.2,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/25c.sql,0.042066,84,84,38361.3,38361.3,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/26a.sql,2.447826,234.9,155.69,38361.2,38360,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/26b.sql,2.368658,204.2,152.49,38360.6,38359.29,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/26c.sql,2.349099,241.2,154.76,38360.6,38359.63,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/27a.sql,2.897836,330,226,38373.3,38369.99,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/27b.sql,2.141698,432.9,238.55,38372.9,38371.3,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/27c.sql,2.076155,235,166.72,38364.3,38363.66,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/28a.sql,9.941313,305,235.79,41658.6,41002.81,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/28b.sql,9.522289,285.9,232.59,41658.5,40953.46,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/28c.sql,4.976476,357.1,192.77,41568.2,40355.44,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/29a.sql,0.075694,84.1,84.1,38360,38360,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/29b.sql,0.052442,84.1,84.1,38362.3,38360.9,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/29c.sql,0.050771,84.1,84.1,38360,38359.65,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/30a.sql,2.363497,336.5,205.63,38364.6,38363.38,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/30b.sql,1.773056,367.5,216.6,38364.3,38363.35,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/30c.sql,1.647062,205.7,155.65,38362.2,38361.71,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/31a.sql,10.61529,376.5,212.08,41679.7,40851.33,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/31b.sql,9.561959,333.1,224.48,41688.1,40870.55,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/31c.sql,7.581914,330.7,183.69,41563.9,40613.09,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/32a.sql,0.020533,84.2,84.2,38363.1,38363.1,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/32b.sql,0.019465,84.2,84.2,38363.9,38363.9,OK
+legacy_core/tasks/postgresql_task/Pure_Graph_Queries/32c.sql,0.012347,84.2,84.2,38364.4,38364.4,OK

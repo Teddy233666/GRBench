@@ -1,0 +1,7 @@
+GRBench
+Copyright 2026 GRBench contributors
+
+This product includes benchmark adapters that target separately distributed
+database systems. Their names and trademarks belong to their respective
+owners. No database server, dataset, Java archive, or Python package is
+redistributed by this repository.

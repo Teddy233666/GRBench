@@ -1,0 +1,193 @@
+sql_file_path,median_execution_time_seconds,cpu_peak,cpu_avg,mem_peak_mb,mem_avg_mb,status
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,0.271794,1655.3,1650.35,,1232.05,1208.83
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,0.25982,1667.3,1662.64,,1284.45,1258.91
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,0.243164,1677.3,1670.47,,1269.82,1261.02
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2a.sql,0.279114,1659.2,1654.07,,1264.72,1242.57
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2b.sql,0.245819,1670.2,1665.7,,1274.84,1264.51
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2c.sql,0.252563,1680.3,1676.54,,1256.04,1245.57
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3a.sql,0.271345,1689.3,1678.59,,1270.75,1242.29
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3b.sql,0.269128,1672.2,1667.01,,1286.58,1258.25
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3c.sql,0.267454,1683.2,1679.1,,1341.35,1311.85
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4a.sql,0.236802,1690.2,1687.75,,1319.58,1306.84
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4b.sql,0.242592,1694.2,1676.4,,1320.85,1291.31
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4c.sql,0.187253,1670.2,1668.8,,1204.54,1193.9
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5a.sql,0.12116,1674.2,1673.27,,1192.45,1186.36
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5b.sql,0.105396,1679.2,1678.2,,1183.58,1180.39
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5c.sql,0.0890749,1684.2,1682.26,,1185.47,1184.63
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6a.sql,0.133538,1689.2,1686.86,,1185.47,1184.25
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6b.sql,0.13121,1694.2,1691.72,,1184.5,1182.97
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6c.sql,0.119598,1694.3,1667.21,,1186.75,1185.42
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7a.sql,0.185287,1673.2,1670.39,,1192.38,1190.55
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7b.sql,0.182181,1678.2,1676,,1193.5,1191.96
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7c.sql,0.166866,1684.2,1681.2,,1174.86,1172.34
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8a.sql,0.236016,1690.2,1687.89,,1199.75,1188.22
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8b.sql,0.230001,1692.2,1672.42,,1222.61,1208.24
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8c.sql,0.237797,1671.2,1668.84,,1236.71,1226.82
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9a.sql,0.232159,1677.2,1675,,1243.03,1237.54
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9b.sql,0.237518,1683.2,1680.98,,1237.67,1232.26
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9c.sql,0.223763,1686.2,1668.41,,1252.06,1240.98
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10a.sql,0.0572107,1660.1,1659.49,,1252.06,1251.83
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10b.sql,0.0554643,1661.1,1660.48,,1256.56,1254.91
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10c.sql,0.0360708,1662.1,1661.81,,1257.68,1251.14
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11a.sql,0.0393481,1663.1,1662.84,,1240.3,1239.92
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11b.sql,0.0382915,1664.2,1663.93,,1243.67,1243.3
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11c.sql,0.0347793,1665.2,1664.93,,1244.8,1244.8
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12a.sql,0.0419872,1666.2,1666.03,,1244.8,1244.8
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12b.sql,0.0419536,1667.2,1666.95,,1245.92,1245.92
+legacy_core/tasks/sciscinet_tasks/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12c.sql,0.0354683,1668.2,1668.03,,1245.92,1245.27
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13a.sql,0.302151,1679.2,1675.22,,1302.17,1275.46
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13b.sql,0.276319,1681.3,1661.24,,1282.75,1271.37
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13c.sql,0.249045,1670.2,1666.47,,1270.54,1258.52
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14a.sql,0.277429,1680.2,1676.85,,1233.2,1225.25
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14b.sql,0.252445,1689.2,1680.48,,1217.49,1205.33
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14c.sql,0.234315,1671.1,1667.38,,1200.02,1186.38
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15a.sql,0.267895,1681.1,1677.36,,1166.12,1143.5
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15b.sql,0.270797,1692.2,1687.86,,1188.81,1167.83
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15c.sql,0.26418,1698.2,1682.46,,1238.04,1207.64
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16a.sql,0.227908,1679.1,1677.13,,1193.24,1182.04
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.sql,0.246001,1685.1,1682.45,,1197.74,1171.5
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16c.sql,0.162002,1688.1,1687.36,,1115.84,1105.39
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17a.sql,0.0986197,1692.1,1690.9,,1125.96,1120.82
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17b.sql,0.0944576,1669.1,1667.23,,1099.88,1099.07
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17c.sql,0.0851448,1672.1,1671.21,,1098.16,1093.83
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18a.sql,0.107529,1676.1,1674.55,,1091.57,1088.59
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.sql,0.0987921,1680.1,1678.28,,1085.22,1084.93
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18c.sql,0.101852,1683.1,1681.89,,1088.6,1085.27
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19a.sql,0.158839,1689.1,1686.22,,1086.87,1085.66
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19b.sql,0.164256,1694.2,1691.27,,1087.99,1086.96
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19c.sql,0.15468,1696.2,1682.89,,1089.12,1085.01
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20a.sql,0.166712,1676.1,1673.77,,1080.09,1078.29
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20b.sql,0.171978,1681.1,1678.96,,1072.77,1070.25
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20c.sql,0.058188,1683.1,1682.71,,1069.6,1068.7
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21a.sql,0.178743,1688.1,1685.75,,1070.72,1070.27
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21b.sql,0.174132,1693.1,1690.83,,1071.85,1071.78
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21c.sql,0.166035,1696.2,1685.6,,1074.1,1073.65
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22a.sql,0.0438764,1671.1,1671.1,,1074.1,1073.44
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22b.sql,0.0385952,1672.1,1671.83,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22c.sql,0.0293059,1673.1,1673.1,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23a.sql,0.0345931,1674.1,1673.85,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23b.sql,0.0353763,1675.1,1674.85,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23c.sql,0.0296311,1676.1,1675.84,,1074.11,1073.23
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24a.sql,0.0322359,1677.2,1676.45,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24b.sql,0.0317476,1677.2,1677.2,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24c.sql,0.028388,1678.2,1678.2,,1074.11,1073.74
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/25a.sql,0.0117602,1678.2,0,,1074.11,1074.11
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/25b.sql,0.0152018,1678.2,0,,1074.12,1074.12
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/25c.sql,0.013912,1678.2,0,,1074.12,1074.12
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/26a.sql,0.0401134,1679.2,1678.93,,1074.12,1074.12
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/26b.sql,0.0401475,1680.2,1680.03,,1074.12,1073.84
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/26c.sql,0.0277829,1681.3,1681.3,,1074.12,1073.24
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/27a.sql,0.0621562,1684.3,1683.16,,1077.49,1075.9
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/27b.sql,0.0617855,1686.3,1685.31,,1075.1,1075.1
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/27c.sql,0.0635114,1689.3,1688.39,,1075.1,1073.69
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/28a.sql,0.0787702,1691.3,1688.49,,1066.66,1063.23
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/28b.sql,0.071636,1667.2,1666.74,,1055.88,1054.11
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/28c.sql,0.0555148,1670.3,1669.79,,1045.24,1045.24
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/29a.sql,0.0196843,1670.3,1670.3,,1045.24,1039.35
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/29b.sql,0.016336,1670.3,1670.3,,1031.94,1030.62
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/29c.sql,0.0188317,1670.3,1670.3,,1031.94,1031.38
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/30a.sql,0.031903,1671.3,1671.03,,1031.95,1031.57
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/30b.sql,0.0308363,1672.3,1672.05,,1031.95,1031.57
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/30c.sql,0.0283537,1672.3,1672.3,,1031.95,1031.06
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/31a.sql,0.0751524,1675.3,1674.54,,1031.95,1030.53
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/31b.sql,0.0680208,1677.4,1676.91,,1024.57,1017.71
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/31c.sql,0.069849,1680.4,1679.14,,1008.07,1007.7
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/32a.sql,0.166023,1683.4,1682.66,,1054.2,1031.13
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/32b.sql,0.182914,1687.4,1685.7,,1059.36,1046.4
+legacy_core/tasks/sciscinet_tasks/Pure_Graph_Queries/32c.sql,0.170609,1665.3,1664.36,,1099.86,1078.15
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,0.281746,1671.3,1669.44,,1126.86,1112.08
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,0.251603,1676.3,1674.74,,1126.81,1083.16
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,0.240833,1682.4,1678.8,,1084.05,1071.12
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2a.sql,0.247091,1662.3,1660.65,,1102.75,1088.25
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2b.sql,0.23095,1668.3,1666.4,,1128.93,1111.1
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2c.sql,0.199514,1673.3,1671.82,,1151.43,1136.74
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3a.sql,0.183804,1679.3,1676.73,,1149.02,1141.46
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3b.sql,0.186455,1680.3,1661.64,,1128.86,1126.97
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/3c.sql,0.179257,1663.3,1661.25,,1117.63,1113.27
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4a.sql,0.149375,1666.3,1665.66,,1080.98,1071.79
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4b.sql,0.150204,1669.3,1668.61,,1102.87,1091.24
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/4c.sql,0.12446,1672.3,1671.46,,1109.62,1102.6
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5a.sql,0.106606,1675.3,1673.96,,1072.73,1072.48
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5b.sql,0.0940228,1677.3,1674.59,,1073.86,1073.72
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/5c.sql,0.0809879,1655.3,1653.97,,1074.98,1073.52
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6a.sql,0.0837033,1657.3,1656.45,,1072.9,1072.9
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6b.sql,0.0833707,1660.3,1659.29,,1072.9,1072.58
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Single-Hop/6c.sql,0.0788176,1663.3,1661.69,,1071.45,1071.29
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7a.sql,0.184613,1668.3,1665.76,,1071.45,1071.26
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7b.sql,0.181854,1672.3,1670.61,,1069.96,1069.79
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/7c.sql,0.165855,1677.3,1675.17,,1069.96,1069.61
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8a.sql,0.177273,1677.3,1656.22,,1069.96,1069.96
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8b.sql,0.177612,1661.3,1659.48,,1071.09,1070.09
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/8c.sql,0.170698,1666.3,1663.92,,1072.22,1070.98
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9a.sql,0.173912,1670.3,1668.48,,1072.22,1071.62
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9b.sql,0.170659,1674.3,1672.69,,1071.96,1071.56
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Multi-Hop/9c.sql,0.160245,1676.3,1663.7,,1074.21,1071.32
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10a.sql,0.0560105,1655.3,1655.18,,1057.81,1054.36
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10b.sql,0.0552931,1656.3,1655.95,,1043.95,1042.1
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/10c.sql,0.0346138,1657.3,1657.05,,1036.06,1036.06
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11a.sql,0.0404096,1658.3,1658.05,,1034.92,1034.92
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11b.sql,0.0412133,1659.3,1659.02,,1036.04,1035.67
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11c.sql,0.0341938,1660.3,1660.05,,1038.29,1035.58
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12a.sql,0.0409825,1661.3,1660.8,,1031.09,1030.25
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12b.sql,0.0391517,1662.3,1661.55,,1031.09,1030.71
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/12c.sql,0.0355778,1663.4,1662.65,,1032.22,1032.22
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13a.sql,0.237735,1668.4,1666.5,,1051.35,1039.16
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13b.sql,0.240723,1672.4,1662.74,,1072.73,1059.85
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13c.sql,0.227411,1654.3,1652.66,,1092.98,1080.89
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14a.sql,0.246887,1659.3,1657.81,,1096.36,1093.32
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14b.sql,0.238774,1664.3,1662.82,,1094.63,1080.89
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/14c.sql,0.205709,1669.4,1664.71,,1096.71,1095.98
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15a.sql,0.189795,1650.3,1648.4,,1095.92,1094.88
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15b.sql,0.184558,1655.3,1653.1,,1079.88,1078.34
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/15c.sql,0.17223,1659.3,1657.37,,1077.07,1076.26
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16a.sql,0.144923,1662.3,1661.61,,1100.05,1086.93
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.sql,0.129412,1665.3,1663.96,,1122.55,1110.64
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16c.sql,0.10907,1667.3,1665.24,,1129.79,1127.91
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17a.sql,0.0721536,1646.3,1645.29,,1114.27,1114.27
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17b.sql,0.0708323,1648.3,1646.96,,1114.27,1094.3
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/17c.sql,0.0696933,1649.3,1649.01,,1033.92,1031.94
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18a.sql,0.0745165,1651.3,1650.6,,1035.6,1034.85
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.sql,0.0685999,1653.3,1652.5,,1039.48,1037.74
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18c.sql,0.0700207,1654.3,1653.81,,1038.97,1038.22
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19a.sql,0.168572,1659.4,1657.07,,1040.71,1039.03
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19b.sql,0.157928,1663.4,1661.44,,1039.12,1039.12
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/19c.sql,0.154673,1666.4,1661.49,,1041.29,1040.12
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20a.sql,0.166231,1648.3,1646.77,,1041.29,1041.21
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20b.sql,0.163274,1653.3,1650.95,,1041.29,1041.21
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/20c.sql,0.160822,1657.3,1655.05,,1041.29,1028.82
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21a.sql,0.174595,1661.3,1659.21,,1027.67,1026.2
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21b.sql,0.175133,1665.4,1663.58,,1027.67,1027.53
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Multi-Hop/21c.sql,0.17237,1666.4,1651.17,,1027.68,1027.6
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22a.sql,0.0392702,1647.3,1647.3,,1027.68,1027.68
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22b.sql,0.0374997,1648.3,1647.81,,1027.68,1027.4
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/22c.sql,0.0280807,1649.3,1648.8,,1027.68,1027.68
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23a.sql,0.0331786,1649.3,1649.3,,1028.8,1028.8
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23b.sql,0.0315993,1650.3,1650.3,,1028.8,1028.8
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23c.sql,0.0284448,1651.4,1651.14,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24a.sql,0.0326138,1651.4,1651.4,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24b.sql,0.0330963,1652.4,1652.15,,1028.81,1028.43
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/24c.sql,0.0286722,1653.4,1652.9,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/25a.sql,0.0123799,1653.4,0,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/25b.sql,0.0106161,1653.4,0,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/25c.sql,0.012006,1653.4,0,,1028.81,1028.81
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/26a.sql,0.0433912,1654.4,1653.56,,1029.94,1029.38
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/26b.sql,0.0398641,1654.4,1654.4,,1029.94,1029.94
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/26c.sql,0.0285132,1655.5,1655.5,,1029.94,1029.94
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/27a.sql,0.0426066,1656.5,1656.01,,1029.94,1029.94
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/27b.sql,0.041549,1657.5,1656.66,,1029.94,1029.94
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/27c.sql,0.0286794,1657.5,1657.5,,1029.94,1029.19
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/28a.sql,0.0353062,1658.5,1658.24,,1032.19,1030.69
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/28b.sql,0.0353394,1637.4,1637.15,,1033.32,1032.57
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/28c.sql,0.0338542,1637.4,1637.4,,1028.73,1028.36
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/29a.sql,0.0150959,1638.4,1637.9,,1028.73,1027.59
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/29b.sql,0.0154078,1638.5,1638.5,,1028.73,1027.59
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/29c.sql,0.0163519,1638.5,1638.5,,1028.73,1027.59
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/30a.sql,0.0341463,1638.5,1638.5,,1028.73,1028.73
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/30b.sql,0.0334117,1639.5,1639.23,,1028.73,1028.73
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/30c.sql,0.0257664,1639.5,1639.5,,1028.73,1028.73
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/31a.sql,0.0333276,1640.5,1640.5,,1028.74,1027.54
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/31b.sql,0.0379033,1641.5,1641.5,,1025.15,1022.32
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/31c.sql,0.0329027,1642.5,1642.26,,1017.8,1017.8
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/32a.sql,0.0792294,1643.5,1643.23,,1017.8,1016.58
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/32b.sql,0.0767639,1644.5,1644.41,,1014.96,1014.47
+legacy_core/tasks/sciscinet_tasks/Pure_Join_Queries/Pure_Graph_Queries/32c.sql,0.0763886,1646.5,1645.93,,1016.12,1015.13
