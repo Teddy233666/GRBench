@@ -56,6 +56,5 @@ from the healthy loaded baseline as described in `docs/data/README.md`.
 Kuzu's graph-integrity rules prevent Update `4a/4b` from exactly matching the
 relational operation that deletes and restores only `Authors_Gender` rows while
 leaving incident relationship tables untouched. Those two tasks remain
-`latest-observed` until an independently validated lossless projection is
-implemented. No result becomes `comparable` without full-profile database and
-oracle validation.
+documented with that model limitation until an independently validated lossless
+projection is implemented.

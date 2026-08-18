@@ -6,9 +6,9 @@
 `benchmark/schema/` defines the 30-CSV `canonical_full_v1` input contract, and
 `benchmark/manifests/` records hashes, aliases, Update lifecycles, and adapter
 coverage. Engine code lives under `adapters/<engine>/`; keep generated
-databases and CSV staging in `.local/`. Curated artifacts belong in
-`results/latest-observed/`, while only contract-compliant results may enter
-`results/comparable/`. Superseded query variants belong in `legacy/`.
+databases and CSV staging in `.local/`. Published result CSVs belong under
+`results/<engine>/`, with provenance in `results/manifests/`. Superseded query
+variants belong in `legacy/`.
 
 ## Build, Test, and Development Commands
 

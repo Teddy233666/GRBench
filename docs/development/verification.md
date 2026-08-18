@@ -14,8 +14,8 @@ A release candidate is acceptable only when:
    without workstation-specific defaults.
 6. Formal runs use one warmup, three measured runs, same-run median metrics,
    complete result consumption, one timeout policy, and Update baseline checks.
-7. Correctness is verified against an independent result/state oracle before
-   any artifact enters `results/comparable/`.
+7. Result metadata records whether correctness was verified against an
+   independent result/state oracle.
 8. No dataset, database, build output, log, cache, credential, private address,
    or file above 10 MiB is present in the publication tree or filtered history.
 

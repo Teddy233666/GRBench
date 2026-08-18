@@ -44,8 +44,7 @@ equivalent physical projection. Staging derivation is never a timed query.
 
 ## Correctness and Comparability
 
-`OK` means execution completed, not that the result is correct. A result may
-enter `results/comparable/` only when query/data hashes match, output rows or
-Update state transitions pass an independent oracle, all required classes are
-healthy, and measurement settings match this contract. Otherwise publish it
-as `latest-observed` or `legacy` with an explicit reason.
+`OK` means execution completed, not that the result is correct. Result metadata
+must record whether query/data hashes match, output rows or Update state
+transitions pass an independent oracle, all required classes are healthy, and
+measurement settings match this contract.

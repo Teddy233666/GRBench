@@ -22,8 +22,7 @@ state-oracle evidence when claiming semantic equivalence.
 Do not commit datasets, database state, credentials, private addresses, local
 paths, logs, caches, or unreviewed benchmark outputs. New result artifacts must
 include provenance and hashes in `results/manifests/published_results.csv`.
-Only results satisfying `docs/benchmark-contract.md` may be placed in
-`results/comparable/`.
+Document compliance with `docs/benchmark-contract.md` in the result manifest.
 
 Use short imperative commit subjects, such as `fix arangodb optional joins`.
 List the validation commands and DBMS versions used in every pull request.

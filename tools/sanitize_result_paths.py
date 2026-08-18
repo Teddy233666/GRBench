@@ -11,7 +11,16 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULTS = ROOT / "results" / "latest-observed"
+RESULTS = ROOT / "results"
+ENGINES = (
+    "agensgraph",
+    "arangodb",
+    "duckdb",
+    "graindb",
+    "kuzu",
+    "orientdb",
+    "postgresql",
+)
 HOST_PATH = re.compile(
     r"(?<![A-Za-z0-9_.-])"
     r"(?:/home/[A-Za-z0-9_.-]+|/(?:data[23]?|workspace|root|mnt|ssd))(?:/|$)"
@@ -106,10 +115,11 @@ def main() -> int:
 
     total = 0
     errors: list[str] = []
-    for path in sorted(RESULTS.rglob("*.csv")):
-        changed, unresolved = process(path, args.write)
-        total += changed
-        errors.extend(unresolved)
+    for engine in ENGINES:
+        for path in sorted((RESULTS / engine).rglob("*.csv")):
+            changed, unresolved = process(path, args.write)
+            total += changed
+            errors.extend(unresolved)
 
     if errors:
         print("Unrecognized absolute host paths remain:")

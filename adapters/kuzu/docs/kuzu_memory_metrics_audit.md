@@ -1,6 +1,6 @@
 # Kuzu Memory Metrics Audit
 
-Input CSV: `results/latest-observed/kuzu/kuzu_sf10_0_to_sf10_4_final_results_hz1000_median_replaced.csv`
+Input CSV: `results/kuzu/kuzu_sf10_0_to_sf10_4_final_results_hz1000_median_replaced.csv`
 Summary CSV: `adapters/kuzu/docs/kuzu_memory_metrics_audit.md`
 
 ## Finding

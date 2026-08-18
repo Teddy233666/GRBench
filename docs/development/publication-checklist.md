@@ -4,8 +4,8 @@
 
 - Publish from the independent clean-history candidate, never from the 786 MiB
   inherited Git history.
-- Keep all historical observations in `results/latest-observed/` and keep
-  `results/comparable/` empty until live oracle validation is complete.
+- Store published results under `results/<engine>/` and retain their provenance
+  rows under `results/manifests/`.
 - Label the first release as statically validated, with live adapter validation
   deferred.
 

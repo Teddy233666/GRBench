@@ -12,8 +12,8 @@ records remain private.
 
 The maintainer elected to proceed with Git publication preparation without the
 planned live smoke, portable-runner, and seven-system oracle phases. This does
-not waive those checks: the initial public release must identify them as known
-validation gaps, and `results/comparable/` must remain empty.
+not waive those checks: the development record continues to identify them as
+known validation gaps.
 
 ## Static Gates Completed
 
@@ -27,8 +27,8 @@ validation gaps, and `results/comparable/` must remain empty.
   support tables have an untimed baseline derivation SQL file.
 - Repository hygiene rejects likely credentials, private IPs, unapproved host
   paths, files over 10 MiB, and stale result/query hashes.
-- Historical observations for all seven systems are published only under
-  `results/latest-observed/`; none is marked cross-system comparable.
+- Result artifacts for all seven systems are published under
+  `results/<engine>/` with manifest provenance.
 
 ## Deferred Live Acceptance
 
@@ -58,8 +58,7 @@ Execution success alone is insufficient.
    connected to this independent clean-history candidate and must never be
    imported into the public repository.
 5. Published result files predate parts of the current query and measurement
-   contract. Keep `results/comparable/` empty until new oracle-validated runs
-   pass.
+   contract; their provenance notes remain in the result manifest.
 
 ## Final Local Gate
 

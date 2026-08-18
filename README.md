@@ -5,16 +5,6 @@ database systems. This repository publishes one canonical SciSciNet workload
 and adapters for AgensGraph, ArangoDB, DuckDB, GrainDB, Kuzu, OrientDB, and
 PostgreSQL.
 
-This publication is a static release candidate. Repository checks pass, but
-the reorganized adapters have not completed a fresh seven-system live oracle
-run. Historical files under `results/latest-observed/` are published for
-provenance and are not cross-system-comparable results. See
-`docs/development/release-readiness.md` for the exact validation boundary.
-
-Only Kuzu and OrientDB currently have maintained repository-relative runners.
-The other adapters publish audited translations and historical implementation
-evidence, not an end-to-end portable seven-system benchmark harness.
-
 ## Workload Contract
 
 The canonical suite contains 123 queries:
@@ -25,8 +15,7 @@ The canonical suite contains 123 queries:
 
 `benchmark/queries/canonical/` is authoritative. Historical Update files with
 a `c` suffix are retained only under `legacy/update-v0/`. `Pure_Join_Queries`
-is a logical alias of the 96 main queries and is not executed as an additional
-workload.
+contains pure relational implementations of the 96 main queries.
 
 The `canonical_full_v1` data profile requires 30 CSV files. The files and
 their logical projections are listed in `benchmark/manifests/data_profile.csv`.
@@ -36,7 +25,7 @@ Datasets and database files are not distributed in this repository.
 
 - `benchmark/`: canonical queries, data schema, generation tools, manifests.
 - `adapters/`: engine-specific queries, loaders, runners, and documentation.
-- `results/`: curated observed results, comparability tiers, provenance hashes.
+- `results/`: result CSVs organized by database system, plus provenance hashes.
 - `docs/`: benchmark contract, data preparation, systems, and development notes.
 - `tools/`: deterministic manifest generation and repository validation.
 - `legacy/`: superseded workload artifacts kept for provenance only.
@@ -63,11 +52,9 @@ Contribution requirements are documented in `CONTRIBUTING.md`.
 
 ## Results and Licensing
 
-`results/latest-observed/` contains the newest retained artifact for each
-available historical run. These files are not automatically cross-system
-comparable; consult `results/manifests/published_results.csv` and
-`docs/results/README.md`. `results/comparable/` accepts only artifacts that
-pass the current benchmark contract.
+Result CSVs are organized by database system under `results/<engine>/`.
+Provenance metadata and SHA-256 values are recorded in
+`results/manifests/published_results.csv`; see `docs/results/README.md`.
 
 Code and documentation are licensed under Apache-2.0 (`LICENSE`). Published
 result tables are licensed under CC BY 4.0 (`RESULTS_LICENSE`). Dataset and

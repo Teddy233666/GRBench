@@ -237,34 +237,34 @@ def result_rows() -> list[dict[str, object]]:
         }
 
     rows = []
-    base = ROOT / "results" / "latest-observed"
-    for path in sorted(base.rglob("*")):
-        if not path.is_file():
-            continue
-        engine = path.relative_to(base).parts[0]
-        source_root, grade, note = provenance[engine]
-        published_path = path.relative_to(ROOT).as_posix()
-        source = source_rows[published_path]
-        published_sha256 = digest(path)
-        rows.append(
-            {
-                "engine": engine,
-                "published_path": published_path,
-                "source_root_alias": source_root,
-                "source_filename": path.name,
-                "source_size_bytes": source["size_bytes"],
-                "source_sha256": source["sha256"],
-                "size_bytes": path.stat().st_size,
-                "sha256": published_sha256,
-                "sanitization": (
-                    "none"
-                    if published_sha256 == source["sha256"]
-                    else "host_path_alias_normalization"
-                ),
-                "comparability": grade,
-                "note": note,
-            }
-        )
+    base = ROOT / "results"
+    for engine in ADAPTERS:
+        for path in sorted((base / engine).rglob("*")):
+            if not path.is_file():
+                continue
+            source_root, grade, note = provenance[engine]
+            published_path = path.relative_to(ROOT).as_posix()
+            source = source_rows[published_path]
+            published_sha256 = digest(path)
+            rows.append(
+                {
+                    "engine": engine,
+                    "published_path": published_path,
+                    "source_root_alias": source_root,
+                    "source_filename": path.name,
+                    "source_size_bytes": source["size_bytes"],
+                    "source_sha256": source["sha256"],
+                    "size_bytes": path.stat().st_size,
+                    "sha256": published_sha256,
+                    "sanitization": (
+                        "none"
+                        if published_sha256 == source["sha256"]
+                        else "host_path_alias_normalization"
+                    ),
+                    "comparability": grade,
+                    "note": note,
+                }
+            )
     return rows
 
 
