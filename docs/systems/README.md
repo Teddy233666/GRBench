@@ -2,7 +2,7 @@
 
 | Adapter | Main | Shortest Path | Update | Guide |
 | --- | ---: | ---: | ---: | --- |
-| AgensGraph | 96 | 0 | 0 | [agensgraph.md](agensgraph.md) |
+| AgensGraph | 96 | 15 | 12 legacy | [agensgraph.md](agensgraph.md) |
 | ArangoDB | 96 | 15 | 0 | [arangodb.md](arangodb.md) |
 | DuckDB | 96 | 15 | 12 | [duckdb.md](duckdb.md) |
 | GrainDB | 96 | 0 | 12 | [graindb.md](graindb.md) |

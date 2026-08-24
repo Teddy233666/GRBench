@@ -21,7 +21,7 @@ MANIFESTS = ROOT / "benchmark" / "manifests"
 RESULT_MANIFEST = ROOT / "results" / "manifests" / "published_results.csv"
 EXPECTED_SUITES = {"main": 96, "shortest_path": 15, "update": 12}
 EXPECTED_COVERAGE = {
-    "agensgraph": Counter({"static_adapter": 96, "not_implemented": 27}),
+    "agensgraph": Counter({"static_adapter": 111, "legacy_adapter": 12}),
     "arangodb": Counter({"static_adapter": 111, "not_implemented": 12}),
     "duckdb": Counter({"canonical_sql": 123}),
     "graindb": Counter({"static_adapter": 108, "not_implemented": 15}),
@@ -42,9 +42,9 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def rows(path: Path) -> list[dict[str, str]]:
+def rows(path: Path, *, delimiter: str = ",") -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
-        return list(csv.DictReader(handle))
+        return list(csv.DictReader(handle, delimiter=delimiter))
 
 
 def check(condition: bool, message: str, errors: list[str]) -> None:
@@ -106,7 +106,7 @@ def validate_coverage(errors: list[str]) -> None:
     by_adapter: dict[str, Counter[str]] = {}
     for row in coverage:
         by_adapter.setdefault(row["adapter"], Counter())[row["status"]] += 1
-        if row["status"] in {"static_adapter", "runtime_generated", "canonical_sql"}:
+        if row["status"] in {"static_adapter", "legacy_adapter", "runtime_generated", "canonical_sql"}:
             check((ROOT / row["adapter_path"]).is_file(), f"coverage path missing: {row['adapter_path']}", errors)
     check(by_adapter == EXPECTED_COVERAGE, f"adapter coverage differs: {by_adapter}", errors)
 
@@ -126,6 +126,29 @@ def validate_data_and_updates(errors: list[str]) -> None:
             check(row["unmeasured_compensation"].endswith("b.sql"), f"missing compensation for {row['sql_file']}", errors)
         else:
             check(row["unmeasured_setup"].endswith("a.sql"), f"missing setup for {row['sql_file']}", errors)
+
+    agens_root = ROOT / "adapters" / "agensgraph" / "queries"
+    agens_manifest = rows(agens_root / "Update" / "source_manifest.tsv", delimiter="\t")
+    expected_ids = {f"update/{number}{suffix}" for number in range(1, 7) for suffix in "ab"}
+    check(
+        {row["canonical_query_id"] for row in agens_manifest} == expected_ids,
+        "AgensGraph legacy Update source manifest must map all 12 canonical inventory IDs",
+        errors,
+    )
+    for row in agens_manifest:
+        path = agens_root / row["adapter_file"]
+        check(path.is_file(), f"AgensGraph legacy Update file missing: {row['adapter_file']}", errors)
+        if path.is_file():
+            check(
+                sha256(path) == row["source_sha256"],
+                f"AgensGraph legacy Update source hash drift: {row['adapter_file']}",
+                errors,
+            )
+        check(
+            row["status"] == "legacy_adapter",
+            f"AgensGraph Update source status must remain legacy_adapter: {row['canonical_query_id']}",
+            errors,
+        )
 
 
 def validate_workflow_layout(errors: list[str]) -> None:

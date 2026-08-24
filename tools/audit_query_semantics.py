@@ -23,7 +23,7 @@ STATIC_MAIN_ADAPTERS = {
     "orientdb": ".sql",
     "postgresql": ".sql",
 }
-STATIC_SHORTEST_ADAPTERS = {"arangodb": ".js", "orientdb": ".sql"}
+STATIC_SHORTEST_ADAPTERS = {"agensgraph": ".sql", "arangodb": ".js", "orientdb": ".sql"}
 ANCHOR_RE = re.compile(r"\b(?:W|A|F|I)\d{6,}\b")
 PREDICATE_RE = {
     name: re.compile(

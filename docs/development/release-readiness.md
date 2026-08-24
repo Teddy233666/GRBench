@@ -34,7 +34,7 @@ known validation gaps.
 
 | Adapter | Required release smoke test |
 | --- | --- |
-| AgensGraph | Load all 30 inputs; parse and execute 96 main queries; compare complete results to the DuckDB oracle. |
+| AgensGraph | Load all 30 inputs; execute/oracle-check 96 main and 15 Shortest Path queries; keep 12 direct-import Update files excluded from current-contract comparability. |
 | ArangoDB | Load all 30 inputs; execute 96 main and 15 corrected Shortest Path AQL files with `arangosh`; compare complete results. |
 | DuckDB | Build a clean full-profile database; derive Update staging; execute all 123 canonical files with the formal measurement contract. |
 | GrainDB | Confirm loader schema and staging types; execute 96 main plus 12 Update files; validate graph syntax and baseline restoration. |

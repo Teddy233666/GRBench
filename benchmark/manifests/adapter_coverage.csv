@@ -95,33 +95,33 @@ agensgraph,main/31c,main,static_adapter,adapters/agensgraph/queries/Pure_Graph_Q
 agensgraph,main/32a,main,static_adapter,adapters/agensgraph/queries/Pure_Graph_Queries/32a.sql,Audited engine-specific query file.
 agensgraph,main/32b,main,static_adapter,adapters/agensgraph/queries/Pure_Graph_Queries/32b.sql,Audited engine-specific query file.
 agensgraph,main/32c,main,static_adapter,adapters/agensgraph/queries/Pure_Graph_Queries/32c.sql,Audited engine-specific query file.
-agensgraph,shortest_path/1a,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/1b,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/1c,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/2a,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/2b,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/2c,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/3a,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/3b,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/3c,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/4a,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/4b,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/4c,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/5a,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/5b,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,shortest_path/5c,shortest_path,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/1a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/1b,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/2a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/2b,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/3a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/3b,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/4a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/4b,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/5a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/5b,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/6a,update,not_implemented,,No audited adapter query is currently published.
-agensgraph,update/6b,update,not_implemented,,No audited adapter query is currently published.
+agensgraph,shortest_path/1a,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/1a.sql,Audited engine-specific query file.
+agensgraph,shortest_path/1b,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/1b.sql,Audited engine-specific query file.
+agensgraph,shortest_path/1c,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/1c.sql,Audited engine-specific query file.
+agensgraph,shortest_path/2a,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/2a.sql,Audited engine-specific query file.
+agensgraph,shortest_path/2b,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/2b.sql,Audited engine-specific query file.
+agensgraph,shortest_path/2c,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/2c.sql,Audited engine-specific query file.
+agensgraph,shortest_path/3a,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/3a.sql,Audited engine-specific query file.
+agensgraph,shortest_path/3b,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/3b.sql,Audited engine-specific query file.
+agensgraph,shortest_path/3c,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/3c.sql,Audited engine-specific query file.
+agensgraph,shortest_path/4a,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/4a.sql,Audited engine-specific query file.
+agensgraph,shortest_path/4b,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/4b.sql,Audited engine-specific query file.
+agensgraph,shortest_path/4c,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/4c.sql,Audited engine-specific query file.
+agensgraph,shortest_path/5a,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/5a.sql,Audited engine-specific query file.
+agensgraph,shortest_path/5b,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/5b.sql,Audited engine-specific query file.
+agensgraph,shortest_path/5c,shortest_path,static_adapter,adapters/agensgraph/queries/Shortest_Path_Queries/5c.sql,Audited engine-specific query file.
+agensgraph,update/1a,update,legacy_adapter,adapters/agensgraph/queries/Update/1a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/1b,update,legacy_adapter,adapters/agensgraph/queries/Update/1b.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/2a,update,legacy_adapter,adapters/agensgraph/queries/Update/2a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/2b,update,legacy_adapter,adapters/agensgraph/queries/Update/2b.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/3a,update,legacy_adapter,adapters/agensgraph/queries/Update/3a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/3b,update,legacy_adapter,adapters/agensgraph/queries/Update/3c.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/4a,update,legacy_adapter,adapters/agensgraph/queries/Update/4a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/4b,update,legacy_adapter,adapters/agensgraph/queries/Update/4b.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/5a,update,legacy_adapter,adapters/agensgraph/queries/Update/5a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/5b,update,legacy_adapter,adapters/agensgraph/queries/Update/5b.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/6a,update,legacy_adapter,adapters/agensgraph/queries/Update/6a.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
+agensgraph,update/6b,update,legacy_adapter,adapters/agensgraph/queries/Update/6b.sql,Direct legacy import; not asserted to preserve the current canonical Update lifecycle.
 arangodb,main/1a,main,static_adapter,adapters/arangodb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.js,Audited engine-specific query file.
 arangodb,main/1b,main,static_adapter,adapters/arangodb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.js,Audited engine-specific query file.
 arangodb,main/1c,main,static_adapter,adapters/arangodb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.js,Audited engine-specific query file.

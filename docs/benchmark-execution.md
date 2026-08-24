@@ -75,8 +75,9 @@ database from two processes.
 
 AgensGraph, ArangoDB, DuckDB, GrainDB, and PostgreSQL currently publish query
 translations but do not have a maintained runner satisfying the complete
-measurement contract. Their scripts under `adapters/<engine>/runners/legacy/`
-are preserved for provenance.
+measurement contract. AgensGraph's Update files are explicitly legacy and do
+not preserve the current Update lifecycle. Scripts under
+`adapters/<engine>/runners/legacy/` are preserved for provenance.
 
 For an execution smoke test, invoke the native client against one adapter query,
 for example:

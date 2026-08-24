@@ -79,9 +79,17 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
     if adapter == "kuzu" and suite in {"shortest_path", "update"}:
         runner = "run_shortest.py" if suite == "shortest_path" else "run_update.py"
         return "runtime_generated", f"adapters/kuzu/runners/{runner}", "Runner emits engine-specific Cypher."
+    if adapter == "agensgraph" and suite == "update":
+        source_name = "3c.sql" if canonical_path.name == "3b.sql" else canonical_path.name
+        path = ROOT / "adapters" / adapter / "queries" / "Update" / source_name
+        return (
+            "legacy_adapter",
+            path.relative_to(ROOT).as_posix(),
+            "Direct legacy import; not asserted to preserve the current canonical Update lifecycle.",
+        )
 
     supported = {
-        "agensgraph": {"main"},
+        "agensgraph": {"main", "shortest_path"},
         "arangodb": {"main", "shortest_path"},
         "graindb": {"main", "update"},
         "kuzu": {"main", "shortest_path", "update"},
