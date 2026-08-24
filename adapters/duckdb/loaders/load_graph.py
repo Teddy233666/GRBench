@@ -1,21 +1,24 @@
+import argparse
 import duckdb
 import os
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-DB_FILE = Path(
-    os.environ.get(
-        "GRBENCH_DUCKDB_DB",
-        REPO_ROOT / ".local" / "duckdb" / "sciscinet_graph_2.duckdb",
-    )
-)
-DATA_DIR = Path(
-    os.environ.get("GRBENCH_DUCKDB_DATA_DIR", REPO_ROOT / ".local" / "data" / "sf10_2")
-)
+parser = argparse.ArgumentParser(description="Load canonical SciSciNet CSVs into DuckDB/DuckPGQ.")
+parser.add_argument("--sf", choices=[f"sf10_{i}" for i in range(5)], default="sf10_2")
+parser.add_argument("--data-root", type=Path, default=Path(os.environ.get("GRBENCH_DATA_ROOT", REPO_ROOT / "data" / "processed")))
+parser.add_argument("--db", type=Path, default=None)
+parser.add_argument("--threads", type=int, default=int(os.environ.get("GRBENCH_THREADS", "8")))
+parser.add_argument("--memory-limit", default="64GB")
+args = parser.parse_args()
+
+DB_FILE = args.db or REPO_ROOT / ".local" / "duckdb" / f"sciscinet_graph_{args.sf.removeprefix('sf10_')}.duckdb"
+DATA_DIR = args.data_root / args.sf
 DB_FILE.parent.mkdir(parents=True, exist_ok=True)
 con = duckdb.connect(str(DB_FILE), config={'allow_unsigned_extensions':'true'})
-con.execute("SET memory_limit='64GB';")
+con.execute(f"SET memory_limit='{args.memory_limit}';")
+con.execute(f"PRAGMA threads={args.threads};")
 con.execute("INSTALL duckpgq FROM community;")
 con.execute("LOAD duckpgq;")
 print("DuckPGQ loaded OK")
@@ -315,9 +318,8 @@ CREATE OR REPLACE  PROPERTY GRAPH sciscinet_graph
         DESTINATION KEY (award_id) REFERENCES NSF_Metadata(award_id),
 
       Link_NIH
-        SOURCE KEY (paperid) REFERENCES Pape
-            rs(paperid)
-        DESTINATION KEY (award_id) REFERENCES NIH_Metadata(award_id)
+        SOURCE KEY (paperid) REFERENCES Papers(paperid)
+        DESTINATION KEY (award_id) REFERENCES NIH_Metadata(award_id),
 
       Link_ClinicalTrials
         SOURCE KEY (paperid) REFERENCES Papers(paperid)

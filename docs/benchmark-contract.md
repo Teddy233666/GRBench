@@ -38,7 +38,7 @@ part of elapsed time. Every repetition must begin and end at a verified
 baseline; use an isolated physical copy when rollback cannot guarantee that.
 
 The relational support tables referenced by Update are immutable snapshots
-derived from the healthy baseline. `benchmark/setup/derive_update_staging.sql`
+derived from the healthy baseline. `scripts/data_generation/derive_update_staging.sql`
 defines the portable SQL derivation; engine-specific loaders may implement an
 equivalent physical projection. Staging derivation is never a timed query.
 

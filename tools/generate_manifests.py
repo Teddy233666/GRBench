@@ -78,7 +78,7 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
         return "canonical_sql", canonical_path.as_posix(), "DuckDB executes canonical SQL directly."
     if adapter == "kuzu" and suite in {"shortest_path", "update"}:
         runner = "run_shortest.py" if suite == "shortest_path" else "run_update.py"
-        return "runtime_generated", f"adapters/kuzu/{runner}", "Runner emits engine-specific Cypher."
+        return "runtime_generated", f"adapters/kuzu/runners/{runner}", "Runner emits engine-specific Cypher."
 
     supported = {
         "agensgraph": {"main"},
@@ -120,8 +120,9 @@ def coverage_rows(queries: list[dict[str, object]]) -> list[dict[str, object]]:
 def data_rows() -> list[dict[str, object]]:
     import sys
 
-    sys.path.insert(0, str(ROOT))
-    from benchmark.schema.sciscinet import DATA_PROFILE, EDGES, PLAINS, VERTICES
+    schema_dir = ROOT / "data" / "schema"
+    sys.path.insert(0, str(schema_dir))
+    from sciscinet import DATA_PROFILE, EDGES, PLAINS, VERTICES
 
     by_csv: dict[str, dict[str, list[str]]] = {}
     for kind, tables in (("vertex", VERTICES), ("edge", EDGES), ("plain", PLAINS)):

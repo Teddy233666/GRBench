@@ -2,10 +2,11 @@
 # Historical Contract-v4 procedure. It predates the public 123-query contract.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_ROOT="$(cd "$ROOT/../.." && pwd)"
 DB_DIR="legacy_host_data/grbench/orientdb_manual_data_loaded"
-QUERY_ROOT="$ROOT/queries/orientdb_sciscinet_tasks_native_graph"
-SOURCE_QUERY_ROOT="$ROOT/queries/sciscinet_tasks_contract_v3_source"
+QUERY_ROOT="$ROOT/queries"
+SOURCE_QUERY_ROOT="$REPO_ROOT/benchmark/queries/canonical"
 ORACLE="$ROOT/results/duckdb_oracle_all_sf_contract_v3.json"
 STAMP="${STAMP:-$(date '+%Y%m%d_%H%M%S')}"
 RESULT_BASE="$ROOT/results/formal_contract_v4_sf10_0_to_sf10_3_$STAMP"
@@ -58,13 +59,13 @@ require_fresh_outputs
 mkdir -p "$LOG_DIR"
 
 log "Running database-free formal input audit"
-python3 "$ROOT/audit_orientdb_formal_inputs.py" \
+python3 "$ROOT/tools/audit_orientdb_formal_inputs.py" \
     --output "$RESULT_BASE-input-audit.json" \
   >"$LOG_DIR/input_audit.log" 2>&1
 
 log "Running strict preflight for sf10_0 through sf10_3"
 refuse_resource_competition
-python3 "$ROOT/run_orientdb.py" \
+python3 "$ROOT/runners/run_orientdb.py" \
     --sf sf10_0 --sf sf10_1 --sf sf10_2 --sf sf10_3 \
     --query-root "$QUERY_ROOT" \
     --source-query-root "$SOURCE_QUERY_ROOT" \
@@ -80,7 +81,7 @@ python3 "$ROOT/run_orientdb.py" \
 
 log "Running 828 formal read-query measurements serially"
 refuse_resource_competition
-python3 "$ROOT/run_orientdb.py" \
+python3 "$ROOT/runners/run_orientdb.py" \
     --sf sf10_0 --sf sf10_1 --sf sf10_2 --sf sf10_3 \
     --stop-before-update \
     --query-root "$QUERY_ROOT" \
@@ -97,7 +98,7 @@ python3 "$ROOT/run_orientdb.py" \
 log "Building 48-row Update result set: 36 reused rows and 12 fresh sf10_3 rows"
 refuse_resource_competition
 set +e
-python3 "$ROOT/run_orientdb.py" \
+python3 "$ROOT/runners/run_orientdb.py" \
     --sf sf10_0 --sf sf10_1 --sf sf10_2 --sf sf10_3 \
     --category update \
     --query-root "$QUERY_ROOT" \

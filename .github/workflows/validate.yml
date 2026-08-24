@@ -19,11 +19,13 @@ jobs:
       - name: Install validation dependencies
         run: python3 -m pip install -r requirements-dev.txt
       - name: Compile Python
-        run: python3 -m compileall -q benchmark adapters tools
+        run: python3 -m compileall -q data scripts adapters tools
       - name: Test Kuzu measurement contract
-        run: python3 -m unittest discover -s adapters/kuzu -p 'test_*.py' -v
+        run: python3 -m unittest discover -s adapters/kuzu/tests -p 'test_*.py' -v
       - name: Test OrientDB credential handling
-        run: python3 -m unittest discover -s adapters/orientdb -p 'test_*.py' -v
+        run: python3 -m unittest discover -s adapters/orientdb/tests -p 'test_*.py' -v
+      - name: Test workflow path tools
+        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
       - name: Check shell syntax
         run: |
           while IFS= read -r -d '' file; do

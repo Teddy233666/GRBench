@@ -32,7 +32,7 @@ The Update runner now better matches the original DuckDB Update SQL:
 - `6a.sql` explicitly deletes `Papers_to_Authors`, `affiliated_with`, then `Authors_Gender`.
 - Insert tasks `1b/2b/3b/4b/5b/6b` run their delete setup before timing the insert, in both normal and warm RSS runners.
 
-Maintained implementation: `adapters/kuzu/run_update.py`.
+Maintained implementation: `adapters/kuzu/runners/run_update.py`.
 
 ## Shortest Path Findings
 
@@ -47,7 +47,7 @@ Kuzu does not directly support SQL/PGQ `ANY SHORTEST`, so the runners evaluate e
 Commands run:
 
 ```sh
-python3 -m py_compile adapters/kuzu/run_shortest.py adapters/kuzu/run_update.py
+python3 -m py_compile adapters/kuzu/runners/run_shortest.py adapters/kuzu/runners/run_update.py
 python3 tools/audit_query_semantics.py
 ```
 

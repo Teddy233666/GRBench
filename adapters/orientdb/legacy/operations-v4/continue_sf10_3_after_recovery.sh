@@ -4,6 +4,8 @@ set -euo pipefail
 
 recovery_unit="orientdb-sf10_3-update1-recovery-20260728.service"
 recovery_log="results/readiness_v4/sf10_3_update1_crash_recovery_v4_20260728/recovery.log"
+ADAPTER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_ROOT="$(cd "$ADAPTER_DIR/../.." && pwd)"
 
 while systemctl is-active --quiet "$recovery_unit"; do
     sleep 60
@@ -14,11 +16,11 @@ if ! grep -q '"restored": true' "$recovery_log"; then
     exit 2
 fi
 
-exec python3 run_orientdb.py \
+exec python3 "$ADAPTER_DIR/runners/run_orientdb.py" \
     --sf sf10_3 \
     --category update \
-    --query-root queries/orientdb_sciscinet_tasks_native_graph \
-    --source-query-root queries/sciscinet_tasks_contract_v3_source \
+    --query-root "$ADAPTER_DIR/queries" \
+    --source-query-root "$REPO_ROOT/benchmark/queries/canonical" \
     --db-dir legacy_host_data/grbench/orientdb_manual_data_loaded \
     --load-mode orientdb_manual_data_loaded_native_graph \
     --execution-mode warm \

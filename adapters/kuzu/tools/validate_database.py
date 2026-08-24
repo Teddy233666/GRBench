@@ -9,8 +9,9 @@ from pathlib import Path
 import kuzu
 
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_DB = BASE_DIR / "db" / "db_sf10_4"
+ADAPTER_DIR = Path(__file__).resolve().parents[1]
+REPO_ROOT = ADAPTER_DIR.parents[1]
+DEFAULT_DB = REPO_ROOT / ".local" / "kuzu" / "db" / "db_sf10_4"
 
 REQUIRED_NODES = (
     "Papers",

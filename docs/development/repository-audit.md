@@ -27,7 +27,7 @@ large-blob and sensitive-history audit.
 - ArangoDB's 15 Shortest Path translations were re-audited; multiple unrelated
   or wrong-aggregate implementations were replaced with canonical mappings.
 - Update's 16 directly referenced support tables now have one shared baseline
-  derivation at `benchmark/setup/derive_update_staging.sql`.
+  derivation at `scripts/data_generation/derive_update_staging.sql`.
 
 ## Remaining Risk
 

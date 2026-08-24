@@ -166,7 +166,7 @@ def validate_updates(errors: list[str]) -> None:
         )
     )
     manifest = text(ROOT / "benchmark" / "manifests" / "update_lifecycle.csv").lower()
-    setup = text(ROOT / "benchmark" / "setup" / "derive_update_staging.sql").lower()
+    setup = text(ROOT / "scripts" / "data_generation" / "derive_update_staging.sql").lower()
     for staging_name in sorted(staging_names):
         if staging_name not in manifest and not staging_name.startswith("grbench_update3_"):
             errors.append(f"Update lifecycle does not declare staging dependency: {staging_name}")

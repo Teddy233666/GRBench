@@ -31,7 +31,7 @@ EXPECTED_COVERAGE = {
 }
 TEXT_SUFFIXES = {
     ".c", ".cc", ".cpp", ".h", ".hpp", ".java", ".js", ".json", ".md",
-    ".py", ".sh", ".sql", ".toml", ".csv", ".tsv", ".txt", ".yaml", ".yml",
+    ".py", ".sh", ".sql", ".toml", ".csv", ".tsv", ".txt", ".yaml", ".yml", ".cff",
 }
 ABSOLUTE_PATH_ALLOWLIST = (
     "tools/sanitize_result_paths.py",
@@ -128,6 +128,43 @@ def validate_data_and_updates(errors: list[str]) -> None:
             check(row["unmeasured_setup"].endswith("a.sql"), f"missing setup for {row['sql_file']}", errors)
 
 
+def validate_workflow_layout(errors: list[str]) -> None:
+    required = [
+        "data/raw/README.md",
+        "data/processed/README.md",
+        "data/schema/sciscinet.py",
+        "scripts/data_generation/sciscinet/csv_generator.py",
+        "scripts/data_generation/sciscinet/interface.py",
+        "scripts/data_generation/derive_update_staging.sql",
+        "scripts/data_generation/validate_data_profile.py",
+        "scripts/render_loader.py",
+        "docs/data-preparation.md",
+        "docs/database-loading.md",
+        "docs/benchmark-execution.md",
+        "docs/repository-layout.md",
+        "adapters/kuzu/loaders/load.py",
+        "adapters/kuzu/runners/run_main.py",
+        "adapters/kuzu/runners/run_shortest.py",
+        "adapters/kuzu/runners/run_update.py",
+        "adapters/orientdb/loaders/load_orientdb_data.py",
+        "adapters/orientdb/runners/run_orientdb.py",
+    ]
+    for rel in required:
+        check((ROOT / rel).is_file(), f"workflow layout path missing: {rel}", errors)
+
+    deprecated = [
+        "benchmark/data-generation",
+        "benchmark/schema",
+        "benchmark/setup",
+        "adapters/kuzu/load.py",
+        "adapters/kuzu/run_main.py",
+        "adapters/orientdb/load_orientdb_data.py",
+        "adapters/orientdb/run_orientdb.py",
+    ]
+    for rel in deprecated:
+        check(not (ROOT / rel).exists(), f"deprecated workflow path remains: {rel}", errors)
+
+
 def validate_results(errors: list[str]) -> None:
     manifest = rows(RESULT_MANIFEST)
     source_manifest = rows(RESULT_MANIFEST.parent / "source_results.csv")
@@ -195,6 +232,7 @@ def main() -> int:
     validate_known_semantics(errors)
     validate_coverage(errors)
     validate_data_and_updates(errors)
+    validate_workflow_layout(errors)
     validate_results(errors)
     validate_repository_hygiene(errors, args.strict_paths)
     errors.extend(audit_query_semantics())

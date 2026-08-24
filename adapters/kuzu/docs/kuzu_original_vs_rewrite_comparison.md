@@ -5126,7 +5126,7 @@ RETURN MIN(p3.paperid) AS min_ref_paperid, MIN(a.authorid) AS author, MIN(n.news
 ## Shortest Path Generated Mapping
 
 - Original SQL directory: `benchmark/queries/canonical/Shortest_Path_Queries`
-- Kuzu runner: `adapters/kuzu/run_shortest.py`
+- Kuzu runner: `adapters/kuzu/runners/run_shortest.py`
 - Kuzu does not execute SQL/PGQ `ANY SHORTEST` directly. The runner expands each query into exact-depth Cypher steps and aggregates endpoint `MIN` values.
 - `{1,}` and `{,}` are bounded by `--max-unbounded-depth` in the runner; default is `8`.
 
@@ -5249,7 +5249,7 @@ def shortest_queries():
 ## Update Generated Mapping
 
 - Original SQL directory: `benchmark/queries/canonical/update/Update`
-- Kuzu runner: `adapters/kuzu/run_update.py`
+- Kuzu runner: `adapters/kuzu/runners/run_update.py`
 - Update queries are executed from runner-generated Kuzu statements against isolated copies or configured benchmark databases, not from standalone `.cypher` files.
 
 ### `update/Update/1a.sql`

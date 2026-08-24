@@ -1,5 +1,9 @@
 # Local benchmark inputs and databases
 .local/
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
 datasets/
 raw_data/
 databases/
@@ -34,6 +38,7 @@ logs/
 *.tmp
 *.cache
 *.class
+*.pid
 
 # Python and tooling caches
 __pycache__/

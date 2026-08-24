@@ -14,7 +14,7 @@ ignored local env file. The password is required and is never accepted as a CLI
 argument. Load one scale factor with explicit public paths:
 
 ```sh
-.venv-orientdb/bin/python adapters/orientdb/load_orientdb_data.py \
+.venv-orientdb/bin/python adapters/orientdb/loaders/load_orientdb_data.py \
   --sf sf10_0 \
   --data-root "${GRBENCH_DATA_ROOT}" \
   --db-dir "${GRBENCH_ORIENTDB_DB_ROOT}" \
@@ -28,10 +28,10 @@ Generate the required DuckDB oracle after placing reference databases under
 `.local/duckdb/`, then run preflight and the warm benchmark:
 
 ```sh
-.venv-orientdb/bin/python adapters/orientdb/generate_duckdb_oracle.py \
+.venv-orientdb/bin/python adapters/orientdb/tools/generate_duckdb_oracle.py \
   --sf sf10_0 --output "${GRBENCH_ORIENTDB_ORACLE}"
-.venv-orientdb/bin/python adapters/orientdb/audit_benchmark_contract.py
-.venv-orientdb/bin/python adapters/orientdb/run_orientdb.py \
+.venv-orientdb/bin/python adapters/orientdb/tools/audit_benchmark_contract.py
+.venv-orientdb/bin/python adapters/orientdb/runners/run_orientdb.py \
   --sf sf10_0 \
   --data-root "${GRBENCH_DATA_ROOT}" \
   --db-dir "${GRBENCH_ORIENTDB_DB_ROOT}" \
@@ -40,7 +40,7 @@ Generate the required DuckDB oracle after placing reference databases under
   --expected-results "${GRBENCH_ORIENTDB_ORACLE}" \
   --load-mode canonical_full_v1_data_loaded \
   --execution-mode warm --runs 3 --warmup-runs 1 \
-  --results-dir .local/results/orientdb-sf10_0
+  --results-dir .local/results/orientdb/sf10_0
 ```
 
 Use `--preflight-only` on the final command before a timed run.

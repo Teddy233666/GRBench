@@ -3,7 +3,7 @@
 Do not report vulnerabilities in the seven database systems to this project;
 use each vendor's security process. Report vulnerabilities in GRBench scripts,
 CI, loaders, or published configuration through GitHub's private vulnerability
-reporting feature once the repository is public.
+reporting feature.
 
 Do not include credentials, private addresses, proprietary datasets, database
 files, or sensitive logs in an issue or pull request. Replace secrets with

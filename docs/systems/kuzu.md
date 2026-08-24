@@ -10,7 +10,7 @@ python3 -m venv .venv-kuzu
 Load one scale factor into the default ignored `.local/` area:
 
 ```sh
-GRBENCH_DATA_ROOT=.local/data .venv-kuzu/bin/python adapters/kuzu/load.py \
+GRBENCH_DATA_ROOT=data/processed .venv-kuzu/bin/python adapters/kuzu/loaders/load.py \
   --dataset sf10_0 --threads 8 --strict-rel-copy
 ```
 
@@ -42,16 +42,16 @@ mode.
 Run the maintained suites from the repository root:
 
 ```sh
-.venv-kuzu/bin/python adapters/kuzu/run_main.py \
-  --dataset sf10_0 --results .local/results/kuzu_sf10_0_main.csv --overwrite
-.venv-kuzu/bin/python adapters/kuzu/run_shortest.py \
-  --dataset sf10_0 --results .local/results/kuzu_sf10_0_shortest.csv --overwrite
-.venv-kuzu/bin/python adapters/kuzu/run_update.py \
-  --dataset sf10_0 --results .local/results/kuzu_sf10_0_update.csv --overwrite
+.venv-kuzu/bin/python adapters/kuzu/runners/run_main.py \
+  --dataset sf10_0 --results .local/results/kuzu/sf10_0/main.csv --overwrite
+.venv-kuzu/bin/python adapters/kuzu/runners/run_shortest.py \
+  --dataset sf10_0 --results .local/results/kuzu/sf10_0/shortest.csv --overwrite
+.venv-kuzu/bin/python adapters/kuzu/runners/run_update.py \
+  --dataset sf10_0 --results .local/results/kuzu/sf10_0/update.csv --overwrite
 ```
 
 Update requires the untimed support CSVs under `.local/update-staging/`, derived
-from the healthy loaded baseline as described in `docs/data/README.md`.
+from the healthy loaded baseline as described in `docs/data-preparation.md`.
 
 Kuzu's graph-integrity rules prevent Update `4a/4b` from exactly matching the
 relational operation that deletes and restores only `Authors_Gender` rows while
