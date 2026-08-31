@@ -2,15 +2,16 @@
 
 ## Canonical Workload
 
-`benchmark/queries/canonical/` defines 96 main queries, 15 shortest-path
-queries, and 12 Update queries. `query_manifest.csv` binds every file to a
+`benchmark/queries/canonical/` defines 96 main queries, 96 Pure Join physical
+variants, 15 shortest-path queries, and 12 Update queries. `query_manifest.csv` binds every file to a
 stable query ID and SHA-256. Engine rewrites may change syntax and physical
 schema mapping, but must preserve anchors, predicates, path direction,
 optional/inner semantics, aggregation, and output columns.
 
 Pure Join files are alternate relational implementations of the same 96
-logical main queries. They are recorded as aliases and are not a second
-performance workload. Update files with a `c` suffix are legacy artifacts.
+logical main queries. They retain the same logical IDs through
+`pure_join_variants.csv`, but are a separately measured physical workload.
+Update files with a `c` suffix are legacy artifacts.
 
 ## Data Contract
 

@@ -16,7 +16,7 @@ from typing import Iterable, List, Optional, Sequence, Tuple
 LOADER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = LOADER_DIR.parent
 REPO_ROOT = ADAPTER_DIR.parents[1]
-sys.path.insert(0, str(ADAPTER_DIR / "common"))
+sys.path.insert(0, str(LOADER_DIR))
 from credentials import orientdb_credentials, redact_orientdb_password
 
 

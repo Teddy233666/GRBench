@@ -14,13 +14,12 @@ scripts/
   data_generation/        Parquet conversion, SF extraction, staging SQL
   render_loader.py        Render legacy loader aliases into .local paths
 benchmark/
-  queries/canonical/      Authoritative 123-query workload
-  manifests/              Query, data, adapter, lifecycle, and alias manifests
+  queries/canonical/      Authoritative 219-query workload
+  manifests/              Query, data, adapter, lifecycle, and variant manifests
 adapters/<engine>/
   loaders/                Schema creation, import, and index code
   queries/                Engine-specific query translations
   runners/                Maintained or explicitly legacy execution code
-  tools/                  Engine-specific audits and repair utilities
 config/                   Public environment templates
 results/<engine>/         Reviewed result artifacts intended for publication
 .local/                   Databases, generated loaders, staging, logs, caches
@@ -44,7 +43,10 @@ legacy/                   Superseded workload artifacts retained for provenance
 | `adapters/orientdb/OrientDbCsvLoader.java` | `adapters/orientdb/loaders/OrientDbCsvLoader.java` | Java loader implementation follows its Python entry point |
 | `adapters/orientdb/run_orientdb.py` | `adapters/orientdb/runners/run_orientdb.py` | Standard runner location |
 | `adapters/orientdb/OrientDbBenchmarkWorker.java` | `adapters/orientdb/runners/OrientDbBenchmarkWorker.java` | Worker is private to the runner interface |
-| OrientDB audit/repair/rewrite scripts at adapter root | `adapters/orientdb/tools/` | Keep operational tools distinct from formal runners |
+| Kuzu adapter-level tests/tools/docs | `loaders/`, `queries/`, or `runners/` by ownership | Keep every adapter root limited to three workflow directories |
+| OrientDB shared/tools/tests/docs/legacy | `loaders/`, `queries/`, or `runners/` by ownership | Co-locate support code with the interface it serves |
+| PostgreSQL root requirements and legacy Update | `loaders/requirements.txt`, `queries/legacy/` | Keep dependencies and historical queries under their workflow phase |
+| `tasks/*/Pure_Join_Queries/` | `benchmark/queries/canonical/Pure_Join_Queries/` and `adapters/*/queries/Pure_Join_Queries/` | Preserve alternate relational execution as a separate physical workload |
 
 Canonical query paths and `results/<engine>/` are intentionally unchanged to
 preserve query IDs, result provenance, and the result layout introduced before
@@ -59,7 +61,7 @@ needed:
   assumptions; not formal entry points.
 - `adapters/postgresql/loaders/*.py`: SF-specific LevelDB/CSV preprocessing
   helpers with inconsistent historical names.
-- `adapters/orientdb/legacy/operations-v4/`: host-specific recovery and formal
+- `adapters/orientdb/runners/legacy/operations-v4/`: host-specific recovery and formal
   orchestration records.
 - `legacy/update-v0/` and `adapters/*/legacy/update-v0/`: superseded Update
   variants.

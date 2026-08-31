@@ -4,7 +4,7 @@ Install the pinned Python bindings:
 
 ```sh
 python3 -m venv .venv-kuzu
-.venv-kuzu/bin/pip install -r adapters/kuzu/requirements.txt
+.venv-kuzu/bin/pip install 'kuzu==0.11.3' 'psutil==7.2.2'
 ```
 
 Load one scale factor into the default ignored `.local/` area:
@@ -17,7 +17,7 @@ GRBENCH_DATA_ROOT=data/processed .venv-kuzu/bin/python adapters/kuzu/loaders/loa
 Smoke-check the required non-empty graph tables before benchmarking:
 
 ```sh
-.venv-kuzu/bin/python adapters/kuzu/tools/validate_database.py \
+.venv-kuzu/bin/python adapters/kuzu/loaders/validate_database.py \
   --db-path .local/kuzu/db/db_sf10_0
 ```
 
@@ -33,11 +33,18 @@ reported in MiB. Use a new result path or `--overwrite` when replacing older
 single-run CSV files.
 
 The shortest-path translation bounds SQL/PGQ unbounded paths with
-`--max-unbounded-depth`; publish that value. Update defaults to a fresh working
+`--max-unbounded-depth`; publish that value. Its 15 Kuzu Cypher templates and
+depth inventory are stored under `adapters/kuzu/queries/Shortest_Path_Queries/`;
+`run_shortest.py` loads them with `--query-root` and only handles expansion,
+execution, and result aggregation. Update defaults to a fresh working
 database copy per repetition. Copy creation, staging, paired setup, validation,
 cleanup, and rollback are outside the measurement window. The
 `--transaction-rollback` mode is diagnostic and is not the formal isolation
 mode.
+
+Kuzu does not publish a `Pure_Join_Queries/` tree. The 96 historical files are
+byte-identical to their main Cypher counterparts, so adapter coverage records
+them as `duplicate_not_executed` rather than reporting duplicate measurements.
 
 Run the maintained suites from the repository root:
 

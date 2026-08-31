@@ -41,7 +41,7 @@ import psutil
 RUNNER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = RUNNER_DIR.parent
 REPO_ROOT = ADAPTER_DIR.parents[1]
-sys.path.insert(0, str(ADAPTER_DIR / "common"))
+sys.path.insert(0, str(ADAPTER_DIR / "loaders"))
 from credentials import orientdb_credentials, redact_orientdb_password
 
 
@@ -65,6 +65,7 @@ CATEGORIES = [
     "High_Join_Relational_Graph_Hybrid_Queries",
     "Low_Join_Relational_Graph_Hybrid_Queries",
     "Pure_Graph_Queries",
+    "Pure_Join_Queries",
     "Shortest_Path_Queries",
     "update",
 ]

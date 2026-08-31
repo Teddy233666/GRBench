@@ -18,12 +18,47 @@ CANONICAL = ROOT / "benchmark" / "queries" / "canonical"
 STATIC_MAIN_ADAPTERS = {
     "agensgraph": ".sql",
     "arangodb": ".js",
+    "duckdb": ".sql",
     "graindb": ".sql",
     "kuzu": ".cypher",
     "orientdb": ".sql",
     "postgresql": ".sql",
 }
-STATIC_SHORTEST_ADAPTERS = {"agensgraph": ".sql", "arangodb": ".js", "orientdb": ".sql"}
+STATIC_SHORTEST_ADAPTERS = {
+    "agensgraph": ".sql",
+    "arangodb": ".js",
+    "duckdb": ".sql",
+    "kuzu": ".cypher",
+    "orientdb": ".sql",
+}
+STATIC_PURE_JOIN_ADAPTERS = {
+    "agensgraph": ".sql",
+    "duckdb": ".sql",
+    "graindb": ".sql",
+    "orientdb": ".sql",
+    "postgresql": ".sql",
+}
+ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN = {
+    f"High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/2{suffix}.js"
+    for suffix in "abc"
+} | {
+    f"High_Join_Relational_Graph_Hybrid_Queries/High-Join Single-Subgraph Single-Hop/11{suffix}.js"
+    for suffix in "abc"
+} | {
+    f"Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Hop/13{suffix}.js"
+    for suffix in "abc"
+} | {
+    f"Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/{number}{suffix}.js"
+    for number in (16, 17)
+    for suffix in "abc"
+} | {
+    f"Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Single-Subgraph Single-Hop/23{suffix}.js"
+    for suffix in "abc"
+} | {
+    f"Pure_Graph_Queries/{number}{suffix}.js"
+    for number in (31, 32)
+    for suffix in "abc"
+}
 ANCHOR_RE = re.compile(r"\b(?:W|A|F|I)\d{6,}\b")
 PREDICATE_RE = {
     name: re.compile(
@@ -82,7 +117,7 @@ def edge_dependencies(value: str) -> set[str]:
 
 def main_queries() -> Iterable[Path]:
     for path in sorted(CANONICAL.rglob("*.sql")):
-        if path.relative_to(CANONICAL).parts[0] not in {"Shortest_Path_Queries", "update"}:
+        if path.relative_to(CANONICAL).parts[0] not in {"Pure_Join_Queries", "Shortest_Path_Queries", "update"}:
             yield path
 
 
@@ -149,10 +184,67 @@ def validate_shortest_path(errors: list[str]) -> None:
                 errors.append(f"ArangoDB shortest-path {path.name} lacks required fragment: {fragment}")
 
 
+def validate_pure_join(errors: list[str]) -> None:
+    source_root = CANONICAL / "Pure_Join_Queries"
+    arango_root = ROOT / "adapters" / "arangodb" / "queries" / "Pure_Join_Queries"
+    legacy_unverified = set()
+    for canonical_path in sorted(source_root.rglob("*.sql")):
+        rel = canonical_path.relative_to(source_root)
+        for adapter, suffix in STATIC_PURE_JOIN_ADAPTERS.items():
+            adapter_path = (
+                ROOT
+                / "adapters"
+                / adapter
+                / "queries"
+                / "Pure_Join_Queries"
+                / rel.with_suffix(suffix)
+            )
+            if not adapter_path.is_file():
+                errors.append(f"missing {adapter} Pure Join query: {rel.with_suffix(suffix)}")
+                continue
+            compare_signature(canonical_path, adapter_path, adapter, errors, include_edges=True)
+
+        arango_rel = rel.with_suffix(".js")
+        arango_path = arango_root / arango_rel
+        if arango_rel.as_posix() in ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN:
+            legacy_unverified.add(arango_rel.as_posix())
+            if not arango_path.is_file():
+                errors.append(f"missing requested legacy ArangoDB Pure Join query: {arango_rel}")
+        elif arango_path.is_file():
+            compare_signature(canonical_path, arango_path, "arangodb", errors, include_edges=True)
+        else:
+            errors.append(f"missing audited ArangoDB Pure Join query: {arango_rel}")
+
+    if legacy_unverified != ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN:
+        errors.append(
+            "ArangoDB legacy-unverified Pure Join inventory differs: "
+            f"missing={sorted(ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN - legacy_unverified)}, "
+            f"unexpected={sorted(legacy_unverified - ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN)}"
+        )
+
+    for suffix in "abc":
+        orient17 = text(
+            ROOT
+            / "adapters/orientdb/queries/Pure_Join_Queries/Low_Join_Relational_Graph_Hybrid_Queries"
+            / "Low-Join Multi-Subgraph Single"
+            / f"17{suffix}.sql"
+        )
+        patent_branch = orient17.split("$q3 =", 1)[1]
+        if "paperid = 'W2122344208'" not in patent_branch or "SELECT cited_paperid" in patent_branch:
+            errors.append(f"OrientDB Pure Join 17{suffix} patent branch uses the wrong endpoint")
+
+
 def validate_updates(errors: list[str]) -> None:
     canonical_root = CANONICAL / "update" / "Update"
-    graindb_root = ROOT / "adapters" / "graindb" / "queries" / "update" / "Update"
+    graindb_root = ROOT / "adapters" / "graindb" / "queries" / "Update"
+    duckdb_root = ROOT / "adapters" / "duckdb" / "queries" / "Update"
     for canonical_path in sorted(canonical_root.glob("*.sql")):
+        duckdb_path = duckdb_root / canonical_path.name
+        if not duckdb_path.is_file():
+            errors.append(f"missing DuckDB Update query: {canonical_path.name}")
+        elif text(duckdb_path) != text(canonical_path):
+            errors.append(f"DuckDB Update differs from canonical SQL: {canonical_path.name}")
+
         adapter_path = graindb_root / canonical_path.name
         if not adapter_path.is_file():
             errors.append(f"missing GrainDB Update query: {canonical_path.name}")
@@ -203,6 +295,7 @@ def validate_high_risk_semantics(errors: list[str]) -> None:
 def audit() -> list[str]:
     errors: list[str] = []
     validate_main(errors)
+    validate_pure_join(errors)
     validate_shortest_path(errors)
     validate_updates(errors)
     validate_high_risk_semantics(errors)

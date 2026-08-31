@@ -1,0 +1,2 @@
+DELETE FROM Authors_Gender
+WHERE h_index BETWEEN 10 AND 20;

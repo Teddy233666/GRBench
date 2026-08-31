@@ -1,0 +1,143 @@
+[
+  {
+    "query_id": "1a",
+    "sql_file": "1a.sql",
+    "subcategory": "sciscinet_any_shortest_1_or_more",
+    "template": "1a.cypher",
+    "min_depth": 1,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "1b",
+    "sql_file": "1b.sql",
+    "subcategory": "sciscinet_any_shortest_1_or_more",
+    "template": "1b.cypher",
+    "min_depth": 1,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "1c",
+    "sql_file": "1c.sql",
+    "subcategory": "sciscinet_any_shortest_1_or_more",
+    "template": "1c.cypher",
+    "min_depth": 1,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "2a",
+    "sql_file": "2a.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_3",
+    "template": "2a.cypher",
+    "min_depth": 1,
+    "max_depth": 3,
+    "unbounded": false
+  },
+  {
+    "query_id": "2b",
+    "sql_file": "2b.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_3",
+    "template": "2b.cypher",
+    "min_depth": 1,
+    "max_depth": 3,
+    "unbounded": false
+  },
+  {
+    "query_id": "2c",
+    "sql_file": "2c.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_3",
+    "template": "2c.cypher",
+    "min_depth": 1,
+    "max_depth": 3,
+    "unbounded": false
+  },
+  {
+    "query_id": "3a",
+    "sql_file": "3a.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_4_left_join",
+    "template": "3a.cypher",
+    "min_depth": 1,
+    "max_depth": 4,
+    "unbounded": false
+  },
+  {
+    "query_id": "3b",
+    "sql_file": "3b.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_4_left_join",
+    "template": "3b.cypher",
+    "min_depth": 1,
+    "max_depth": 4,
+    "unbounded": false
+  },
+  {
+    "query_id": "3c",
+    "sql_file": "3c.sql",
+    "subcategory": "sciscinet_any_shortest_1_to_4_left_join",
+    "template": "3c.cypher",
+    "min_depth": 1,
+    "max_depth": 4,
+    "unbounded": false
+  },
+  {
+    "query_id": "4a",
+    "sql_file": "4a.sql",
+    "subcategory": "sciscinet_any_shortest_0_or_more",
+    "template": "4a.cypher",
+    "zero_template": "4a.zero.cypher",
+    "min_depth": 0,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "4b",
+    "sql_file": "4b.sql",
+    "subcategory": "sciscinet_any_shortest_0_or_more",
+    "template": "4b.cypher",
+    "zero_template": "4b.zero.cypher",
+    "min_depth": 0,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "4c",
+    "sql_file": "4c.sql",
+    "subcategory": "sciscinet_any_shortest_0_or_more",
+    "template": "4c.cypher",
+    "zero_template": "4c.zero.cypher",
+    "min_depth": 0,
+    "max_depth": "argument",
+    "unbounded": true
+  },
+  {
+    "query_id": "5a",
+    "sql_file": "5a.sql",
+    "subcategory": "sciscinet_paperreferences_0_to_1",
+    "template": "5a.cypher",
+    "zero_template": "5a.zero.cypher",
+    "min_depth": 0,
+    "max_depth": 1,
+    "unbounded": false
+  },
+  {
+    "query_id": "5b",
+    "sql_file": "5b.sql",
+    "subcategory": "sciscinet_paperreferences_0_to_1",
+    "template": "5b.cypher",
+    "zero_template": "5b.zero.cypher",
+    "min_depth": 0,
+    "max_depth": 1,
+    "unbounded": false
+  },
+  {
+    "query_id": "5c",
+    "sql_file": "5c.sql",
+    "subcategory": "sciscinet_paperreferences_0_to_1",
+    "template": "5c.cypher",
+    "zero_template": "5c.zero.cypher",
+    "min_depth": 0,
+    "max_depth": 1,
+    "unbounded": false
+  }
+]

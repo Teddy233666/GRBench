@@ -1,7 +1,7 @@
 # PostgreSQL and Apache AGE
 
-PostgreSQL publishes 96 main-query translations. Historical loaders include a
-plain relational projection and SF-specific AGE projections. Render paths with
+PostgreSQL publishes 96 main-query translations and 96 Pure Join SQL variants.
+Historical loaders include a plain relational projection and SF-specific AGE projections. Render paths with
 `scripts/render_loader.py`; see `docs/database-loading.md`.
 
 Smoke one query:
@@ -15,5 +15,5 @@ PGPASSWORD="${POSTGRES_PASSWORD}" timeout "${GRBENCH_TIMEOUT_S}" \
 ```
 
 The LevelDB/CSV preprocessing helpers require
-`adapters/postgresql/requirements.txt` and system LevelDB headers. No maintained
+`adapters/postgresql/loaders/requirements.txt` and system LevelDB headers. No maintained
 formal Shortest Path or Update runner is published.

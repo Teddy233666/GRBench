@@ -22,6 +22,11 @@ ADAPTERS = [
     "orientdb",
     "postgresql",
 ]
+ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN = {
+    f"pure_join/{number}{suffix}"
+    for number in (2, 11, 13, 16, 17, 23, 31, 32)
+    for suffix in "abc"
+}
 
 
 def digest(path: Path) -> str:
@@ -40,7 +45,12 @@ def query_rows() -> list[dict[str, object]]:
     rows = []
     for path in sorted(CANONICAL.rglob("*.sql")):
         rel = path.relative_to(CANONICAL)
-        if rel.parts[0] == "Shortest_Path_Queries":
+        if rel.parts[0] == "Pure_Join_Queries":
+            suite = "pure_join"
+            query_id = f"pure_join/{path.stem}"
+            category = rel.parts[0]
+            subcategory = rel.parent.relative_to("Pure_Join_Queries").as_posix()
+        elif rel.parts[0] == "Shortest_Path_Queries":
             suite = "shortest_path"
             query_id = f"shortest_path/{path.stem}"
             category = rel.parts[0]
@@ -74,14 +84,16 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
     rel = canonical_path.relative_to("benchmark/queries/canonical")
     suite = str(query["suite"])
 
-    if adapter == "duckdb":
-        return "canonical_sql", canonical_path.as_posix(), "DuckDB executes canonical SQL directly."
-    if adapter == "kuzu" and suite in {"shortest_path", "update"}:
-        runner = "run_shortest.py" if suite == "shortest_path" else "run_update.py"
-        return "runtime_generated", f"adapters/kuzu/runners/{runner}", "Runner emits engine-specific Cypher."
+    if adapter == "kuzu" and suite == "pure_join":
+        return (
+            "duplicate_not_executed",
+            "",
+            "The historical Kuzu Pure Join file is byte-identical to the corresponding main Cypher file.",
+        )
+    if adapter == "kuzu" and suite == "update":
+        return "runtime_generated", "adapters/kuzu/runners/run_update.py", "Runner emits engine-specific Cypher."
     if adapter == "agensgraph" and suite == "update":
-        source_name = "3c.sql" if canonical_path.name == "3b.sql" else canonical_path.name
-        path = ROOT / "adapters" / adapter / "queries" / "Update" / source_name
+        path = ROOT / "adapters" / adapter / "queries" / "Update" / canonical_path.name
         return (
             "legacy_adapter",
             path.relative_to(ROOT).as_posix(),
@@ -89,21 +101,36 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
         )
 
     supported = {
-        "agensgraph": {"main", "shortest_path"},
-        "arangodb": {"main", "shortest_path"},
-        "graindb": {"main", "update"},
+        "agensgraph": {"main", "pure_join", "shortest_path"},
+        "arangodb": {"main", "pure_join", "shortest_path"},
+        "duckdb": {"main", "pure_join", "shortest_path", "update"},
+        "graindb": {"main", "pure_join", "update"},
         "kuzu": {"main", "shortest_path", "update"},
-        "orientdb": {"main", "shortest_path", "update"},
-        "postgresql": {"main"},
+        "orientdb": {"main", "pure_join", "shortest_path", "update"},
+        "postgresql": {"main", "pure_join"},
     }
     if suite not in supported.get(adapter, set()):
         return "not_implemented", "", "No audited adapter query is currently published."
 
     suffix = {"arangodb": ".js", "kuzu": ".cypher"}.get(adapter, ".sql")
-    adapter_rel = rel.with_suffix(suffix)
+    adapter_rel = (
+        Path("Update") / canonical_path.name
+        if suite == "update" and adapter in {"duckdb", "graindb"}
+        else rel.with_suffix(suffix)
+    )
     path = ROOT / "adapters" / adapter / "queries" / adapter_rel
+    if adapter == "arangodb" and query["query_id"] in ARANGODB_LEGACY_UNVERIFIED_PURE_JOIN:
+        return (
+            "legacy_unverified",
+            path.relative_to(ROOT).as_posix(),
+            "Requested authoritative legacy AQL is published for inspection but fails the current static semantic signature audit.",
+        )
     if path.exists():
-        return "static_adapter", path.relative_to(ROOT).as_posix(), "Audited engine-specific query file."
+        return (
+            "static_adapter",
+            path.relative_to(ROOT).as_posix(),
+            "Static semantic signatures audited; live result equivalence remains required.",
+        )
     return "missing", path.relative_to(ROOT).as_posix(), "Expected adapter file is absent."
 
 
@@ -162,16 +189,15 @@ def data_rows() -> list[dict[str, object]]:
 def pure_join_rows(queries: list[dict[str, object]]) -> list[dict[str, object]]:
     rows = []
     for query in queries:
-        if query["suite"] != "main":
+        if query["suite"] != "pure_join":
             continue
-        rel = Path(str(query["canonical_path"])).relative_to("benchmark/queries/canonical")
         rows.append(
             {
-                "alias_id": f"pure_join/{Path(str(query['sql_file'])).stem}",
-                "canonical_query_id": query["query_id"],
-                "historical_path": f"tasks/sciscinet_tasks/Pure_Join_Queries/{rel.as_posix()}",
-                "status": "logical_alias_not_executed",
-                "note": "Relational implementation of the same logical query; excluded from duplicate workload execution.",
+                "variant_id": query["query_id"],
+                "logical_query_id": f"main/{Path(str(query['sql_file'])).stem}",
+                "canonical_path": query["canonical_path"],
+                "status": "physical_variant",
+                "note": "Alternate pure relational implementation measured separately from the corresponding main query.",
             }
         )
     return rows
@@ -295,8 +321,8 @@ def main() -> None:
         data_rows(),
     )
     write_csv(
-        MANIFESTS / "pure_join_aliases.csv",
-        ["alias_id", "canonical_query_id", "historical_path", "status", "note"],
+        MANIFESTS / "pure_join_variants.csv",
+        ["variant_id", "logical_query_id", "canonical_path", "status", "note"],
         pure_join_rows(queries),
     )
     write_csv(

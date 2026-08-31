@@ -1,14 +1,14 @@
 # System Adapters
 
-| Adapter | Main | Shortest Path | Update | Guide |
-| --- | ---: | ---: | ---: | --- |
-| AgensGraph | 96 | 15 | 12 legacy | [agensgraph.md](agensgraph.md) |
-| ArangoDB | 96 | 15 | 0 | [arangodb.md](arangodb.md) |
-| DuckDB | 96 | 15 | 12 | [duckdb.md](duckdb.md) |
-| GrainDB | 96 | 0 | 12 | [graindb.md](graindb.md) |
-| Kuzu | 96 | 15 | 12 | [kuzu.md](kuzu.md) |
-| OrientDB | 96 | 15 | 12 | [orientdb.md](orientdb.md) |
-| PostgreSQL | 96 | 0 | 0 | [postgresql.md](postgresql.md) |
+| Adapter | Main | Pure Join | Shortest Path | Update | Guide |
+| --- | ---: | ---: | ---: | ---: | --- |
+| AgensGraph | 96 | 96 | 15 | 12 legacy | [agensgraph.md](agensgraph.md) |
+| ArangoDB | 96 | 96 (72 audited) | 15 | 0 | [arangodb.md](arangodb.md) |
+| DuckDB | 96 | 96 | 15 | 12 | [duckdb.md](duckdb.md) |
+| GrainDB | 96 | 96 | 0 | 12 | [graindb.md](graindb.md) |
+| Kuzu | 96 | duplicate | 15 | 12 | [kuzu.md](kuzu.md) |
+| OrientDB | 96 | 96 | 15 | 12 | [orientdb.md](orientdb.md) |
+| PostgreSQL | 96 | 96 | 0 | 0 | [postgresql.md](postgresql.md) |
 
 These numbers describe published query coverage, not successful or comparable
 benchmark rows. `benchmark/manifests/adapter_coverage.csv` is authoritative.

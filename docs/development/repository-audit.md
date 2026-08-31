@@ -13,8 +13,10 @@ large-blob and sensitive-history audit.
 
 ## Findings
 
-- Canonical main/shortest/Update coverage is 96/15/12.
-- Pure Join is retained as a logical alias manifest, not duplicate files.
+- Canonical main/Pure Join/shortest/Update coverage is 96/96/15/12.
+- Pure Join is retained as a separately measured physical variant. Kuzu's
+  byte-identical copies are explicit non-executed duplicates; 24 published
+  ArangoDB legacy variants remain unverified after failing static review.
 - The full data contract has 30 CSV inputs and 31 logical projections.
 - Legacy loaders and shell runners contain workstation-specific paths; they
   remain explicitly non-portable until replaced.

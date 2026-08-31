@@ -17,12 +17,14 @@ known validation gaps.
 
 ## Static Gates Completed
 
-- The canonical manifest contains 96 main, 15 Shortest Path, and 12 Update
+- The canonical manifest contains 96 main, 96 Pure Join, 15 Shortest Path, and 12 Update
   queries with current SHA-256 values.
-- Adapter coverage has 861 explicit rows across seven systems; absent suites
-  are marked `not_implemented`.
-- Static semantic signatures pass for all 96 main translations, both static
-  Shortest Path adapters, and GrainDB's 12 Update translations.
+- Adapter coverage has 1,533 explicit rows across seven systems; absent suites
+  are `not_implemented` and known legacy mismatches are `legacy_unverified`.
+- Static semantic signatures pass for all 96 main translations, every
+  `static_adapter` Pure Join variant, both static Shortest Path adapters, and
+  GrainDB's 12 Update translations. The 24 ArangoDB legacy variants are
+  intentionally excluded from that claim.
 - `canonical_full_v1` names 30 source CSVs. Update's 16 directly referenced
   support tables have an untimed baseline derivation SQL file.
 - Repository hygiene rejects likely credentials, private IPs, unapproved host
@@ -34,13 +36,13 @@ known validation gaps.
 
 | Adapter | Required release smoke test |
 | --- | --- |
-| AgensGraph | Load all 30 inputs; execute/oracle-check 96 main and 15 Shortest Path queries; keep 12 direct-import Update files excluded from current-contract comparability. |
-| ArangoDB | Load all 30 inputs; execute 96 main and 15 corrected Shortest Path AQL files with `arangosh`; compare complete results. |
-| DuckDB | Build a clean full-profile database; derive Update staging; execute all 123 canonical files with the formal measurement contract. |
-| GrainDB | Confirm loader schema and staging types; execute 96 main plus 12 Update files; validate graph syntax and baseline restoration. |
+| AgensGraph | Load all 30 inputs; execute/oracle-check 96 main, 96 Pure Join, and 15 Shortest Path queries; keep 12 direct-import Update files excluded from current-contract comparability. |
+| ArangoDB | Load all 30 inputs; execute 96 main, 72 audited Pure Join, and 15 corrected Shortest Path AQL files; rewrite and oracle-check the 24 `legacy_unverified` Pure Join files before claiming comparable coverage. |
+| DuckDB | Build a clean full-profile database; derive Update staging; execute all 219 canonical files with the formal measurement contract. |
+| GrainDB | Confirm loader schema and staging types; execute 96 main, 96 Pure Join, and 12 Update files; validate graph syntax and baseline restoration. |
 | Kuzu | Load and validate a healthy full-profile database; run all maintained runners; oracle-check results and explicitly exclude unresolved Update `4a/4b`. |
-| OrientDB | On an exclusively opened healthy plocal copy, pass contract audit and preflight, then execute/oracle-check all 123 queries. |
-| PostgreSQL | Load the full graph/table projection; execute 96 main queries, especially agtype/text joins; oracle-check complete results. |
+| OrientDB | On an exclusively opened healthy plocal copy, pass contract audit and preflight, then execute/oracle-check all 219 queries. |
+| PostgreSQL | Load the full graph/table projection; execute 96 main and 96 Pure Join queries; oracle-check complete results. |
 
 Every smoke run must record DBMS version, configuration, data/query hashes,
 row counts, skipped/dangling inputs, timeout, process tree, and output hashes.
@@ -68,10 +70,10 @@ git diff --exit-code -- benchmark/manifests results/manifests
 python3 tools/audit_query_semantics.py
 python3 tools/validate_repository.py --strict-paths
 python3 -m compileall -q data scripts adapters tools
-python3 -m unittest discover -s adapters/kuzu/tests -p 'test_*.py' -v
-python3 -m unittest discover -s adapters/orientdb/tests -p 'test_*.py' -v
+python3 -m unittest discover -s adapters/kuzu/runners/tests -p 'test_*.py' -v
+python3 -m unittest discover -s adapters/orientdb/loaders/tests -p 'test_*.py' -v
 python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
-python3 adapters/orientdb/tools/audit_benchmark_contract.py
+python3 adapters/orientdb/runners/tools/audit_benchmark_contract.py
 ```
 
 Run shell syntax checks and `node --check` as defined in

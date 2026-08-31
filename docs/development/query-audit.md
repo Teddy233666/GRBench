@@ -40,10 +40,16 @@ physical representation must reverse `authorid,paperid` endpoints explicitly.
   now preserve the canonical endpoint, predicate, hop bound, and aggregate.
 
 `tools/audit_query_semantics.py` compares anchors, selected numeric predicates,
-and logical edge dependencies for all 96 static main-query translations. It
-also checks the 15 static Shortest Path adapters, the ArangoDB hop-family
-invariants, and GrainDB's 12 Update files. This is a regression gate, not proof
-of full result equivalence.
+and logical edge dependencies for all 96 static main-query translations and
+the published Pure Join variants. It also checks the 15 static Shortest Path
+adapters, the ArangoDB hop-family invariants, GrainDB's 12 Update files, and a
+high-risk OrientDB endpoint mapping. This is a regression gate, not proof of
+full result equivalence.
+
+The Pure Join restoration audit found no signature drift in the authoritative
+AgensGraph, DuckDB, GrainDB, and PostgreSQL files. OrientDB required corrections
+to `13a-c`, `17a-c`, `26c`, and `29c`. ArangoDB has 72 audited files plus 24
+requested `legacy_unverified` files; see `docs/development/pure-join-audit.md`.
 
 Static review cannot prove result equivalence on every engine. Promotion to
 `comparable` still requires an oracle run against healthy full-profile data.

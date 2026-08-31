@@ -57,10 +57,10 @@ Kuzu example:
 
 ```sh
 python3 -m venv .venv-kuzu
-.venv-kuzu/bin/pip install -r adapters/kuzu/requirements.txt
+.venv-kuzu/bin/pip install 'kuzu==0.11.3' 'psutil==7.2.2'
 .venv-kuzu/bin/python adapters/kuzu/loaders/load.py \
   --dataset sf10_0 --threads 8 --strict-rel-copy
-.venv-kuzu/bin/python adapters/kuzu/tools/validate_database.py \
+.venv-kuzu/bin/python adapters/kuzu/loaders/validate_database.py \
   --db-path .local/kuzu/db/db_sf10_0
 ```
 
@@ -96,14 +96,17 @@ regenerate manifests before committing.
 
 ## Workload
 
-`benchmark/queries/canonical/` defines 123 query IDs:
+`benchmark/queries/canonical/` defines 219 executable query IDs:
 
 - 96 main relational-graph and graph queries;
+- 96 Pure Join physical variants of those logical main queries;
 - 15 Shortest Path queries;
 - 12 Update queries named `1a.sql` through `6b.sql`.
 
 Engine translations keep the same IDs under `adapters/<engine>/queries/`.
-`Pure_Join_Queries` is retained as an alternate pure relational implementation.
+Pure Join is measured separately because it uses a different physical query
+form. Kuzu's historical Pure Join Cypher is byte-identical to its main Cypher,
+so those duplicate files remain explicitly `duplicate_not_executed`.
 
 ## Repository Layout
 
@@ -121,6 +124,10 @@ Engine translations keep the same IDs under `adapters/<engine>/queries/`.
 
 The complete migration map and Git boundary are in
 [`docs/repository-layout.md`](docs/repository-layout.md).
+
+Every adapter root contains exactly these three directories; tests, tools,
+dependencies, documentation, and legacy material live below the phase that owns
+them rather than beside the workflow directories.
 
 ## Reproducibility Status
 

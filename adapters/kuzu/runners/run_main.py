@@ -92,6 +92,8 @@ def find_queries(args: argparse.Namespace) -> list[tuple[str, str, str, Path]]:
     seen_hashes = set()
     for path in args.query_root.rglob("*.cypher"):
         category, subcategory, sql_file = query_key(path, args.query_root)
+        if category == "Shortest_Path_Queries":
+            continue
         if args.skip_pure_join and category == "Pure_Join_Queries":
             continue
         if args.category and category != args.category:

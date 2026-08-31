@@ -1,6 +1,7 @@
 # DuckDB
 
-DuckDB executes the 123 canonical SQL files directly. Load one SF with:
+DuckDB keeps a byte-identical 219-query SQL mirror under
+`adapters/duckdb/queries/`. Load one SF with:
 
 ```sh
 python3 adapters/duckdb/loaders/load_graph.py \
@@ -14,7 +15,7 @@ Smoke one canonical query:
 ```sh
 timeout "${GRBENCH_TIMEOUT_S}" duckdb \
   .local/duckdb/sciscinet_graph_0.duckdb \
-  < "benchmark/queries/canonical/Pure_Graph_Queries/25a.sql"
+  < "adapters/duckdb/queries/Pure_Graph_Queries/25a.sql"
 ```
 
 The loader installs DuckPGQ from the community extension repository. The

@@ -1,7 +1,7 @@
 # GrainDB
 
-GrainDB publishes 96 main and 12 Update translations. Render the retained
-loader into `.local/generated/loaders/` before use; see
+GrainDB publishes 96 main, 96 Pure Join, and 12 Update translations. Render the
+retained loader into `.local/generated/loaders/` before use; see
 `docs/database-loading.md`.
 
 Smoke one query with the GrainDB-compatible CLI:

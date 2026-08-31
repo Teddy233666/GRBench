@@ -4,9 +4,10 @@ Run GRBench sciscinet Shortest_Path_Queries on a Kuzu database.
 The source SQL is kept under ``benchmark/queries/canonical`` for provenance.
 
 Kuzu 0.11.3 does not support SQL/PGQ GRAPH_TABLE or ANY SHORTEST directly.
-The runner evaluates exact path lengths within each requested range and
-aggregates reachable endpoints. Since the benchmark queries only return MIN()
-over endpoint columns, duplicate paths do not change the result.
+The file-backed Kuzu templates are evaluated at exact path lengths within each
+requested range, then reachable endpoints are aggregated. Since the benchmark
+queries only return MIN() over endpoint columns, duplicate paths do not change
+the result.
 """
 import argparse
 import csv
@@ -19,6 +20,7 @@ import kuzu
 import psutil
 
 from measurement import ensure_csv_schema, run_repeated
+from shortest_query_loader import load_shortest_queries
 
 RUNNER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = RUNNER_DIR.parent
@@ -26,6 +28,7 @@ REPO_ROOT = ADAPTER_DIR.parents[1]
 DEFAULT_DB_DIR = REPO_ROOT / ".local" / "kuzu" / "db"
 DEFAULT_RESULTS_DIR = REPO_ROOT / ".local" / "results" / "kuzu"
 DEFAULT_SOURCE_DIR = REPO_ROOT / "benchmark" / "queries" / "canonical" / "Shortest_Path_Queries"
+DEFAULT_QUERY_ROOT = ADAPTER_DIR / "queries" / "Shortest_Path_Queries"
 TIMEOUT_S = 18000
 SAMPLE_HZ = 100.0
 NCORES = psutil.cpu_count()
@@ -44,6 +47,7 @@ def parse_args():
     parser.add_argument("--results", default=None)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--db-dir", type=Path, default=DEFAULT_DB_DIR)
+    parser.add_argument("--query-root", type=Path, default=DEFAULT_QUERY_ROOT)
     parser.add_argument("--source-query-root", type=Path, default=DEFAULT_SOURCE_DIR)
     return parser.parse_args()
 
@@ -52,6 +56,7 @@ ARGS = parse_args()
 DATASET = ARGS.dataset
 DB_PATH = ARGS.db_dir / f"db_{DATASET}"
 SOURCE_DIR = ARGS.source_query_root
+QUERY_ROOT = ARGS.query_root
 RESULTS = Path(ARGS.results) if ARGS.results else DEFAULT_RESULTS_DIR / f"results_{DATASET}_shortest_sciscinet.csv"
 THREADS = ARGS.threads
 BUFFER_POOL_BYTES = int(ARGS.buffer_pool_gib * 1024**3)
@@ -109,117 +114,6 @@ class Sampler(threading.Thread):
         mem_peak_mb = max(self.rss_samples) / 1024 / 1024
         mem_avg_mb = sum(self.rss_samples) / len(self.rss_samples) / 1024 / 1024
         return cpu_peak_pct, cpu_avg_pct, mem_peak_mb, mem_avg_mb, len(self.rss_samples)
-
-
-def rel_pattern(rel: str, depth: int) -> str:
-    if depth == 1:
-        return f"[:{rel}]"
-    return f"[:{rel}*{depth}..{depth}]"
-
-
-def affiliation_min_step(depth: int, suffix: str) -> str:
-    predicates = {
-        "a": "CAST(inst_for.productivity AS DOUBLE) > 8000",
-        "b": "CAST(inst_for.productivity AS DOUBLE) > 48000",
-        "c": "inst_for.institutionid = 'I4210088668'",
-    }
-    if depth == 0:
-        return f"""
-MATCH (inst_for:Affiliations)
-WHERE inst_for.institutionid = 'I4210136388'
-  AND {predicates[suffix]}
-RETURN count(inst_for.institutionid) AS matched_count,
-       min(inst_for.institutionid) AS min_institutionid;
-""".strip()
-    return f"""
-MATCH p = (inst_cn:Affiliations)-{rel_pattern("affl_assoc_affl", depth)}->(inst_for:Affiliations)
-WHERE inst_cn.institutionid = 'I4210136388'
-  AND {predicates[suffix]}
-RETURN count(inst_for.institutionid) AS matched_count,
-       min(inst_for.institutionid) AS min_institutionid;
-""".strip()
-
-
-def contributed_from_join_step(depth: int, suffix: str) -> str:
-    predicates = {
-        "a": "CAST(inst_for.productivity AS DOUBLE) > 8000",
-        "b": "CAST(inst_for.productivity AS DOUBLE) > 48000",
-        "c": "inst_for.institutionid = 'I4210088668'",
-    }
-    return f"""
-MATCH p = (inst_cn:Affiliations)-{rel_pattern("affl_assoc_affl", depth)}->(inst_for:Affiliations)
-WHERE inst_cn.institutionid = 'I4210136388'
-  AND {predicates[suffix]}
-WITH DISTINCT inst_for.institutionid AS institutionid
-OPTIONAL MATCH (:Papers)-[:contributed_from]->(i:Affiliations)
-WHERE i.institutionid = institutionid
-RETURN count(institutionid) AS matched_count,
-       min(i.institutionid) AS min_joined_institutionid;
-""".strip()
-
-
-def paper_reference_step(depth: int, suffix: str) -> str:
-    thresholds = {"a": 150, "b": 80, "c": 5}
-    if depth == 0:
-        return f"""
-MATCH (paper:Papers)
-WHERE paper.paperid = 'W4211259235'
-  AND paper.citation_count < {thresholds[suffix]}
-RETURN count(paper.paperid) AS matched_count,
-       min(paper.paperid) AS min_ref_paperid;
-""".strip()
-    return f"""
-MATCH p = (paper:Papers)-[:PaperReferences]->(ref:Papers)
-WHERE paper.paperid = 'W4211259235'
-  AND ref.citation_count < {thresholds[suffix]}
-RETURN count(ref.paperid) AS matched_count,
-       min(ref.paperid) AS min_ref_paperid;
-""".strip()
-
-
-def shortest_queries():
-    queries = []
-    for suffix in "abc":
-        queries.append({
-            "category": "Shortest_Path_Queries",
-            "subcategory": "sciscinet_any_shortest_1_or_more",
-            "sql_file": f"1{suffix}.sql",
-            "steps": [affiliation_min_step(depth, suffix) for depth in range(1, MAX_UNBOUNDED_DEPTH + 1)],
-            "unbounded": True,
-        })
-    for suffix in "abc":
-        queries.append({
-            "category": "Shortest_Path_Queries",
-            "subcategory": "sciscinet_any_shortest_1_to_3",
-            "sql_file": f"2{suffix}.sql",
-            "steps": [affiliation_min_step(depth, suffix) for depth in range(1, 4)],
-            "unbounded": False,
-        })
-    for suffix in "abc":
-        queries.append({
-            "category": "Shortest_Path_Queries",
-            "subcategory": "sciscinet_any_shortest_1_to_4_left_join",
-            "sql_file": f"3{suffix}.sql",
-            "steps": [contributed_from_join_step(depth, suffix) for depth in range(1, 5)],
-            "unbounded": False,
-        })
-    for suffix in "abc":
-        queries.append({
-            "category": "Shortest_Path_Queries",
-            "subcategory": "sciscinet_any_shortest_0_or_more",
-            "sql_file": f"4{suffix}.sql",
-            "steps": [affiliation_min_step(depth, suffix) for depth in range(0, MAX_UNBOUNDED_DEPTH + 1)],
-            "unbounded": True,
-        })
-    for suffix in "abc":
-        queries.append({
-            "category": "Shortest_Path_Queries",
-            "subcategory": "sciscinet_paperreferences_0_to_1",
-            "sql_file": f"5{suffix}.sql",
-            "steps": [paper_reference_step(depth, suffix) for depth in range(0, 2)],
-            "unbounded": False,
-        })
-    return queries
 
 
 def read_done():
@@ -327,6 +221,8 @@ def main():
         raise FileNotFoundError(f"Kuzu DB not found: {DB_PATH}")
     if not SOURCE_DIR.exists():
         raise FileNotFoundError(f"Source query directory not found: {SOURCE_DIR}")
+    if not QUERY_ROOT.exists():
+        raise FileNotFoundError(f"Kuzu query directory not found: {QUERY_ROOT}")
     RESULTS.parent.mkdir(parents=True, exist_ok=True)
     if ARGS.overwrite and RESULTS.exists():
         RESULTS.unlink()
@@ -335,11 +231,12 @@ def main():
     if BUFFER_POOL_BYTES > 0:
         db_kwargs["buffer_pool_size"] = BUFFER_POOL_BYTES
     db = kuzu.Database(str(DB_PATH), **db_kwargs)
-    queries = shortest_queries()
+    queries = load_shortest_queries(QUERY_ROOT, MAX_UNBOUNDED_DEPTH)
 
     print(f"=== Kuzu {DATASET} sciscinet Shortest_Path_Queries benchmark ===")
     print(f"Kuzu={kuzu.__version__}, db={DB_PATH}")
     print(f"Source={SOURCE_DIR}")
+    print(f"QueryRoot={QUERY_ROOT}")
     print(f"Queries={len(queries)}, completed={len(done)}, threads={THREADS}, buffer_pool_gib={ARGS.buffer_pool_gib}")
     print(f"Results={RESULTS}")
 

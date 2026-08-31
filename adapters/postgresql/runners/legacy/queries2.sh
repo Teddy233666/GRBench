@@ -6,12 +6,15 @@
 
 DB_USER="postgres"
 DB_NAME="postgres"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-RESULT_FILE="legacy_core/test/postgresql/tim3_join.csv"
+RESULT_FILE="${GRBENCH_POSTGRESQL_RESULT:-.local/results/postgresql/pure_join_round2.csv}"
 
 SQL_DIRS=(
-"legacy_core/tasks/postgresql_task/Pure_Join_Queries copy"
+"$SCRIPT_DIR/../../queries/Pure_Join_Queries"
 )
+
+mkdir -p "$(dirname "$RESULT_FILE")"
 
 RUNS=3
 

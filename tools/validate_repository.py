@@ -19,19 +19,19 @@ ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "benchmark" / "queries" / "canonical"
 MANIFESTS = ROOT / "benchmark" / "manifests"
 RESULT_MANIFEST = ROOT / "results" / "manifests" / "published_results.csv"
-EXPECTED_SUITES = {"main": 96, "shortest_path": 15, "update": 12}
+EXPECTED_SUITES = {"main": 96, "pure_join": 96, "shortest_path": 15, "update": 12}
 EXPECTED_COVERAGE = {
-    "agensgraph": Counter({"static_adapter": 111, "legacy_adapter": 12}),
-    "arangodb": Counter({"static_adapter": 111, "not_implemented": 12}),
-    "duckdb": Counter({"canonical_sql": 123}),
-    "graindb": Counter({"static_adapter": 108, "not_implemented": 15}),
-    "kuzu": Counter({"static_adapter": 96, "runtime_generated": 27}),
-    "orientdb": Counter({"static_adapter": 123}),
-    "postgresql": Counter({"static_adapter": 96, "not_implemented": 27}),
+    "agensgraph": Counter({"static_adapter": 207, "legacy_adapter": 12}),
+    "arangodb": Counter({"static_adapter": 183, "legacy_unverified": 24, "not_implemented": 12}),
+    "duckdb": Counter({"static_adapter": 219}),
+    "graindb": Counter({"static_adapter": 204, "not_implemented": 15}),
+    "kuzu": Counter({"static_adapter": 111, "duplicate_not_executed": 96, "runtime_generated": 12}),
+    "orientdb": Counter({"static_adapter": 219}),
+    "postgresql": Counter({"static_adapter": 192, "not_implemented": 27}),
 }
 TEXT_SUFFIXES = {
     ".c", ".cc", ".cpp", ".h", ".hpp", ".java", ".js", ".json", ".md",
-    ".py", ".sh", ".sql", ".toml", ".csv", ".tsv", ".txt", ".yaml", ".yml", ".cff",
+    ".py", ".sh", ".sql", ".cypher", ".toml", ".csv", ".tsv", ".txt", ".yaml", ".yml", ".cff",
 }
 ABSOLUTE_PATH_ALLOWLIST = (
     "tools/sanitize_result_paths.py",
@@ -67,7 +67,7 @@ def validate_queries(errors: list[str]) -> None:
     manifest = rows(MANIFESTS / "query_manifest.csv")
     counts = Counter(row["suite"] for row in manifest)
     check(counts == Counter(EXPECTED_SUITES), f"query suite counts differ: {counts}", errors)
-    check(len({row["query_id"] for row in manifest}) == 123, "query IDs are not unique", errors)
+    check(len({row["query_id"] for row in manifest}) == 219, "query IDs are not unique", errors)
     for row in manifest:
         path = ROOT / row["canonical_path"]
         check(path.is_file(), f"missing canonical query: {path.relative_to(ROOT)}", errors)
@@ -77,6 +77,53 @@ def validate_queries(errors: list[str]) -> None:
     update_names = sorted(path.name for path in (CANONICAL / "update" / "Update").glob("*.sql"))
     check(update_names == [f"{n}{s}.sql" for n in range(1, 7) for s in "ab"], "canonical Update IDs must be 1a..6b", errors)
     check(not list((CANONICAL / "update").rglob("*c.sql")), "legacy c Update leaked into canonical", errors)
+
+    pure_join_names = sorted(path.name for path in (CANONICAL / "Pure_Join_Queries").rglob("*.sql"))
+    check(
+        pure_join_names == sorted(f"{number}{suffix}.sql" for number in range(1, 33) for suffix in "abc"),
+        "canonical Pure Join IDs must be 1a..32c",
+        errors,
+    )
+    variants = rows(MANIFESTS / "pure_join_variants.csv")
+    check(len(variants) == 96, "Pure Join variant manifest must contain 96 rows", errors)
+    check(
+        {row["variant_id"] for row in variants}
+        == {f"pure_join/{number}{suffix}" for number in range(1, 33) for suffix in "abc"},
+        "Pure Join variant IDs are incomplete",
+        errors,
+    )
+    for row in variants:
+        check(row["logical_query_id"] == row["variant_id"].replace("pure_join/", "main/"), f"incorrect Pure Join logical mapping: {row['variant_id']}", errors)
+        check(row["status"] == "physical_variant", f"incorrect Pure Join status: {row['variant_id']}", errors)
+
+    check(
+        not (ROOT / "adapters" / "kuzu" / "queries" / "Pure_Join_Queries").exists(),
+        "Kuzu must not publish byte-identical Pure Join copies",
+        errors,
+    )
+
+
+def validate_duckdb_query_mirror(errors: list[str]) -> None:
+    duckdb_root = ROOT / "adapters" / "duckdb" / "queries"
+    canonical = {
+        (
+            Path("Update") / path.name
+            if path.relative_to(CANONICAL).parts[0] == "update"
+            else path.relative_to(CANONICAL)
+        ): path
+        for path in CANONICAL.rglob("*.sql")
+    }
+    mirrored = {
+        path.relative_to(duckdb_root): path
+        for path in duckdb_root.rglob("*.sql")
+    }
+    check(set(mirrored) == set(canonical), "DuckDB query mirror paths differ from canonical", errors)
+    for rel in sorted(set(canonical) & set(mirrored)):
+        check(
+            canonical[rel].read_bytes() == mirrored[rel].read_bytes(),
+            f"DuckDB query mirror differs from canonical: {rel}",
+            errors,
+        )
 
 
 def validate_known_semantics(errors: list[str]) -> None:
@@ -94,19 +141,25 @@ def validate_known_semantics(errors: list[str]) -> None:
         for needle in needles:
             check(needle in text, f"semantic constraint missing from {rel}: {needle}", errors)
 
-    agens16 = next((ROOT / "adapters/agensgraph/queries").rglob("16b.sql")).read_text()
+    agens16 = (
+        ROOT
+        / "adapters/agensgraph/queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/16b.sql"
+    ).read_text()
     check("g_ref.paperid)::text" in agens16 and "g_ref.ref_paperid)::text" not in agens16.split("LEFT JOIN link_nobellaureates", 1)[1], "AgensGraph 16b Nobel endpoint regressed", errors)
-    arango18 = next((ROOT / "adapters/arangodb/queries").rglob("18b.js")).read_text()
+    arango18 = (
+        ROOT
+        / "adapters/arangodb/queries/Low_Join_Relational_Graph_Hybrid_Queries/Low-Join Multi-Subgraph Single/18b.js"
+    ).read_text()
     check("hasRows" in arango18 and "FOR nf IN" not in arango18, "ArangoDB 18b optional join regressed", errors)
 
 
 def validate_coverage(errors: list[str]) -> None:
     coverage = rows(MANIFESTS / "adapter_coverage.csv")
-    check(len(coverage) == 7 * 123, "adapter coverage must contain 861 rows", errors)
+    check(len(coverage) == 7 * 219, "adapter coverage must contain 1533 rows", errors)
     by_adapter: dict[str, Counter[str]] = {}
     for row in coverage:
         by_adapter.setdefault(row["adapter"], Counter())[row["status"]] += 1
-        if row["status"] in {"static_adapter", "legacy_adapter", "runtime_generated", "canonical_sql"}:
+        if row["status"] in {"static_adapter", "legacy_adapter", "legacy_unverified", "runtime_generated", "canonical_sql"}:
             check((ROOT / row["adapter_path"]).is_file(), f"coverage path missing: {row['adapter_path']}", errors)
     check(by_adapter == EXPECTED_COVERAGE, f"adapter coverage differs: {by_adapter}", errors)
 
@@ -127,28 +180,14 @@ def validate_data_and_updates(errors: list[str]) -> None:
         else:
             check(row["unmeasured_setup"].endswith("a.sql"), f"missing setup for {row['sql_file']}", errors)
 
-    agens_root = ROOT / "adapters" / "agensgraph" / "queries"
-    agens_manifest = rows(agens_root / "Update" / "source_manifest.tsv", delimiter="\t")
-    expected_ids = {f"update/{number}{suffix}" for number in range(1, 7) for suffix in "ab"}
+    agens_update = ROOT / "adapters" / "agensgraph" / "queries" / "Update"
+    expected_names = {f"{number}{suffix}.sql" for number in range(1, 7) for suffix in "ab"}
+    actual_names = {path.name for path in agens_update.glob("*.sql")}
     check(
-        {row["canonical_query_id"] for row in agens_manifest} == expected_ids,
-        "AgensGraph legacy Update source manifest must map all 12 canonical inventory IDs",
+        actual_names == expected_names,
+        f"AgensGraph Update files must be exactly 1a..6b: {sorted(actual_names)}",
         errors,
     )
-    for row in agens_manifest:
-        path = agens_root / row["adapter_file"]
-        check(path.is_file(), f"AgensGraph legacy Update file missing: {row['adapter_file']}", errors)
-        if path.is_file():
-            check(
-                sha256(path) == row["source_sha256"],
-                f"AgensGraph legacy Update source hash drift: {row['adapter_file']}",
-                errors,
-            )
-        check(
-            row["status"] == "legacy_adapter",
-            f"AgensGraph Update source status must remain legacy_adapter: {row['canonical_query_id']}",
-            errors,
-        )
 
 
 def validate_workflow_layout(errors: list[str]) -> None:
@@ -186,6 +225,16 @@ def validate_workflow_layout(errors: list[str]) -> None:
     ]
     for rel in deprecated:
         check(not (ROOT / rel).exists(), f"deprecated workflow path remains: {rel}", errors)
+
+    expected_adapter_entries = {"loaders", "queries", "runners"}
+    for adapter in EXPECTED_COVERAGE:
+        adapter_root = ROOT / "adapters" / adapter
+        actual_entries = {path.name for path in adapter_root.iterdir()}
+        check(
+            actual_entries == expected_adapter_entries,
+            f"adapter root layout differs for {adapter}: {sorted(actual_entries)}",
+            errors,
+        )
 
 
 def validate_results(errors: list[str]) -> None:
@@ -252,6 +301,7 @@ def main() -> int:
     args = parser.parse_args()
     errors: list[str] = []
     validate_queries(errors)
+    validate_duckdb_query_mirror(errors)
     validate_known_semantics(errors)
     validate_coverage(errors)
     validate_data_and_updates(errors)

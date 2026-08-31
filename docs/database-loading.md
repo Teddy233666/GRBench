@@ -103,10 +103,10 @@ the command is a compatibility starting point, not a formal loader guarantee.
 
 ```sh
 python3 -m venv .venv-kuzu
-.venv-kuzu/bin/pip install -r adapters/kuzu/requirements.txt
+.venv-kuzu/bin/pip install 'kuzu==0.11.3' 'psutil==7.2.2'
 .venv-kuzu/bin/python adapters/kuzu/loaders/load.py \
   --dataset sf10_0 --threads "${GRBENCH_THREADS}" --strict-rel-copy
-.venv-kuzu/bin/python adapters/kuzu/tools/validate_database.py \
+.venv-kuzu/bin/python adapters/kuzu/loaders/validate_database.py \
   --db-path .local/kuzu/db/db_sf10_0
 ```
 
@@ -117,7 +117,7 @@ keys provide lookup indexes; no separate user index phase exists in this loader.
 
 ```sh
 python3 -m venv .venv-orientdb
-.venv-orientdb/bin/pip install -r adapters/orientdb/requirements.txt
+.venv-orientdb/bin/pip install -r adapters/orientdb/loaders/requirements.txt
 .venv-orientdb/bin/python adapters/orientdb/loaders/load_orientdb_data.py \
   --sf sf10_0 --data-root data/processed \
   --db-dir .local/orientdb/databases \

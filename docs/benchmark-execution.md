@@ -5,12 +5,19 @@
 `benchmark/queries/canonical/` is authoritative:
 
 - three main categories contain 96 SQL files (`1a.sql` through `32c.sql`);
+- `Pure_Join_Queries/` contains 96 alternate relational implementations;
 - `Shortest_Path_Queries/` contains 15 files (`1a.sql` through `5c.sql`);
 - `update/Update/` contains 12 files (`1a.sql` through `6b.sql`).
 
 Engine translations live under `adapters/<engine>/queries/` with the same IDs.
 Kuzu generates Shortest Path and Update Cypher at runtime. Adapter coverage is
 recorded in `benchmark/manifests/adapter_coverage.csv`.
+
+Pure Join is a physical variant, not a second logical query definition. Kuzu
+skips it because all 96 historical Cypher files are byte-identical to main.
+ArangoDB publishes all 96 files: 72 are statically audited and 24 requested
+legacy AQL files are explicitly `legacy_unverified` because their known
+semantic signatures do not match canonical.
 
 ## Formal Parameters
 
@@ -38,7 +45,8 @@ review, then regenerate `results/manifests/`.
 ```sh
 .venv-kuzu/bin/python adapters/kuzu/runners/run_main.py \
   --dataset sf10_0 --results .local/results/kuzu/sf10_0/main.csv \
-  --threads 8 --timeout-s 18000 --warmups 1 --repeats 3 --overwrite
+  --threads 8 --timeout-s 18000 --warmups 1 --repeats 3 \
+  --skip-pure-join --overwrite
 
 .venv-kuzu/bin/python adapters/kuzu/runners/run_shortest.py \
   --dataset sf10_0 --results .local/results/kuzu/sf10_0/shortest.csv \
@@ -55,7 +63,7 @@ review, then regenerate `results/manifests/`.
 Generate/validate an independent DuckDB oracle before a data-loaded run, then:
 
 ```sh
-.venv-orientdb/bin/python adapters/orientdb/tools/audit_benchmark_contract.py
+.venv-orientdb/bin/python adapters/orientdb/runners/tools/audit_benchmark_contract.py
 .venv-orientdb/bin/python adapters/orientdb/runners/run_orientdb.py \
   --sf sf10_0 --db-dir .local/orientdb/databases \
   --data-root data/processed \
@@ -88,6 +96,11 @@ timeout "${GRBENCH_TIMEOUT_S}" psql -X \
   -U "${POSTGRES_USERNAME}" -d "${POSTGRES_DATABASE}" \
   -f "adapters/postgresql/queries/Pure_Graph_Queries/25a.sql"
 
+timeout "${GRBENCH_TIMEOUT_S}" psql -X \
+  -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" \
+  -U "${POSTGRES_USERNAME}" -d "${POSTGRES_DATABASE}" \
+  -f "adapters/postgresql/queries/Pure_Join_Queries/Pure_Graph_Queries/25a.sql"
+
 timeout "${GRBENCH_TIMEOUT_S}" arangosh \
   --server.endpoint "${ARANGODB_ENDPOINT}" \
   --server.database "${ARANGODB_DATABASE}" \
@@ -96,7 +109,7 @@ timeout "${GRBENCH_TIMEOUT_S}" arangosh \
 
 timeout "${GRBENCH_TIMEOUT_S}" duckdb \
   .local/duckdb/sciscinet_graph_0.duckdb \
-  < "benchmark/queries/canonical/Pure_Graph_Queries/25a.sql"
+  < "adapters/duckdb/queries/Pure_Graph_Queries/25a.sql"
 ```
 
 These smoke commands do not produce comparable Benchmark metrics. Implement a
