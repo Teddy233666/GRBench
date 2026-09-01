@@ -70,10 +70,8 @@ git diff --exit-code -- benchmark/manifests results/manifests
 python3 tools/audit_query_semantics.py
 python3 tools/validate_repository.py --strict-paths
 python3 -m compileall -q data scripts adapters tools
-python3 -m unittest discover -s adapters/kuzu/runners/tests -p 'test_*.py' -v
-python3 -m unittest discover -s adapters/orientdb/loaders/tests -p 'test_*.py' -v
 python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
-python3 adapters/orientdb/runners/tools/audit_benchmark_contract.py
+python3 -m unittest discover -s adapters/postgresql/runners/tests -p 'test_*.py' -v
 ```
 
 Run shell syntax checks and `node --check` as defined in

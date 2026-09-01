@@ -1082,18 +1082,18 @@ kuzu,shortest_path/4c,shortest_path,static_adapter,adapters/kuzu/queries/Shortes
 kuzu,shortest_path/5a,shortest_path,static_adapter,adapters/kuzu/queries/Shortest_Path_Queries/5a.cypher,Static semantic signatures audited; live result equivalence remains required.
 kuzu,shortest_path/5b,shortest_path,static_adapter,adapters/kuzu/queries/Shortest_Path_Queries/5b.cypher,Static semantic signatures audited; live result equivalence remains required.
 kuzu,shortest_path/5c,shortest_path,static_adapter,adapters/kuzu/queries/Shortest_Path_Queries/5c.cypher,Static semantic signatures audited; live result equivalence remains required.
-kuzu,update/1a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/1b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/2a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/2b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/3a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/3b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/4a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/4b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/5a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/5b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/6a,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
-kuzu,update/6b,update,runtime_generated,adapters/kuzu/runners/run_update.py,Runner emits engine-specific Cypher.
+kuzu,update/1a,update,static_adapter,adapters/kuzu/queries/Update/1a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/1b,update,static_adapter,adapters/kuzu/queries/Update/1b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/2a,update,static_adapter,adapters/kuzu/queries/Update/2a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/2b,update,static_adapter,adapters/kuzu/queries/Update/2b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/3a,update,static_adapter,adapters/kuzu/queries/Update/3a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/3b,update,static_adapter,adapters/kuzu/queries/Update/3b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/4a,update,static_adapter,adapters/kuzu/queries/Update/4a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/4b,update,static_adapter,adapters/kuzu/queries/Update/4b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/5a,update,static_adapter,adapters/kuzu/queries/Update/5a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/5b,update,static_adapter,adapters/kuzu/queries/Update/5b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/6a,update,static_adapter,adapters/kuzu/queries/Update/6a.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
+kuzu,update/6b,update,static_adapter,adapters/kuzu/queries/Update/6b.cypher,File-backed Cypher template; the runner only renders staging paths and setup order.
 orientdb,main/1a,main,static_adapter,adapters/orientdb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,Static semantic signatures audited; live result equivalence remains required.
 orientdb,main/1b,main,static_adapter,adapters/orientdb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,Static semantic signatures audited; live result equivalence remains required.
 orientdb,main/1c,main,static_adapter,adapters/orientdb/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,Static semantic signatures audited; live result equivalence remains required.
@@ -1301,18 +1301,18 @@ orientdb,shortest_path/4c,shortest_path,static_adapter,adapters/orientdb/queries
 orientdb,shortest_path/5a,shortest_path,static_adapter,adapters/orientdb/queries/Shortest_Path_Queries/5a.sql,Static semantic signatures audited; live result equivalence remains required.
 orientdb,shortest_path/5b,shortest_path,static_adapter,adapters/orientdb/queries/Shortest_Path_Queries/5b.sql,Static semantic signatures audited; live result equivalence remains required.
 orientdb,shortest_path/5c,shortest_path,static_adapter,adapters/orientdb/queries/Shortest_Path_Queries/5c.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/1a,update,static_adapter,adapters/orientdb/queries/update/Update/1a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/1b,update,static_adapter,adapters/orientdb/queries/update/Update/1b.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/2a,update,static_adapter,adapters/orientdb/queries/update/Update/2a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/2b,update,static_adapter,adapters/orientdb/queries/update/Update/2b.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/3a,update,static_adapter,adapters/orientdb/queries/update/Update/3a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/3b,update,static_adapter,adapters/orientdb/queries/update/Update/3b.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/4a,update,static_adapter,adapters/orientdb/queries/update/Update/4a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/4b,update,static_adapter,adapters/orientdb/queries/update/Update/4b.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/5a,update,static_adapter,adapters/orientdb/queries/update/Update/5a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/5b,update,static_adapter,adapters/orientdb/queries/update/Update/5b.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/6a,update,static_adapter,adapters/orientdb/queries/update/Update/6a.sql,Static semantic signatures audited; live result equivalence remains required.
-orientdb,update/6b,update,static_adapter,adapters/orientdb/queries/update/Update/6b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/1a,update,static_adapter,adapters/orientdb/queries/Update/1a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/1b,update,static_adapter,adapters/orientdb/queries/Update/1b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/2a,update,static_adapter,adapters/orientdb/queries/Update/2a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/2b,update,static_adapter,adapters/orientdb/queries/Update/2b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/3a,update,static_adapter,adapters/orientdb/queries/Update/3a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/3b,update,static_adapter,adapters/orientdb/queries/Update/3b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/4a,update,static_adapter,adapters/orientdb/queries/Update/4a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/4b,update,static_adapter,adapters/orientdb/queries/Update/4b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/5a,update,static_adapter,adapters/orientdb/queries/Update/5a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/5b,update,static_adapter,adapters/orientdb/queries/Update/5b.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/6a,update,static_adapter,adapters/orientdb/queries/Update/6a.sql,Static semantic signatures audited; live result equivalence remains required.
+orientdb,update/6b,update,static_adapter,adapters/orientdb/queries/Update/6b.sql,Static semantic signatures audited; live result equivalence remains required.
 postgresql,main/1a,main,static_adapter,adapters/postgresql/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1a.sql,Static semantic signatures audited; live result equivalence remains required.
 postgresql,main/1b,main,static_adapter,adapters/postgresql/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1b.sql,Static semantic signatures audited; live result equivalence remains required.
 postgresql,main/1c,main,static_adapter,adapters/postgresql/queries/High_Join_Relational_Graph_Hybrid_Queries/High-Join Multi-Subgraph Multi-Hop/1c.sql,Static semantic signatures audited; live result equivalence remains required.

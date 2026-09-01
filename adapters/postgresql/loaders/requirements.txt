@@ -1,2 +1,2 @@
-pandas>=2.0,<3
+# Required only by the Apache AGE preparation phase.
 plyvel>=1.5,<2

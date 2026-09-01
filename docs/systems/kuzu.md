@@ -36,9 +36,12 @@ The shortest-path translation bounds SQL/PGQ unbounded paths with
 `--max-unbounded-depth`; publish that value. Its 15 Kuzu Cypher templates and
 depth inventory are stored under `adapters/kuzu/queries/Shortest_Path_Queries/`;
 `run_shortest.py` loads them with `--query-root` and only handles expansion,
-execution, and result aggregation. Update defaults to a fresh working
-database copy per repetition. Copy creation, staging, paired setup, validation,
-cleanup, and rollback are outside the measurement window. The
+execution, and result aggregation. The 12 Update templates and their paired
+setup inventory are stored under `adapters/kuzu/queries/Update/`;
+`run_update.py` loads them with `--query-root` and renders only staging CSV path
+tokens. Update defaults to a fresh working database copy per repetition. Copy
+creation, staging, paired setup, validation, cleanup, and rollback are outside
+the measurement window. The
 `--transaction-rollback` mode is diagnostic and is not the formal isolation
 mode.
 
@@ -54,7 +57,8 @@ Run the maintained suites from the repository root:
 .venv-kuzu/bin/python adapters/kuzu/runners/run_shortest.py \
   --dataset sf10_0 --results .local/results/kuzu/sf10_0/shortest.csv --overwrite
 .venv-kuzu/bin/python adapters/kuzu/runners/run_update.py \
-  --dataset sf10_0 --results .local/results/kuzu/sf10_0/update.csv --overwrite
+  --dataset sf10_0 --query-root adapters/kuzu/queries/Update \
+  --results .local/results/kuzu/sf10_0/update.csv --overwrite
 ```
 
 Update requires the untimed support CSVs under `.local/update-staging/`, derived

@@ -20,6 +20,7 @@ import kuzu
 import psutil
 
 from measurement import ensure_csv_schema, run_repeated
+from update_query_loader import load_update_tasks
 
 RUNNER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = RUNNER_DIR.parent
@@ -30,6 +31,7 @@ DEFAULT_UPDATE_SRC = REPO_ROOT / ".local" / "update-staging"
 DEFAULT_STAGING_ROOT = REPO_ROOT / ".local" / "kuzu" / "staging"
 DEFAULT_UPDATE_STAGING = REPO_ROOT / ".local" / "kuzu" / "update-staging"
 DEFAULT_WORK_DB_DIR = REPO_ROOT / ".local" / "kuzu" / "update-work"
+DEFAULT_QUERY_ROOT = ADAPTER_DIR / "queries" / "Update"
 TIMEOUT_S = 18000
 SAMPLE_HZ = 100.0
 NCORES = psutil.cpu_count()
@@ -92,6 +94,7 @@ def parse_args():
     parser.add_argument("--staging-root", type=Path, default=DEFAULT_STAGING_ROOT)
     parser.add_argument("--update-staging", type=Path, default=DEFAULT_UPDATE_STAGING)
     parser.add_argument("--work-db-dir", type=Path, default=DEFAULT_WORK_DB_DIR)
+    parser.add_argument("--query-root", type=Path, default=DEFAULT_QUERY_ROOT)
     return parser.parse_args()
 
 
@@ -102,6 +105,7 @@ UPDATE_SRC = ARGS.update_source
 STAGING_ROOT = ARGS.staging_root
 UPDATE_STAGING = ARGS.update_staging
 WORK_DB_DIR = ARGS.work_db_dir
+QUERY_ROOT = ARGS.query_root
 if ARGS.results:
     RESULTS = Path(ARGS.results)
 elif ARGS.isolate_copy:
@@ -411,219 +415,6 @@ def ensure_staging_loaded(conn, paths):
         print(f"stage {table:28s} {time.time() - t0:9.2f}s count={count}", flush=True)
 
 
-def delete_papers_2020_2025():
-    return ["MATCH (p:Papers) WHERE p.year >= 2020 AND p.year <= 2025 DETACH DELETE p;"]
-
-
-def delete_update2_edges():
-    return [
-        """
-        MATCH (a:Papers)-[u:Update2_Edges]->(b:Papers)
-        MATCH (a)-[r:PaperReferences]->(b)
-        DELETE r;
-        """.strip()
-    ]
-
-
-def delete_update5_papers_to_authors():
-    return [
-        """
-        MATCH (p:Papers)-[u:Update5_Papers_to_Authors]->(a:Authors_Gender)
-        MATCH (p)-[r:Papers_to_Authors]->(a)
-        DELETE r;
-        """.strip()
-    ]
-
-
-def delete_authors_hindex_10_20():
-    return ["MATCH (a:Authors_Gender) WHERE a.h_index >= 10 AND a.h_index <= 20 DETACH DELETE a;"]
-
-
-def delete_update1_paper_rels():
-    return [
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (p:Papers)-[r:PaperReferences]->(:Papers)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (:Papers)-[r:PaperReferences]->(p:Papers)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (p:Papers)-[r:Papers_to_Authors]->(:Authors_Gender)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (p:Papers)-[r:contributed_from]->(:Affiliations)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (p:Papers)-[r:PaperFields]->(:Fields)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip(),
-    ]
-
-
-def delete_update1_link_nodes():
-    statements = []
-    for table in ["link_nsf", "link_nih", "link_clinicaltrials", "link_newsfeed"]:
-        statements.append(
-            f"""
-            MATCH (u:Update1_Papers)
-            MATCH (n:{table})
-            WHERE n.paperid = u.paperid
-            DELETE n;
-            """.strip()
-        )
-    return statements
-
-
-def delete_update1_link_twitter_rels():
-    return [
-        """
-        MATCH (u:Update1_Papers)
-        MATCH (p:Papers)-[r:link_twitter]->(:Twitter_Metadata)
-        WHERE p.paperid = u.paperid
-        DELETE r;
-        """.strip()
-    ]
-
-
-def delete_papers_and_related():
-    return [
-        *delete_update1_paper_rels(),
-        *delete_update1_link_nodes(),
-        *delete_update1_link_twitter_rels(),
-        *delete_papers_2020_2025(),
-    ]
-
-
-def delete_update4_author_related():
-    return [
-        """
-        MATCH (u:Update4_Authors_Gender)
-        MATCH (:Papers)-[r:Papers_to_Authors]->(a:Authors_Gender)
-        WHERE a.authorid = u.authorid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update4_Authors_Gender)
-        MATCH (a:Authors_Gender)-[r:affiliated_with]->(:Affiliations)
-        WHERE a.authorid = u.authorid
-        DELETE r;
-        """.strip(),
-        """
-        MATCH (u:Update4_Authors_Gender)
-        MATCH (a:Authors_Gender)
-        WHERE a.authorid = u.authorid
-        DELETE a;
-        """.strip(),
-    ]
-
-
-def update_tasks(paths):
-    return [
-        {
-            "sql_file": "1a.sql",
-            "description": "删除Papers顶点所有 year字段值在 2020 到 2025 之间的记录。",
-            "setup": [],
-            "statements": delete_papers_2020_2025(),
-        },
-        {
-            "sql_file": "1b.sql",
-            "description": "将此前1a.sql删除的数据重新插入。",
-            "setup": delete_papers_2020_2025(),
-            "statements": [f"COPY Papers FROM '{paths['update1_papers']}' (HEADER=true, IGNORE_ERRORS=true);"],
-        },
-        {
-            "sql_file": "2a.sql",
-            "description": "删除 2020-2025 年发表论文对应的引用关系数据。",
-            "setup": [],
-            "statements": delete_update2_edges(),
-        },
-        {
-            "sql_file": "2b.sql",
-            "description": "将此前2a.sql删除的引用关系数据重新插入。",
-            "setup": delete_update2_edges(),
-            "statements": [f"COPY PaperReferences FROM '{paths['update2_edges']}' (HEADER=true, IGNORE_ERRORS=true);"],
-        },
-        {
-            "sql_file": "3a.sql",
-            "description": "删除2020-2025年论文及其全部关联链路数据。",
-            "setup": [],
-            "statements": delete_papers_and_related(),
-        },
-        {
-            "sql_file": "3b.sql",
-            "description": "将3a.sql删除的论文本体数据及其关联关系边重新插入。",
-            "setup": delete_papers_and_related(),
-            "statements": [
-                f"COPY Papers FROM '{paths['update1_papers']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY PaperReferences FROM '{paths['update3_paperreferences_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY Papers_to_Authors FROM '{paths['update1_papers_to_authors_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY Authors_Paper FROM '{paths['update3_authors_paper_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY contributed_from FROM '{paths['update3_contributed_from_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY PaperFields FROM '{paths['update3_paperfields_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY link_nsf FROM '{paths['update3_link_nsf_node']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY link_nih FROM '{paths['update3_link_nih_node']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY link_clinicaltrials FROM '{paths['update3_link_clinicaltrials_node']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY link_newsfeed FROM '{paths['update3_link_newsfeed_node']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY link_twitter FROM '{paths['update3_link_twitter_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-            ],
-        },
-        {
-            "sql_file": "4a.sql",
-            "description": "删除h指数介于10至20之间的作者基础数据。",
-            "setup": [],
-            "statements": delete_authors_hindex_10_20(),
-        },
-        {
-            "sql_file": "4b.sql",
-            "description": "将4a.sql删除的作者数据重新插入。",
-            "setup": delete_authors_hindex_10_20(),
-            "statements": [f"COPY Authors_Gender FROM '{paths['update4_authors']}' (HEADER=true, IGNORE_ERRORS=true);"],
-        },
-        {
-            "sql_file": "5a.sql",
-            "description": "删除h指数介于10至20之间作者对应的论文-作者关联关系数据。",
-            "setup": [],
-            "statements": delete_update5_papers_to_authors(),
-        },
-        {
-            "sql_file": "5b.sql",
-            "description": "将5a.sql删除的论文-作者关联关系数据重新插入。",
-            "setup": delete_update5_papers_to_authors(),
-            "statements": [f"COPY Papers_to_Authors FROM '{paths['update5_papers_to_authors_rel']}' (HEADER=true, IGNORE_ERRORS=true);"],
-        },
-        {
-            "sql_file": "6a.sql",
-            "description": "批量删除h指数10至20的作者实体及其论文、机构隶属关系。",
-            "setup": [],
-            "statements": delete_update4_author_related(),
-        },
-        {
-            "sql_file": "6b.sql",
-            "description": "将6a.sql删除的作者、论文-作者、作者-机构关系重新插入。",
-            "setup": delete_update4_author_related(),
-            "statements": [
-                f"COPY Authors_Gender FROM '{paths['update4_authors']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY Papers_to_Authors FROM '{paths['update6_papers_to_authors_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-                f"COPY affiliated_with FROM '{paths['update6_affiliated_with_rel']}' (HEADER=true, IGNORE_ERRORS=true);",
-            ],
-        },
-    ]
-
-
 def read_done():
     if not RESULTS.exists():
         return set()
@@ -843,6 +634,8 @@ def main():
         raise FileNotFoundError(f"Kuzu DB not found: {DB_PATH}")
     if not UPDATE_SRC.exists():
         raise FileNotFoundError(f"Update source directory not found: {UPDATE_SRC}")
+    if not QUERY_ROOT.exists():
+        raise FileNotFoundError(f"Kuzu Update query directory not found: {QUERY_ROOT}")
 
     RESULTS.parent.mkdir(parents=True, exist_ok=True)
     if ARGS.overwrite and RESULTS.exists():
@@ -857,6 +650,7 @@ def main():
     print(f"=== Kuzu {DATASET} sciscinet Update benchmark ===")
     print(f"Kuzu={kuzu.__version__}, db={DB_PATH}")
     print(f"Update source={UPDATE_SRC}")
+    print(f"Query root={QUERY_ROOT}")
     print(f"threads={THREADS}, buffer_pool_gib={ARGS.buffer_pool_gib}, isolate_copy={ARGS.isolate_copy}")
     session_db_path = WORK_DB_DIR / f"db_{DATASET}_session_{os.getpid()}"
     print(f"copy db: {DB_PATH} -> {session_db_path}")
@@ -865,7 +659,7 @@ def main():
     conn = kuzu.Connection(db, num_threads=THREADS)
     ensure_staging_loaded(conn, paths)
 
-    tasks = update_tasks(paths)
+    tasks = load_update_tasks(QUERY_ROOT, paths)
     only = {item.strip() for item in ARGS.only.split(",") if item.strip()}
     skip = {item.strip() for item in ARGS.skip.split(",") if item.strip()}
     if only:

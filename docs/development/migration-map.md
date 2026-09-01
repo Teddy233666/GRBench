@@ -10,6 +10,7 @@ workstation-specific source roots in the public tree.
 | `legacy_core/tasks/*_task/` | `adapters/<engine>/queries/` | retain latest engine translation, including audited Pure Join physical variants |
 | `legacy_core/data_loader/` | `adapters/<engine>/loaders/` | retain loader source; mark host-specific scripts legacy |
 | `legacy_core/test/` | `adapters/<engine>/runners/legacy/` and `results/<engine>/` | separate runner code from selected result snapshots |
+| `legacy_core/test/postgresql/*.sh` | `adapters/postgresql/runners/legacy/run_*_round*.sh` | retain hot-session shell behavior with descriptive suite/run-count names and corrected paths |
 | `legacy_core/processor/` | `scripts/data_generation/sciscinet/` | merge shared SciSciNet generation utilities |
 | `legacy_core/data_generator/` | `scripts/data_generation/auxiliary/` | retain non-SciSciNet generators separately |
 | `legacy_kuzu/queries_cypher/` | `adapters/kuzu/queries/` | retain 96 unique main Cypher files; record byte-identical Pure Join files without copying them |

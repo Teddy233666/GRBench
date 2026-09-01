@@ -59,10 +59,6 @@ needed:
 
 - `adapters/*/runners/legacy/`: historical measurement scripts with old
   assumptions; not formal entry points.
-- `adapters/postgresql/loaders/*.py`: SF-specific LevelDB/CSV preprocessing
-  helpers with inconsistent historical names.
-- `adapters/orientdb/runners/legacy/operations-v4/`: host-specific recovery and formal
-  orchestration records.
 - `legacy/update-v0/` and `adapters/*/legacy/update-v0/`: superseded Update
   variants.
 

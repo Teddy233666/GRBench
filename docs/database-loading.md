@@ -20,7 +20,7 @@ Database files, generated loader scripts, staging data, and logs belong under
 | GrainDB | `adapters/graindb/loaders/` | Historical combined table/import/property-graph template |
 | Kuzu | `adapters/kuzu/loaders/load.py` | Maintained schema, node/relationship import, PK-backed graph storage |
 | OrientDB | `adapters/orientdb/loaders/load_orientdb_data.py` | Maintained schema, import manifest, endpoint handling, and explicit indexes |
-| PostgreSQL/AGE | `adapters/postgresql/loaders/` | SF-specific historical schema/import templates and preprocessing helpers |
+| PostgreSQL/AGE | `adapters/postgresql/loaders/load.py` | Maintained relational/AGE schema, import, index, manifest, and validation workflow |
 
 ## Render Historical Templates
 
@@ -133,20 +133,39 @@ set in the environment.
 
 ## PostgreSQL/AGE
 
-Use `load_join1.sql` for the plain relational projection or the SF-specific AGE
-templates (`load2.sql`, `load3.sql`, `load4.sql`) when their required
-`.local/prepared/<sf>_postgresql/` projection exists:
+Use the maintained unified loader for every SF. First render and inspect a
+non-mutating plan:
 
 ```sh
-python3 scripts/render_loader.py \
-  --template adapters/postgresql/loaders/load2.sql --sf sf10_2 \
-  --output .local/generated/loaders/postgresql-sf10_2.sql
-PGPASSWORD="${POSTGRES_PASSWORD}" psql -X -v ON_ERROR_STOP=1 \
-  -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" \
-  -U "${POSTGRES_USERNAME}" -d "${POSTGRES_DATABASE}" \
-  -f .local/generated/loaders/postgresql-sf10_2.sql
+python3 adapters/postgresql/loaders/load.py plan \
+  --sf sf10_2 --projection relational --rebuild
 ```
 
-Primary keys create relational indexes; AGE creates graph-label storage during
-`create_vlabel`/`create_elabel`. The numerous Python preprocessing helpers are
-preserved but not yet consolidated into one supported preparation interface.
+Run a complete relational load and exact final count validation:
+
+```sh
+python3 adapters/postgresql/loaders/load.py load \
+  --sf sf10_2 --projection relational --rebuild
+```
+
+For AGE, prepare all graph-label CSVs before loading:
+
+```sh
+python3 adapters/postgresql/loaders/load.py prepare-age \
+  --sf sf10_2 --orphan-edge-mode fail
+python3 adapters/postgresql/loaders/load.py load \
+  --sf sf10_2 --projection age --rebuild
+```
+
+The loader reads all 30 canonical CSV definitions from `data/schema/sciscinet.py`.
+Relational imports use client-side `\copy`, so data need not be visible to the
+PostgreSQL server. AGE's `load_labels_from_file` and `load_edges_from_file` are
+server-side; use `--server-prepared-root` when the server sees prepared files at
+a different path. Primary keys and endpoint indexes are created after each
+table/label load. Full source SHA-256 values, source rows, step SQL hashes,
+loaded counts, and failures are recorded under
+`.local/postgresql/<sf>/<projection>/load_manifest.json`.
+
+Use `--resume` only with a matching manifest. `--only-table` is diagnostic and
+repeatable. Superseded SF-specific SQL and Python loaders are available only
+through Git history and are not formal entry points.

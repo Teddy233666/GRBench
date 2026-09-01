@@ -24,13 +24,10 @@ argument. Load one scale factor with explicit public paths:
   --rebuild
 ```
 
-Generate the required DuckDB oracle after placing reference databases under
-`.local/duckdb/`, then run preflight and the warm benchmark:
+Provide the required independent oracle under `.local/`, then run preflight and
+the warm benchmark:
 
 ```sh
-.venv-orientdb/bin/python adapters/orientdb/runners/tools/generate_duckdb_oracle.py \
-  --sf sf10_0 --output "${GRBENCH_ORIENTDB_ORACLE}"
-.venv-orientdb/bin/python adapters/orientdb/runners/tools/audit_benchmark_contract.py
 .venv-orientdb/bin/python adapters/orientdb/runners/run_orientdb.py \
   --sf sf10_0 \
   --data-root "${GRBENCH_DATA_ROOT}" \
@@ -43,7 +40,7 @@ Generate the required DuckDB oracle after placing reference databases under
   --results-dir .local/results/orientdb/sf10_0
 ```
 
-Use `--preflight-only` on the final command before a timed run.
+Use `--preflight-only` on this command before a timed run.
 
 The formal runner discovers all 219 queries, including the 96 files under
 `adapters/orientdb/queries/Pure_Join_Queries/`.
@@ -51,5 +48,4 @@ The formal runner discovers all 219 queries, including the 96 files under
 OrientDB plocal databases are exclusive-write resources. Never run a loader,
 repair tool, console, or second worker against a database already opened by an
 active benchmark. Formal Update execution uses bounded native batches,
-explicit compensation, staging provenance, and baseline recovery checks. See
-`adapters/orientdb/runners/docs/benchmark_contract.md` for engine-specific details.
+explicit compensation, staging provenance, and baseline recovery checks.

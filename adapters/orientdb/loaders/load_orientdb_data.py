@@ -16,8 +16,6 @@ from typing import Iterable, List, Optional, Sequence, Tuple
 LOADER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = LOADER_DIR.parent
 REPO_ROOT = ADAPTER_DIR.parents[1]
-sys.path.insert(0, str(LOADER_DIR))
-from credentials import orientdb_credentials, redact_orientdb_password
 
 
 ROOT = ADAPTER_DIR
@@ -40,6 +38,25 @@ BUILD_DIR = REPO_ROOT / ".local" / "orientdb" / "build" / "loader"
 CONFIG_DIR = BUILD_DIR / "config"
 
 SCALE_FACTORS = ["sf10_0", "sf10_1", "sf10_2", "sf10_3", "sf10_4"]
+_SAFE_CONSOLE_TOKEN = re.compile(r"^[A-Za-z0-9_.@%+=:,!#$^&*?-]+$")
+
+
+def orientdb_credentials() -> tuple[str, str]:
+    username = os.environ.get("ORIENTDB_USERNAME", "").strip()
+    password = os.environ.get("ORIENTDB_PASSWORD", "")
+    if not username or not password:
+        raise RuntimeError(
+            "ORIENTDB_USERNAME and ORIENTDB_PASSWORD must be set in the process environment"
+        )
+    if not _SAFE_CONSOLE_TOKEN.fullmatch(username):
+        raise RuntimeError("ORIENTDB_USERNAME contains unsupported console characters")
+    if not _SAFE_CONSOLE_TOKEN.fullmatch(password):
+        raise RuntimeError("ORIENTDB_PASSWORD contains unsupported console characters")
+    return username, password
+
+
+def redact_orientdb_password(text: str, password: str) -> str:
+    return text.replace(password, "<redacted>") if password else text
 
 
 def load_schema_module():

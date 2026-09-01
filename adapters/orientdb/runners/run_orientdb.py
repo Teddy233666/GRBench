@@ -42,7 +42,7 @@ RUNNER_DIR = Path(__file__).resolve().parent
 ADAPTER_DIR = RUNNER_DIR.parent
 REPO_ROOT = ADAPTER_DIR.parents[1]
 sys.path.insert(0, str(ADAPTER_DIR / "loaders"))
-from credentials import orientdb_credentials, redact_orientdb_password
+from load_orientdb_data import orientdb_credentials, redact_orientdb_password
 
 
 ROOT = ADAPTER_DIR
@@ -562,10 +562,14 @@ def kill_process_tree(pid: int) -> None:
 def discover_queries(query_root: Path) -> List[QuerySpec]:
     specs: List[QuerySpec] = []
     for category in CATEGORIES:
-        root = query_root / category
+        root = query_root / ("Update" if category == "update" else category)
         files = sorted(root.rglob("*.sql"), key=lambda p: natural_key(str(p.relative_to(root))))
         for path in files:
-            rel = path.relative_to(query_root)
+            rel = (
+                Path("update") / "Update" / path.name
+                if category == "update"
+                else path.relative_to(query_root)
+            )
             parts = rel.parts
             subgroup = "/".join(parts[1:-1])
             specs.append(

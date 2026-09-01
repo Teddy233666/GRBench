@@ -91,7 +91,14 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
             "The historical Kuzu Pure Join file is byte-identical to the corresponding main Cypher file.",
         )
     if adapter == "kuzu" and suite == "update":
-        return "runtime_generated", "adapters/kuzu/runners/run_update.py", "Runner emits engine-specific Cypher."
+        path = ROOT / "adapters" / adapter / "queries" / "Update" / canonical_path.with_suffix(".cypher").name
+        if path.exists():
+            return (
+                "static_adapter",
+                path.relative_to(ROOT).as_posix(),
+                "File-backed Cypher template; the runner only renders staging paths and setup order.",
+            )
+        return "missing", path.relative_to(ROOT).as_posix(), "Expected adapter file is absent."
     if adapter == "agensgraph" and suite == "update":
         path = ROOT / "adapters" / adapter / "queries" / "Update" / canonical_path.name
         return (
@@ -115,7 +122,7 @@ def adapter_location(adapter: str, query: dict[str, object]) -> tuple[str, str, 
     suffix = {"arangodb": ".js", "kuzu": ".cypher"}.get(adapter, ".sql")
     adapter_rel = (
         Path("Update") / canonical_path.name
-        if suite == "update" and adapter in {"duckdb", "graindb"}
+        if suite == "update" and adapter in {"duckdb", "graindb", "kuzu", "orientdb"}
         else rel.with_suffix(suffix)
     )
     path = ROOT / "adapters" / adapter / "queries" / adapter_rel

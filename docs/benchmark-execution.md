@@ -10,8 +10,9 @@
 - `update/Update/` contains 12 files (`1a.sql` through `6b.sql`).
 
 Engine translations live under `adapters/<engine>/queries/` with the same IDs.
-Kuzu generates Shortest Path and Update Cypher at runtime. Adapter coverage is
-recorded in `benchmark/manifests/adapter_coverage.csv`.
+Kuzu's Shortest Path and Update Cypher templates are file-backed; their runners
+only expand path depths or render staging CSV paths and setup order. Adapter
+coverage is recorded in `benchmark/manifests/adapter_coverage.csv`.
 
 Pure Join is a physical variant, not a second logical query definition. Kuzu
 skips it because all 96 historical Cypher files are byte-identical to main.
@@ -60,10 +61,9 @@ review, then regenerate `results/manifests/`.
 
 ## OrientDB Formal Runner
 
-Generate/validate an independent DuckDB oracle before a data-loaded run, then:
+Provide an independently generated result oracle before a data-loaded run, then:
 
 ```sh
-.venv-orientdb/bin/python adapters/orientdb/runners/tools/audit_benchmark_contract.py
 .venv-orientdb/bin/python adapters/orientdb/runners/run_orientdb.py \
   --sf sf10_0 --db-dir .local/orientdb/databases \
   --data-root data/processed \
@@ -76,8 +76,8 @@ Generate/validate an independent DuckDB oracle before a data-loaded run, then:
   --results-dir .local/results/orientdb/sf10_0
 ```
 
-Run the same command with `--preflight-only` first. Never open one plocal
-database from two processes.
+Run the same command with `--preflight-only` first; this is the published
+contract and input check. Never open one plocal database from two processes.
 
 ## Static and Legacy Adapters
 

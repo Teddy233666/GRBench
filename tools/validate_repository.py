@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -25,7 +26,7 @@ EXPECTED_COVERAGE = {
     "arangodb": Counter({"static_adapter": 183, "legacy_unverified": 24, "not_implemented": 12}),
     "duckdb": Counter({"static_adapter": 219}),
     "graindb": Counter({"static_adapter": 204, "not_implemented": 15}),
-    "kuzu": Counter({"static_adapter": 111, "duplicate_not_executed": 96, "runtime_generated": 12}),
+    "kuzu": Counter({"static_adapter": 123, "duplicate_not_executed": 96}),
     "orientdb": Counter({"static_adapter": 219}),
     "postgresql": Counter({"static_adapter": 192, "not_implemented": 27}),
 }
@@ -189,6 +190,43 @@ def validate_data_and_updates(errors: list[str]) -> None:
         errors,
     )
 
+    kuzu_update = ROOT / "adapters" / "kuzu" / "queries" / "Update"
+    expected_kuzu_names = {f"{number}{suffix}.cypher" for number in range(1, 7) for suffix in "ab"}
+    actual_kuzu_names = {path.name for path in kuzu_update.glob("*.cypher")}
+    check(
+        actual_kuzu_names == expected_kuzu_names,
+        f"Kuzu Update files must be exactly 1a..6b: {sorted(actual_kuzu_names)}",
+        errors,
+    )
+    try:
+        kuzu_manifest = json.loads((kuzu_update / "manifest.json").read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        errors.append(f"Kuzu Update manifest is unreadable: {exc}")
+        kuzu_manifest = []
+    expected_kuzu_ids = [f"{number}{suffix}" for number in range(1, 7) for suffix in "ab"]
+    check(
+        [entry.get("query_id") for entry in kuzu_manifest if isinstance(entry, dict)] == expected_kuzu_ids,
+        "Kuzu Update manifest IDs must be ordered 1a..6b",
+        errors,
+    )
+    for entry in kuzu_manifest:
+        if not isinstance(entry, dict):
+            errors.append("Kuzu Update manifest entries must be objects")
+            continue
+        query_id = entry.get("query_id", "")
+        template = entry.get("template", "")
+        check(
+            isinstance(template, str) and (kuzu_update / template).is_file(),
+            f"Kuzu Update template missing for {query_id}: {template}",
+            errors,
+        )
+        expected_setup = f"{query_id[0]}a" if isinstance(query_id, str) and query_id.endswith("b") else None
+        check(
+            entry.get("setup_query") == expected_setup,
+            f"Kuzu Update setup mapping differs for {query_id}",
+            errors,
+        )
+
 
 def validate_workflow_layout(errors: list[str]) -> None:
     required = [
@@ -208,8 +246,18 @@ def validate_workflow_layout(errors: list[str]) -> None:
         "adapters/kuzu/runners/run_main.py",
         "adapters/kuzu/runners/run_shortest.py",
         "adapters/kuzu/runners/run_update.py",
+        "adapters/kuzu/runners/update_query_loader.py",
+        "adapters/kuzu/queries/Update/manifest.json",
         "adapters/orientdb/loaders/load_orientdb_data.py",
         "adapters/orientdb/runners/run_orientdb.py",
+        "adapters/postgresql/loaders/load.py",
+        "adapters/postgresql/loaders/loader_core.py",
+        "adapters/postgresql/loaders/prepare_age.py",
+        "adapters/postgresql/runners/legacy/postgresql_benchmark_common.sh",
+        "adapters/postgresql/runners/legacy/run_main_three_rounds.sh",
+        "adapters/postgresql/runners/legacy/run_pure_join_three_rounds.sh",
+        "adapters/postgresql/runners/legacy/run_update_three_rounds.sh",
+        "adapters/postgresql/runners/legacy/run_update_single_round.sh",
     ]
     for rel in required:
         check((ROOT / rel).is_file(), f"workflow layout path missing: {rel}", errors)
@@ -222,6 +270,12 @@ def validate_workflow_layout(errors: list[str]) -> None:
         "adapters/kuzu/run_main.py",
         "adapters/orientdb/load_orientdb_data.py",
         "adapters/orientdb/run_orientdb.py",
+        "adapters/postgresql/runners/legacy/queries.sh",
+        "adapters/postgresql/runners/legacy/queries1.sh",
+        "adapters/postgresql/runners/legacy/queries2.sh",
+        "adapters/postgresql/runners/legacy/queries4.sh",
+        "adapters/postgresql/runners/legacy/queries5.sh",
+        "adapters/postgresql/runners/legacy/queries6.sh",
     ]
     for rel in deprecated:
         check(not (ROOT / rel).exists(), f"deprecated workflow path remains: {rel}", errors)

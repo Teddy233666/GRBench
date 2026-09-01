@@ -83,6 +83,7 @@ EDGE_NAMES = {
     "papersources",
     "Papers_to_Authors",
 }
+UPDATE_TARGET_NAMES = EDGE_NAMES | {"Papers", "Authors_Gender"}
 
 
 def text(path: Path) -> str:
@@ -113,6 +114,28 @@ def edge_dependencies(value: str) -> set[str]:
             # Both physical directions come from the same authorship relation.
             found.add("authorship" if edge.lower() in {"authors_paper", "papers_to_authors"} else edge.lower())
     return found
+
+
+def update_predicates(value: str) -> set[tuple[str, str, str]]:
+    found = predicates(value)
+    for property_name in ("h_index", "year"):
+        pattern = re.compile(
+            rf"\b{property_name}\b\s+BETWEEN\s+(-?\d+(?:\.\d+)?)\s+AND\s+(-?\d+(?:\.\d+)?)",
+            re.IGNORECASE,
+        )
+        for lower, upper in pattern.findall(value):
+            found.add((property_name, ">=", lower))
+            found.add((property_name, "<=", upper))
+    return found
+
+
+def update_targets(value: str) -> set[str]:
+    lower = value.lower()
+    return {
+        name.lower()
+        for name in UPDATE_TARGET_NAMES
+        if re.search(rf"(?<![a-z0-9_]){re.escape(name.lower())}(?![a-z0-9_])", lower)
+    }
 
 
 def main_queries() -> Iterable[Path]:
@@ -238,6 +261,7 @@ def validate_updates(errors: list[str]) -> None:
     canonical_root = CANONICAL / "update" / "Update"
     graindb_root = ROOT / "adapters" / "graindb" / "queries" / "Update"
     duckdb_root = ROOT / "adapters" / "duckdb" / "queries" / "Update"
+    kuzu_root = ROOT / "adapters" / "kuzu" / "queries" / "Update"
     for canonical_path in sorted(canonical_root.glob("*.sql")):
         duckdb_path = duckdb_root / canonical_path.name
         if not duckdb_path.is_file():
@@ -250,6 +274,21 @@ def validate_updates(errors: list[str]) -> None:
             errors.append(f"missing GrainDB Update query: {canonical_path.name}")
         elif normalized_sql(text(adapter_path)) != normalized_sql(text(canonical_path)):
             errors.append(f"GrainDB Update differs from canonical SQL: {canonical_path.name}")
+
+        kuzu_path = kuzu_root / canonical_path.with_suffix(".cypher").name
+        if not kuzu_path.is_file():
+            errors.append(f"missing Kuzu Update query: {kuzu_path.name}")
+            continue
+        canonical_text = text(canonical_path)
+        kuzu_text = text(kuzu_path)
+        if update_predicates(kuzu_text) != update_predicates(canonical_text):
+            errors.append(f"Kuzu Update predicates differ from canonical SQL: {canonical_path.name}")
+        missing_targets = update_targets(canonical_text) - update_targets(kuzu_text)
+        if missing_targets:
+            errors.append(
+                f"Kuzu Update targets differ from canonical SQL: {canonical_path.name}: "
+                f"missing={sorted(missing_targets)}"
+            )
 
     staging_names = set(
         re.findall(
