@@ -23,7 +23,9 @@ jobs:
       - name: Validate benchmark layout and inventories
         run: |
           python3 - <<'PY'
+          import csv
           import json
+          import re
           from pathlib import Path
 
           engines = {"agensgraph", "arangodb", "duckdb", "graindb", "kuzu", "orientdb", "postgresql"}
@@ -37,16 +39,49 @@ jobs:
               queries = list((engine_root / "queries").rglob(f"*{suffix}"))
               expected = 129 if engine == "kuzu" else 219
               assert len(queries) == expected, (engine, len(queries))
+              for query in queries:
+                  top = query.relative_to(engine_root / "queries").parts[0]
+                  stem = query.stem.removesuffix(".zero")
+                  patterns = {
+                      "High_Join_Relational_Graph_Hybrid_Queries": r"H(?:[1-9]|1\d|2[0-4])[abc]",
+                      "Low_Join_Relational_Graph_Hybrid_Queries": r"H(?:[1-9]|1\d|2[0-4])[abc]",
+                      "Pure_Graph_Queries": r"G[1-8][abc]",
+                      "Relational_Equivalent_Queries": r"R(?:H(?:[1-9]|1\d|2[0-4])|G[1-8])[abc]",
+                      "Shortest_Path_Queries": r"S[1-5][abc]",
+                      "Update": r"U[1-6][ab]",
+                  }
+                  assert top in patterns and re.fullmatch(patterns[top], stem), query
           for suite, expected in (("Shortest_Path_Queries", 15), ("Update", 12)):
               manifest = json.loads((root / "kuzu" / "queries" / suite / "manifest.json").read_text())
               assert len(manifest) == expected, (suite, len(manifest))
+          with Path("docs/query-name-map.csv").open(newline="") as handle:
+              assert len(list(csv.DictReader(handle))) == 219
+          with Path("docs/table-cardinalities.csv").open(newline="") as handle:
+              assert len(list(csv.DictReader(handle))) == 30
           PY
       - name: Test PostgreSQL runner inventories
         run: |
           benchmark/postgresql/runners/run_main_three_rounds.sh --list
-          benchmark/postgresql/runners/run_pure_join_three_rounds.sh --list
+          benchmark/postgresql/runners/run_relational_three_rounds.sh --list
           benchmark/postgresql/runners/run_update_single_round.sh --list
           benchmark/postgresql/runners/run_update_three_rounds.sh --list
+      - name: Validate OrientDB paper IDs
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from benchmark.orientdb.runners.run_orientdb import (
+              UPDATE_BATCH_OPERATIONS,
+              UPDATE_SETUP_FILES,
+              discover_queries,
+          )
+
+          expected = {f"U{number}{suffix}.sql" for number in range(1, 7) for suffix in "ab"}
+          queries = discover_queries(Path("benchmark/orientdb/queries"))
+          assert len(queries) == 219
+          assert {query.path.name for query in queries if query.category == "update"} == expected
+          assert set(UPDATE_BATCH_OPERATIONS) == expected
+          assert UPDATE_SETUP_FILES == {f"U{number}b.sql": f"U{number}a.sql" for number in range(1, 7)}
+          PY
       - name: Check shell syntax
         run: |
           while IFS= read -r -d '' file; do
@@ -61,3 +96,14 @@ jobs:
         run: |
           test -z "$(git ls-files | grep -E '(^|/)(__pycache__/|.*\.py[co]$|\.DS_Store$)' || true)"
           test -z "$(find . -path ./.git -prune -o -type f -size +10M -print)"
+      - name: Reject removed paths and executable queries
+        run: |
+          test -z "$(grep -R -n -E 'legacy_core|legacy_host_data|benchmark/queries/canonical' benchmark scripts README.md || true)"
+          test -z "$(git ls-files -s | awk '$1 == \"100755\" && $0 ~ /\.(sql|js)$/ {print}')"
+      - name: Validate Docker Compose
+        env:
+          POSTGRES_PASSWORD: validation-only
+          ARANGODB_PASSWORD: validation-only
+          ORIENTDB_PASSWORD: validation-only
+          AGENSGRAPH_PASSWORD: validation-only
+        run: docker compose -f docker/compose.yml config --quiet

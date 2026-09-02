@@ -29,7 +29,7 @@ CREATE TABLE Papers (
     nsf_count BIGINT
 );
 COPY Papers
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_papers.csv'
+FROM '{{DATA_DIR}}/sciscinet_papers.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE Authors_Gender (
@@ -44,7 +44,7 @@ CREATE TABLE Authors_Gender (
     p_gf  VARCHAR
 );
 COPY Authors_Gender
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_authors.csv'
+FROM '{{DATA_DIR}}/sciscinet_authors.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE Affiliations (
@@ -60,7 +60,7 @@ CREATE TABLE Affiliations (
     avg_logc10  VARCHAR
 );
 COPY Affiliations
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_affiliations.csv'
+FROM '{{DATA_DIR}}/sciscinet_affiliations.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE Fields (
@@ -78,7 +78,7 @@ CREATE   TABLE Fields (
     fieldid VARCHAR PRIMARY KEY
 );
 COPY Fields
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_fields.csv'
+FROM '{{DATA_DIR}}/sciscinet_fields.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE NSF_Metadata (
@@ -90,7 +90,7 @@ CREATE TABLE NSF_Metadata (
     funderid VARCHAR
 );
 COPY NSF_Metadata
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_nsf_metadata.csv'
+FROM '{{DATA_DIR}}/sciscinet_nsf_metadata.csv'
 DELIMITER ','
 CSV HEADER;
 
@@ -103,7 +103,7 @@ CREATE  TABLE NIH_Metadata (
     funderid VARCHAR
 );
 COPY NIH_Metadata
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_nsf_metadata.csv'
+FROM '{{DATA_DIR}}/sciscinet_nsf_metadata.csv'
 DELIMITER ','
 CSV HEADER;
 
@@ -117,7 +117,7 @@ CREATE TABLE clinicaltrials_metadata (
     citation VARCHAR
 );
 COPY clinicaltrials_metadata
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_clinicaltrials_metadata.csv'
+FROM '{{DATA_DIR}}/sciscinet_clinicaltrials_metadata.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE Newsfeed_Metadata (
@@ -128,7 +128,7 @@ CREATE TABLE Newsfeed_Metadata (
     timestamp  VARCHAR
 );
 COPY Newsfeed_Metadata
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_newsfeed_metadata.csv'
+FROM '{{DATA_DIR}}/sciscinet_newsfeed_metadata.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE Twitter_Metadata (
@@ -138,7 +138,7 @@ CREATE TABLE Twitter_Metadata (
     original_tweet_url VARCHAR
 );
 COPY Twitter_Metadata
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_twitter_metadata.csv'
+FROM '{{DATA_DIR}}/sciscinet_twitter_metadata.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE Papers_to_Authors (
@@ -147,7 +147,7 @@ CREATE   TABLE Papers_to_Authors (
     paperid VARCHAR
 );
 COPY Papers_to_Authors
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_authors_paperid.csv'
+FROM '{{DATA_DIR}}/sciscinet_authors_paperid.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE  Authors_Paper (
@@ -156,7 +156,7 @@ CREATE   TABLE  Authors_Paper (
     paperid VARCHAR
 );
 COPY Authors_Paper
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_authors_paperid.csv'
+FROM '{{DATA_DIR}}/sciscinet_authors_paperid.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE affiliated_with (
@@ -165,7 +165,7 @@ CREATE   TABLE affiliated_with (
     authorid VARCHAR
 );
 COPY affiliated_with
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_author_affiliation.csv'
+FROM '{{DATA_DIR}}/sciscinet_author_affiliation.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE contributed_from (
@@ -176,7 +176,7 @@ CREATE   TABLE contributed_from (
     raw_affiliation_string VARCHAR
 );
 COPY contributed_from
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_paper_author_affiliation.csv'
+FROM '{{DATA_DIR}}/sciscinet_paper_author_affiliation.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE affl_assoc_affl (
@@ -185,7 +185,7 @@ CREATE   TABLE affl_assoc_affl (
     relationship VARCHAR
 );
 COPY affl_assoc_affl
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_affl_assoc_affl.csv'
+FROM '{{DATA_DIR}}/sciscinet_affl_assoc_affl.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE PaperReferences (
@@ -196,7 +196,7 @@ CREATE   TABLE PaperReferences (
     year_diff BIGINT
 );
 COPY PaperReferences
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_paperrefs.csv'
+FROM '{{DATA_DIR}}/sciscinet_paperrefs.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE Link_NSF (
@@ -204,7 +204,7 @@ CREATE   TABLE Link_NSF (
     award_id VARCHAR
 );
 COPY Link_NSF
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_nsf.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_nsf.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE Link_NIH (
@@ -212,7 +212,7 @@ CREATE   TABLE Link_NIH (
     award_id VARCHAR
 );
 COPY Link_NIH
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_nih.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_nih.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE Link_ClinicalTrials (
@@ -220,7 +220,7 @@ CREATE   TABLE Link_ClinicalTrials (
     nct_id VARCHAR
 );
 COPY Link_ClinicalTrials
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_clinicaltrials.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_clinicaltrials.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE link_newsfeed (
@@ -228,7 +228,7 @@ CREATE   TABLE link_newsfeed (
     newsfeed_id VARCHAR
 );
 COPY link_newsfeed
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_newsfeed.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_newsfeed.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE link_twitter(
@@ -236,7 +236,7 @@ CREATE   TABLE link_twitter(
     tweet_id BIGINT
 );
 COPY link_twitter
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_twitter.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_twitter.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE   TABLE PaperFields (
@@ -245,7 +245,7 @@ CREATE   TABLE PaperFields (
     score_openalex BIGINT
 );
 COPY PaperFields
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_paperfields.csv'
+FROM '{{DATA_DIR}}/sciscinet_paperfields.csv'
 DELIMITER ','
 CSV HEADER;
 CREATE TABLE author_details (
@@ -360,44 +360,44 @@ COPY author_details(
     authorid, orcid, display_name, display_name_alternatives,
     works_count, cited_by_count, last_known_institution, works_api_url, updated_date
 )
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_author_details.csv'
+FROM '{{DATA_DIR}}/sciscinet_author_details.csv'
 DELIMITER ','
 CSV HEADER;
 COPY hit_papers_level0
-FROM 'legacy_host_data/grbench/sf10_3/hit_papers_level0.csv'
+FROM '{{DATA_DIR}}/hit_papers_level0.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY hit_papers_level1
-FROM 'legacy_host_data/grbench/sf10_3/hit_papers_level1.csv'
+FROM '{{DATA_DIR}}/hit_papers_level1.csv'
 DELIMITER ','
 CSV HEADER;
 COPY normalized_citations_level0
-FROM 'legacy_host_data/grbench/sf10_3/normalized_citations_level0.csv'
+FROM '{{DATA_DIR}}/normalized_citations_level0.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY normalized_citations_level1
-FROM 'legacy_host_data/grbench/sf10_3/normalized_citations_level1.csv'
+FROM '{{DATA_DIR}}/normalized_citations_level1.csv'
 DELIMITER ','
 CSV HEADER;
 COPY sources
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_sources.csv'
+FROM '{{DATA_DIR}}/sciscinet_sources.csv'
 DELIMITER ','
 CSV HEADER;
 COPY papersources
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_papersources.csv'
+FROM '{{DATA_DIR}}/sciscinet_papersources.csv'
 DELIMITER ','
 CSV HEADER;
 COPY link_nobellaureates
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_nobellaureates.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_nobellaureates.csv'
 DELIMITER ','
 CSV HEADER;
 COPY link_patents
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_link_patents.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_patents.csv'
 DELIMITER ','
 CSV HEADER;
 COPY PaperDetails
-FROM 'legacy_host_data/grbench/sf10_3/sciscinet_paperdetails.csv'
+FROM '{{DATA_DIR}}/sciscinet_paperdetails.csv'
 DELIMITER ','
 CSV HEADER;

@@ -1,9 +1,13 @@
 # Kuzu Update Queries
 
-The 12 `1a.cypher` through `6b.cypher` files contain the measured Kuzu
-statements for the canonical Update workload. `manifest.json` defines benchmark
+The 12 `U1a.cypher` through `U6b.cypher` files contain the measured Kuzu
+statements for the paper's U-series workload. `manifest.json` defines benchmark
 order, result labels, and the unmeasured setup query required by each restore
 task.
+
+The paper groups templates by operation type: U1-U2 update vertices only,
+U3-U4 update edges, and U5-U6 update vertices with incident edges. Suffix `a`
+is deletion and suffix `b` restores the same records.
 
 Files may contain multiple statements. Each statement starts with an exact
 `-- statement` marker so the loader does not need to parse Cypher semicolons.

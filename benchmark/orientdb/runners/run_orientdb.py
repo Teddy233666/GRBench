@@ -53,7 +53,7 @@ DEFAULT_JAVA_HOME = Path(
     os.environ.get("JAVA_HOME", "/usr/lib/jvm/java-11-openjdk-amd64")
 )
 DEFAULT_QUERY_ROOT = ADAPTER_DIR / "queries"
-DEFAULT_SOURCE_QUERY_ROOT = REPO_ROOT / "benchmark" / "queries" / "canonical"
+DEFAULT_SOURCE_QUERY_ROOT = REPO_ROOT / "benchmark" / "duckdb" / "queries"
 DEFAULT_DATA_ROOT = Path(
     os.environ.get("GRBENCH_DATA_ROOT", REPO_ROOT / "data" / "processed")
 )
@@ -65,7 +65,7 @@ CATEGORIES = [
     "High_Join_Relational_Graph_Hybrid_Queries",
     "Low_Join_Relational_Graph_Hybrid_Queries",
     "Pure_Graph_Queries",
-    "Pure_Join_Queries",
+    "Relational_Equivalent_Queries",
     "Shortest_Path_Queries",
     "update",
 ]
@@ -95,22 +95,22 @@ UPDATE_RECOVERY_PROGRESS = "_GrbenchUpdateRecoveryProgress"
 UPDATE_WORKER_PROTOCOL = "native_batched_update_v4"
 
 UPDATE_BATCH_OPERATIONS = {
-    f"{number}{suffix}.sql": "DELETE" if suffix == "a" else "RESTORE"
+    f"U{number}{suffix}.sql": "DELETE" if suffix == "a" else "RESTORE"
     for number in range(1, 7)
     for suffix in ("a", "b")
 }
 
 UPDATE_SETUP_FILES = {
-    "1b.sql": "1a.sql",
-    "2b.sql": "2a.sql",
-    "3b.sql": "3a.sql",
-    "4b.sql": "4a.sql",
-    "5b.sql": "5a.sql",
-    "6b.sql": "6a.sql",
+    "U1b.sql": "U1a.sql",
+    "U3b.sql": "U3a.sql",
+    "U5b.sql": "U5a.sql",
+    "U2b.sql": "U2a.sql",
+    "U4b.sql": "U4a.sql",
+    "U6b.sql": "U6a.sql",
 }
 
 UPDATE_AFFECTED_CLASSES = {
-    "1a.sql": [
+    "U1a.sql": [
         "PaperReferences",
         "Papers_to_Authors",
         "Authors_Paper",
@@ -123,7 +123,7 @@ UPDATE_AFFECTED_CLASSES = {
         "link_twitter",
         "Papers",
     ],
-    "1b.sql": [
+    "U1b.sql": [
         "PaperReferences",
         "Papers_to_Authors",
         "Authors_Paper",
@@ -136,9 +136,9 @@ UPDATE_AFFECTED_CLASSES = {
         "link_twitter",
         "Papers",
     ],
-    "2a.sql": ["PaperReferences"],
-    "2b.sql": ["PaperReferences"],
-    "3a.sql": [
+    "U3a.sql": ["PaperReferences"],
+    "U3b.sql": ["PaperReferences"],
+    "U5a.sql": [
         "PaperReferences",
         "Papers_to_Authors",
         "Authors_Paper",
@@ -151,7 +151,7 @@ UPDATE_AFFECTED_CLASSES = {
         "link_twitter",
         "Papers",
     ],
-    "3b.sql": [
+    "U5b.sql": [
         "PaperReferences",
         "Papers_to_Authors",
         "Authors_Paper",
@@ -164,17 +164,17 @@ UPDATE_AFFECTED_CLASSES = {
         "link_twitter",
         "Papers",
     ],
-    "4a.sql": ["Papers_to_Authors", "Authors_Paper", "affiliated_with", "Authors_Gender"],
-    "4b.sql": ["Papers_to_Authors", "Authors_Paper", "affiliated_with", "Authors_Gender"],
-    "5a.sql": ["Papers_to_Authors"],
-    "5b.sql": ["Papers_to_Authors"],
-    "6a.sql": [
+    "U2a.sql": ["Papers_to_Authors", "Authors_Paper", "affiliated_with", "Authors_Gender"],
+    "U2b.sql": ["Papers_to_Authors", "Authors_Paper", "affiliated_with", "Authors_Gender"],
+    "U4a.sql": ["Papers_to_Authors"],
+    "U4b.sql": ["Papers_to_Authors"],
+    "U6a.sql": [
         "Papers_to_Authors",
         "Authors_Paper",
         "affiliated_with",
         "Authors_Gender",
     ],
-    "6b.sql": [
+    "U6b.sql": [
         "Papers_to_Authors",
         "Authors_Paper",
         "affiliated_with",
@@ -186,18 +186,18 @@ UPDATE_SUPPORT_CLASSES = {
     filename: [UPDATE_RECOVERY_PROGRESS]
     for filename in UPDATE_BATCH_OPERATIONS
 }
-for _update6_file in ("6a.sql", "6b.sql"):
+for _update6_file in ("U6a.sql", "U6b.sql"):
     UPDATE_SUPPORT_CLASSES[_update6_file].append(UPDATE6_AUTHOR_SHADOW)
 
 UPDATE_COMPARABILITY_CLASS = {
-    "1a.sql": "ORIENTDB_CASCADE_EXTENSION",
-    "1b.sql": "ORIENTDB_CASCADE_EXTENSION",
-    "4a.sql": "ORIENTDB_CASCADE_EXTENSION",
-    "4b.sql": "ORIENTDB_CASCADE_EXTENSION",
+    "U1a.sql": "ORIENTDB_CASCADE_EXTENSION",
+    "U1b.sql": "ORIENTDB_CASCADE_EXTENSION",
+    "U2a.sql": "ORIENTDB_CASCADE_EXTENSION",
+    "U2b.sql": "ORIENTDB_CASCADE_EXTENSION",
 }
 
 UPDATE_CLASS_STAGING = {
-    "1a.sql": {
+    "U1a.sql": {
         "PaperReferences": "grbench_update3_paperreferences",
         "Papers_to_Authors": "grbench_update1_papers_to_authors",
         "Authors_Paper": "grbench_update3_authors_paper",
@@ -210,8 +210,8 @@ UPDATE_CLASS_STAGING = {
         "link_twitter": "grbench_update3_link_twitter",
         "Papers": "grbench_update1_papers",
     },
-    "2a.sql": {"PaperReferences": "grbench_update2_edges"},
-    "3a.sql": {
+    "U3a.sql": {"PaperReferences": "grbench_update2_edges"},
+    "U5a.sql": {
         "PaperReferences": "grbench_update3_paperreferences",
         "Papers_to_Authors": "grbench_update1_papers_to_authors",
         "Authors_Paper": "grbench_update3_authors_paper",
@@ -224,14 +224,14 @@ UPDATE_CLASS_STAGING = {
         "link_twitter": "grbench_update3_link_twitter",
         "Papers": "grbench_update1_papers",
     },
-    "4a.sql": {
+    "U2a.sql": {
         "Papers_to_Authors": "grbench_update6_papers_to_authors",
         "Authors_Paper": "grbench_update4_authors_paper",
         "affiliated_with": "grbench_update6_affiliated_with",
         "Authors_Gender": "grbench_update4_authors_gender",
     },
-    "5a.sql": {"Papers_to_Authors": "grbench_update5_papers_to_authors"},
-    "6a.sql": {
+    "U4a.sql": {"Papers_to_Authors": "grbench_update5_papers_to_authors"},
+    "U6a.sql": {
         "Papers_to_Authors": "grbench_update6_papers_to_authors",
         "affiliated_with": "grbench_update6_affiliated_with",
         "Authors_Gender": "grbench_update4_authors_gender",
@@ -241,14 +241,14 @@ for _restore_file, _delete_file in UPDATE_SETUP_FILES.items():
     UPDATE_CLASS_STAGING[_restore_file] = UPDATE_CLASS_STAGING[_delete_file]
 
 UPDATE_TARGET_SCOPES = {
-    "1a.sql": [
+    "U1a.sql": [
         (
             "papers_2020_2025",
             "grbench_update1_papers",
             "SELECT count(*) AS benchmark_value FROM Papers WHERE year BETWEEN 2020 AND 2025",
         ),
     ],
-    "2a.sql": [
+    "U3a.sql": [
         (
             "paperreferences_update2_keys",
             "grbench_update2_edges",
@@ -257,7 +257,7 @@ UPDATE_TARGET_SCOPES = {
             "(SELECT citing_paperid FROM grbench_update2_edges)",
         ),
     ],
-    "3a.sql": [
+    "U5a.sql": [
         (
             "paperreferences_touching_cohort",
             "grbench_update3_paperreferences",
@@ -325,7 +325,7 @@ UPDATE_TARGET_SCOPES = {
             "SELECT count(*) AS benchmark_value FROM Papers WHERE year BETWEEN 2020 AND 2025",
         ),
     ],
-    "4a.sql": [
+    "U2a.sql": [
         (
             "papers_to_authors_for_author_cohort",
             "grbench_update6_papers_to_authors",
@@ -351,7 +351,7 @@ UPDATE_TARGET_SCOPES = {
             "WHERE authorid IN (SELECT authorid FROM grbench_update4_authors_gender)",
         ),
     ],
-    "5a.sql": [
+    "U4a.sql": [
         (
             "papers_to_authors_update5_keys",
             "grbench_update5_papers_to_authors",
@@ -360,7 +360,7 @@ UPDATE_TARGET_SCOPES = {
             "(SELECT paperid FROM grbench_update5_papers_to_authors)",
         ),
     ],
-    "6a.sql": [
+    "U6a.sql": [
         (
             "papers_to_authors_for_author_cohort",
             "grbench_update6_papers_to_authors",
@@ -381,7 +381,7 @@ UPDATE_TARGET_SCOPES = {
         ),
     ],
 }
-UPDATE_TARGET_SCOPES["1a.sql"] = UPDATE_TARGET_SCOPES["3a.sql"]
+UPDATE_TARGET_SCOPES["U1a.sql"] = UPDATE_TARGET_SCOPES["U5a.sql"]
 for _restore_file, _delete_file in UPDATE_SETUP_FILES.items():
     UPDATE_TARGET_SCOPES[_restore_file] = UPDATE_TARGET_SCOPES[_delete_file]
 
@@ -2256,7 +2256,7 @@ def validate_update_postcondition(
     support_differences = []
     for class_name, baseline in baseline_scope_counts.items():
         expected = baseline
-        if filename == "6a.sql" and class_name == UPDATE6_AUTHOR_SHADOW:
+        if filename == "U6a.sql" and class_name == UPDATE6_AUTHOR_SHADOW:
             expected += staging_counts["grbench_update4_authors_gender"]
         actual = post_scope_counts.get(class_name)
         if actual != expected:
@@ -2269,7 +2269,7 @@ def validate_update_postcondition(
 
 
 def validate_restore_endpoint_contract(filename: str, sql: str) -> Tuple[bool, str]:
-    if filename not in {"2b.sql", "3b.sql", "5b.sql", "6b.sql"}:
+    if filename not in {"U3b.sql", "U5b.sql", "U4b.sql", "U6b.sql"}:
         return True, "not_edge_restore"
     endpoint_selects = re.findall(
         r"LET\s+(?:from|to)_vertex\s*=\s*\((SELECT\s+FROM\s+[^;]+)\);",

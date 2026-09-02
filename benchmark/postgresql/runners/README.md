@@ -6,7 +6,7 @@ model while using current repository paths and environment-based connections.
 | Entry point | Suite | Runs |
 | --- | --- | ---: |
 | `run_main_three_rounds.sh` | 96 AGE main queries | 3 |
-| `run_pure_join_three_rounds.sh` | 96 relational Pure Join queries | 3 |
+| `run_relational_three_rounds.sh` | 96 RH/RG relational equivalents | 3 |
 | `run_update_three_rounds.sh` | 12 AGE Update queries | 3 |
 | `run_update_single_round.sh` | 12 AGE Update queries | 1 |
 

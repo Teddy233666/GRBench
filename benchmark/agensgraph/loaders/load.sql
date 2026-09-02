@@ -39,7 +39,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_papers.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_papers.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -65,7 +65,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_authors.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_authors.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -92,7 +92,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_affiliations.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_affiliations.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -120,7 +120,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_fields.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_fields.csv',
     DELIMITER ',',
     QUOTE '"',
     NULL ''
@@ -145,7 +145,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_nsf_metadata.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_nsf_metadata.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -168,7 +168,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_nih_metadata.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_nih_metadata.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -193,7 +193,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_clinicaltrials_metadata.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_clinicaltrials_metadata.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -215,7 +215,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_newsfeed_metadata.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_newsfeed_metadata.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -236,7 +236,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_twitter_metadata.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_twitter_metadata.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -255,7 +255,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_authors_paperid.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_authors_paperid.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -278,7 +278,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_authors_paperid.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_authors_paperid.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -301,7 +301,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_author_affiliation.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_author_affiliation.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -326,7 +326,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_paper_author_affiliation.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_paper_author_affiliation.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -349,7 +349,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_affl_assoc_affl.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_affl_assoc_affl.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -374,7 +374,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_paperrefs.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_paperrefs.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -396,7 +396,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_link_nsf.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_link_nsf.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -418,7 +418,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_link_nih.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_link_nih.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -440,7 +440,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_link_clinicaltrials.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_link_clinicaltrials.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -462,7 +462,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_link_newsfeed.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_link_newsfeed.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -484,7 +484,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_link_twitter.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_link_twitter.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -507,7 +507,7 @@ SERVER import_server
 OPTIONS (
     FORMAT 'csv',
     HEADER 'true',
-    FILENAME 'legacy_host_data/grbench/sf10_0/sciscinet_paperfields.csv',
+    FILENAME '{{DATA_DIR}}/sciscinet_paperfields.csv',
     DELIMITER ',',
     NULL ''
 );
@@ -646,44 +646,44 @@ COPY author_details(
     authorid, orcid, display_name, display_name_alternatives,
     works_count, cited_by_count, last_known_institution, works_api_url, updated_date
 )
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_author_details.csv'
+FROM '{{DATA_DIR}}/sciscinet_author_details.csv'
 DELIMITER ','
 CSV HEADER;
 COPY hit_papers_level0
-FROM 'legacy_host_data/grbench/sf10_0/hit_papers_level0.csv'
+FROM '{{DATA_DIR}}/hit_papers_level0.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY hit_papers_level1
-FROM 'legacy_host_data/grbench/sf10_0/hit_papers_level1.csv'
+FROM '{{DATA_DIR}}/hit_papers_level1.csv'
 DELIMITER ','
 CSV HEADER;
 COPY normalized_citations_level0
-FROM 'legacy_host_data/grbench/sf10_0/normalized_citations_level0.csv'
+FROM '{{DATA_DIR}}/normalized_citations_level0.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY normalized_citations_level1
-FROM 'legacy_host_data/grbench/sf10_0/normalized_citations_level1.csv'
+FROM '{{DATA_DIR}}/normalized_citations_level1.csv'
 DELIMITER ','
 CSV HEADER;
 COPY sources
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_sources.csv'
+FROM '{{DATA_DIR}}/sciscinet_sources.csv'
 DELIMITER ','
 CSV HEADER;
 COPY papersources
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_papersources.csv'
+FROM '{{DATA_DIR}}/sciscinet_papersources.csv'
 DELIMITER ','
 CSV HEADER;
 COPY link_nobellaureates
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_link_nobellaureates.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_nobellaureates.csv'
 DELIMITER ','
 CSV HEADER;
 COPY link_patents
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_link_patents.csv'
+FROM '{{DATA_DIR}}/sciscinet_link_patents.csv'
 DELIMITER ','
 CSV HEADER;
 COPY PaperDetails
-FROM 'legacy_host_data/grbench/sf10_0/sciscinet_paperdetails.csv'
+FROM '{{DATA_DIR}}/sciscinet_paperdetails.csv'
 DELIMITER ','
 CSV HEADER;

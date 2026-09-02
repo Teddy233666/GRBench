@@ -68,7 +68,7 @@ def parse_args():
     parser.add_argument(
         "--only",
         default="",
-        help="Comma-separated SQL filenames to run, e.g. 2a.sql,2b.sql.",
+        help="Comma-separated paper query IDs to run, e.g. U3a.sql,U3b.sql.",
     )
     parser.add_argument(
         "--skip",

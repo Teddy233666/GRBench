@@ -42,21 +42,18 @@ def render(text: str, sf: str, data_root: Path, prepared_root: Path, update_root
     prepared_dir = (prepared_root / f"{sf}_postgresql").resolve()
     update_dir = update_root.resolve()
 
-    text = re.sub(
-        r"legacy_host_data/grbench/sf10_[0-4]_postgresql_postgresql",
-        (prepared_root / f"{sf}_postgresql_postgresql").resolve().as_posix(),
-        text,
-    )
-    text = re.sub(
-        r"legacy_host_data/grbench/sf10_[0-4]_postgresql",
-        prepared_dir.as_posix(),
-        text,
-    )
-    text = re.sub(r"legacy_host_data/grbench/sf10_[0-4]", data_dir.as_posix(), text)
+    replacements = {
+        "{{DATA_DIR}}": data_dir.as_posix(),
+        "{{PREPARED_DIR}}": prepared_dir.as_posix(),
+        "{{PREPARED_DOUBLE_DIR}}": (
+            prepared_root / f"{sf}_postgresql_postgresql"
+        ).resolve().as_posix(),
+        "{{UPDATE_DIR}}": update_dir.as_posix(),
+    }
+    for token, value in replacements.items():
+        text = text.replace(token, value)
     text = re.sub(r"\.local/data/sf10_[0-4]", data_dir.as_posix(), text)
     text = re.sub(r"data/processed/sf10_[0-4]", data_dir.as_posix(), text)
-    text = text.replace("legacy_core/test/duckdb_copy", update_dir.as_posix())
-    text = text.replace("legacy_core/test", update_dir.as_posix())
     return SF_PATTERN.sub(sf, text)
 
 

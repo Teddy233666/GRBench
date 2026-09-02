@@ -1,80 +1,80 @@
 [
   {
-    "query_id": "1a",
-    "sql_file": "1a.sql",
+    "query_id": "U1a",
+    "sql_file": "U1a.sql",
     "description": "删除Papers顶点所有 year字段值在 2020 到 2025 之间的记录。",
-    "template": "1a.cypher"
+    "template": "U1a.cypher"
   },
   {
-    "query_id": "1b",
-    "sql_file": "1b.sql",
-    "description": "将此前1a.sql删除的数据重新插入。",
-    "template": "1b.cypher",
-    "setup_query": "1a"
+    "query_id": "U1b",
+    "sql_file": "U1b.sql",
+    "description": "将此前U1a删除的数据重新插入。",
+    "template": "U1b.cypher",
+    "setup_query": "U1a"
   },
   {
-    "query_id": "2a",
-    "sql_file": "2a.sql",
-    "description": "删除 2020-2025 年发表论文对应的引用关系数据。",
-    "template": "2a.cypher"
-  },
-  {
-    "query_id": "2b",
-    "sql_file": "2b.sql",
-    "description": "将此前2a.sql删除的引用关系数据重新插入。",
-    "template": "2b.cypher",
-    "setup_query": "2a"
-  },
-  {
-    "query_id": "3a",
-    "sql_file": "3a.sql",
-    "description": "删除2020-2025年论文及其全部关联链路数据。",
-    "template": "3a.cypher"
-  },
-  {
-    "query_id": "3b",
-    "sql_file": "3b.sql",
-    "description": "将3a.sql删除的论文本体数据及其关联关系边重新插入。",
-    "template": "3b.cypher",
-    "setup_query": "3a"
-  },
-  {
-    "query_id": "4a",
-    "sql_file": "4a.sql",
+    "query_id": "U2a",
+    "sql_file": "U2a.sql",
     "description": "删除h指数介于10至20之间的作者基础数据。",
-    "template": "4a.cypher"
+    "template": "U2a.cypher"
   },
   {
-    "query_id": "4b",
-    "sql_file": "4b.sql",
-    "description": "将4a.sql删除的作者数据重新插入。",
-    "template": "4b.cypher",
-    "setup_query": "4a"
+    "query_id": "U2b",
+    "sql_file": "U2b.sql",
+    "description": "将U2a删除的作者数据重新插入。",
+    "template": "U2b.cypher",
+    "setup_query": "U2a"
   },
   {
-    "query_id": "5a",
-    "sql_file": "5a.sql",
+    "query_id": "U3a",
+    "sql_file": "U3a.sql",
+    "description": "删除 2020-2025 年发表论文对应的引用关系数据。",
+    "template": "U3a.cypher"
+  },
+  {
+    "query_id": "U3b",
+    "sql_file": "U3b.sql",
+    "description": "将此前U3a删除的引用关系数据重新插入。",
+    "template": "U3b.cypher",
+    "setup_query": "U3a"
+  },
+  {
+    "query_id": "U4a",
+    "sql_file": "U4a.sql",
     "description": "删除h指数介于10至20之间作者对应的论文-作者关联关系数据。",
-    "template": "5a.cypher"
+    "template": "U4a.cypher"
   },
   {
-    "query_id": "5b",
-    "sql_file": "5b.sql",
-    "description": "将5a.sql删除的论文-作者关联关系数据重新插入。",
-    "template": "5b.cypher",
-    "setup_query": "5a"
+    "query_id": "U4b",
+    "sql_file": "U4b.sql",
+    "description": "将U4a删除的论文-作者关联关系数据重新插入。",
+    "template": "U4b.cypher",
+    "setup_query": "U4a"
   },
   {
-    "query_id": "6a",
-    "sql_file": "6a.sql",
+    "query_id": "U5a",
+    "sql_file": "U5a.sql",
+    "description": "删除2020-2025年论文及其全部关联链路数据。",
+    "template": "U5a.cypher"
+  },
+  {
+    "query_id": "U5b",
+    "sql_file": "U5b.sql",
+    "description": "将U5a删除的论文本体数据及其关联关系边重新插入。",
+    "template": "U5b.cypher",
+    "setup_query": "U5a"
+  },
+  {
+    "query_id": "U6a",
+    "sql_file": "U6a.sql",
     "description": "批量删除h指数10至20的作者实体及其论文、机构隶属关系。",
-    "template": "6a.cypher"
+    "template": "U6a.cypher"
   },
   {
-    "query_id": "6b",
-    "sql_file": "6b.sql",
-    "description": "将6a.sql删除的作者、论文-作者、作者-机构关系重新插入。",
-    "template": "6b.cypher",
-    "setup_query": "6a"
+    "query_id": "U6b",
+    "sql_file": "U6b.sql",
+    "description": "将U6a删除的作者、论文-作者、作者-机构关系重新插入。",
+    "template": "U6b.cypher",
+    "setup_query": "U6a"
   }
 ]

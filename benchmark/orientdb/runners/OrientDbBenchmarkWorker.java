@@ -306,17 +306,17 @@ public class OrientDbBenchmarkWorker {
 
     static List<UpdateSpec> deleteSpecs(String filename) {
         switch (filename) {
-            case "1a.sql":
-            case "3a.sql":
+            case "U1a.sql":
+            case "U5a.sql":
                 return paperCascadeSpecs();
-            case "2a.sql":
+            case "U3a.sql":
                 return Collections.singletonList(paperReferences("grbench_update2_edges"));
-            case "4a.sql":
+            case "U2a.sql":
                 return authorCascadeSpecs();
-            case "5a.sql":
+            case "U4a.sql":
                 return Collections.singletonList(
                         papersToAuthors("Papers_to_Authors", "grbench_update5_papers_to_authors"));
-            case "6a.sql":
+            case "U6a.sql":
                 return List.of(
                         papersToAuthors("Papers_to_Authors", "grbench_update6_papers_to_authors"),
                         edgeSpec(
@@ -337,20 +337,20 @@ public class OrientDbBenchmarkWorker {
     static List<UpdateSpec> restoreSpecs(String filename) {
         List<UpdateSpec> specs;
         switch (filename) {
-            case "1b.sql":
-            case "3b.sql":
+            case "U1b.sql":
+            case "U5b.sql":
                 specs = new ArrayList<>(paperCascadeSpecs());
                 break;
-            case "2b.sql":
+            case "U3b.sql":
                 return Collections.singletonList(paperReferences("grbench_update2_edges"));
-            case "4b.sql":
+            case "U2b.sql":
                 specs = new ArrayList<>(authorCascadeSpecs());
                 break;
-            case "5b.sql":
+            case "U4b.sql":
                 return Collections.singletonList(
                         papersToAuthors("Papers_to_Authors", "grbench_update5_papers_to_authors"));
-            case "6b.sql":
-                specs = new ArrayList<>(deleteSpecs("6a.sql"));
+            case "U6b.sql":
+                specs = new ArrayList<>(deleteSpecs("U6a.sql"));
                 break;
             default:
                 throw new IllegalArgumentException("unsupported Update restore file: " + filename);
@@ -1061,7 +1061,7 @@ public class OrientDbBenchmarkWorker {
             int batchSize,
             UpdateExecutionResult result) {
         String restoreFile = restoreFilename(filename);
-        if ("6b.sql".equals(restoreFile)) {
+        if ("U6b.sql".equals(restoreFile)) {
             result.add(moveAuthors(
                     database,
                     UPDATE6_AUTHOR_SHADOW,
@@ -1081,7 +1081,7 @@ public class OrientDbBenchmarkWorker {
             UpdateExecutionResult result) {
         String restoreFile = restoreFilename(filename);
         String operation = recoveryOperation(filename);
-        if ("6b.sql".equals(restoreFile)) {
+        if ("U6b.sql".equals(restoreFile)) {
             result.add(moveAuthors(
                     database,
                     UPDATE6_AUTHOR_SHADOW,
@@ -1114,7 +1114,7 @@ public class OrientDbBenchmarkWorker {
                     for (UpdateSpec spec : specs) {
                         result.add(deleteSpec(database, spec, batchSize, false));
                     }
-                    if ("6a.sql".equals(filename)) {
+                    if ("U6a.sql".equals(filename)) {
                         result.add(moveAuthors(
                                 database,
                                 "Authors_Gender",
@@ -1130,7 +1130,7 @@ public class OrientDbBenchmarkWorker {
                 for (UpdateSpec spec : deleteSpecs(deleteFilename(filename))) {
                     result.add(deleteSpec(database, spec, batchSize, true));
                 }
-                if ("6a.sql".equals(deleteFilename(filename))) {
+                if ("U6a.sql".equals(deleteFilename(filename))) {
                     result.add(moveAuthors(
                             database,
                             "Authors_Gender",

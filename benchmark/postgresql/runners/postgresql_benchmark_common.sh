@@ -295,8 +295,8 @@ paired_setup_file() {
   local file="$1"
   local stem
   stem=$(basename "$file" .sql)
-  if [[ "$UPDATE_MODE" -eq 1 && "$stem" =~ ^([1-6])b$ ]]; then
-    printf '%s/%sa.sql' "$(dirname "$file")" "${BASH_REMATCH[1]}"
+  if [[ "$UPDATE_MODE" -eq 1 && "$stem" =~ ^U([1-6])b$ ]]; then
+    printf '%s/U%sa.sql' "$(dirname "$file")" "${BASH_REMATCH[1]}"
   fi
 }
 

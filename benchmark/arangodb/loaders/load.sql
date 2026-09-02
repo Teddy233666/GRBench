@@ -19,32 +19,32 @@ db._createEdgeCollection("Link_ClinicalTrials");
 db._createEdgeCollection("link_newsfeed");
 db._createEdgeCollection("link_twitter");
 db._createEdgeCollection("PaperFields");
-arangoimport --file legacy_core/test/duckdb_copy/grbench_update1_papers.csv --type csv --collection Papers --create-collection true --translate "paperid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{UPDATE_DIR}}/grbench_update1_papers.csv --type csv --collection Papers --create-collection true --translate "paperid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
 
 
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_papers.csv --type csv --collection Papers --create-collection true --translate "paperid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_authors.csv --type csv --collection Authors_Gender --create-collection true --translate "authorid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_affiliations.csv --type csv --collection Affiliations --create-collection true --translate "institutionid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_fields.csv --type csv --collection Fields --create-collection true --translate "fieldid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_nsf_metadata.csv --type csv --collection NSF_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_nih_metadata.csv --type csv --collection NIH_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_clinicaltrials_metadata.csv --type csv --collection clinicaltrials_metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_newsfeed_metadata.csv --type csv --collection Newsfeed_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_twitter_metadata.csv --type csv --collection Twitter_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_authors_paperid.csv --type csv --collection tmp_papers_authors --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_author_affiliation.csv --type csv --collection tmp_author_affiliation --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_paper_author_affiliation.csv --type csv --collection tmp_contributed --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_paperrefs.csv --type csv --collection tmp_paper_refs --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_nsf.csv --type csv --collection tmp_link_nsf --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_nih.csv --type csv --collection tmp_link_nih --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_clinicaltrials.csv --type csv --collection tmp_link_clinical --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_newsfeed.csv --type csv --collection tmp_link_newsfeed --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_twitter.csv --type csv --collection tmp_link_twitter --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_paperfields.csv --type csv --collection tmp_paper_fields --create-collection true --server.password "" --threads 32 --server.request-timeout 3600
-arangoimport  --file legacy_host_data/grbench/sf10_3/sciscinet_affl_assoc_affl.csv --type csv --collection tmp_affl_assoc --create-collection true --server.password "" --threads 32 --server.request-timeout 3600
+arangoimport --file {{DATA_DIR}}/sciscinet_papers.csv --type csv --collection Papers --create-collection true --translate "paperid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_authors.csv --type csv --collection Authors_Gender --create-collection true --translate "authorid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_affiliations.csv --type csv --collection Affiliations --create-collection true --translate "institutionid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_fields.csv --type csv --collection Fields --create-collection true --translate "fieldid=_key" --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_nsf_metadata.csv --type csv --collection NSF_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_nih_metadata.csv --type csv --collection NIH_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_clinicaltrials_metadata.csv --type csv --collection clinicaltrials_metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_newsfeed_metadata.csv --type csv --collection Newsfeed_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_twitter_metadata.csv --type csv --collection Twitter_Metadata --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_authors_paperid.csv --type csv --collection tmp_papers_authors --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_author_affiliation.csv --type csv --collection tmp_author_affiliation --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_paper_author_affiliation.csv --type csv --collection tmp_contributed --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_paperrefs.csv --type csv --collection tmp_paper_refs --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_nsf.csv --type csv --collection tmp_link_nsf --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_nih.csv --type csv --collection tmp_link_nih --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_clinicaltrials.csv --type csv --collection tmp_link_clinical --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_newsfeed.csv --type csv --collection tmp_link_newsfeed --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_twitter.csv --type csv --collection tmp_link_twitter --create-collection true --server.password "" --threads 32 --server.request-timeout 3600 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_paperfields.csv --type csv --collection tmp_paper_fields --create-collection true --server.password "" --threads 32 --server.request-timeout 3600
+arangoimport  --file {{DATA_DIR}}/sciscinet_affl_assoc_affl.csv --type csv --collection tmp_affl_assoc --create-collection true --server.password "" --threads 32 --server.request-timeout 3600
 
 arangoimport \
-  --file legacy_host_data/grbench/sf10_3/sciscinet_affl_assoc_affl.csv \
+  --file {{DATA_DIR}}/sciscinet_affl_assoc_affl.csv \
   --type csv \
   --collection tmp_affl_assoc \
   --create-collection true
@@ -172,19 +172,19 @@ INSERT {
 }
 INTO PaperFields
 `)
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_author_details.csv --type csv --collection author_details --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/hit_papers_level0.csv --type csv --collection hit_papers_level0 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/hit_papers_level1.csv --type csv --collection hit_papers_level1 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/normalized_citations_level0.csv --type csv --collection normalized_citations_level0 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/normalized_citations_level1.csv --type csv --collection normalized_citations_level1 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_sources.csv --type csv --collection sources --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_papersources.csv --type csv --collection papersources --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_nobellaureates.csv --type csv --collection link_nobellaureates --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_link_patents.csv --type csv --collection link_patents --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
-arangoimport --file legacy_host_data/grbench/sf10_4/sciscinet_paperdetails.csv --type csv --collection PaperDetails --create-collection true --server.password "" --threads 32 --server.request-timeout 3200
+arangoimport --file {{DATA_DIR}}/sciscinet_author_details.csv --type csv --collection author_details --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/hit_papers_level0.csv --type csv --collection hit_papers_level0 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/hit_papers_level1.csv --type csv --collection hit_papers_level1 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/normalized_citations_level0.csv --type csv --collection normalized_citations_level0 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/normalized_citations_level1.csv --type csv --collection normalized_citations_level1 --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_sources.csv --type csv --collection sources --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_papersources.csv --type csv --collection papersources --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_nobellaureates.csv --type csv --collection link_nobellaureates --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_link_patents.csv --type csv --collection link_patents --create-collection true --server.password "" --threads 32 --server.request-timeout 3200 &&
+arangoimport --file {{DATA_DIR}}/sciscinet_paperdetails.csv --type csv --collection PaperDetails --create-collection true --server.password "" --threads 32 --server.request-timeout 3200
 
 arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update22_edges.csv \
+  --file {{UPDATE_DIR}}/grbench_update22_edges.csv \
   --type csv \
   --collection grbench_update2_edges \
   --create-collection true \
@@ -193,7 +193,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_paperreferences.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_paperreferences.csv \
   --type csv \
   --collection grbench_update3_paperreferences \
   --create-collection true \
@@ -203,7 +203,7 @@ arangoimport \
 
 
     arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_papers_to_authors.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_papers_to_authors.csv \
   --type csv \
   --collection grbench_update3_papers_to_authors \
   --create-collection true \
@@ -212,7 +212,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_contributed_from.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_contributed_from.csv \
   --type csv \
   --collection grbench_update3_contributed_from \
   --create-collection true \
@@ -221,7 +221,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_paperfields.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_paperfields.csv \
   --type csv \
   --collection grbench_update3_paperfields \
   --create-collection true \
@@ -230,7 +230,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_link_nsf.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_link_nsf.csv \
   --type csv \
   --collection grbench_update3_link_nsf \
   --create-collection true \
@@ -239,7 +239,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_link_nih.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_link_nih.csv \
   --type csv \
   --collection grbench_update3_link_nih \
   --create-collection true \
@@ -248,7 +248,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_link_clinicaltrials.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_link_clinicaltrials.csv \
   --type csv \
   --collection grbench_update3_link_clinicaltrials \
   --create-collection true \
@@ -257,7 +257,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_link_newsfeed.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_link_newsfeed.csv \
   --type csv \
   --collection grbench_update3_link_newsfeed \
   --create-collection true \
@@ -266,7 +266,7 @@ arangoimport \
   --server.request-timeout 3600
 
   arangoimport \
-  --file legacy_core/test/duckdb_copy/grbench_update3_link_twitter.csv \
+  --file {{UPDATE_DIR}}/grbench_update3_link_twitter.csv \
   --type csv \
   --collection grbench_update3_link_twitter \
   --create-collection true \

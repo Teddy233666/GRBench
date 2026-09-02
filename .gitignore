@@ -25,7 +25,7 @@ secrets/
 *.pfx
 *.jks
 
-# Generated output. Curated result CSV files under results/ stay tracked.
+# Generated output. Benchmark results remain under .local/ and are not tracked.
 build/
 **/build/
 dist/

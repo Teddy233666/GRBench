@@ -1,0 +1,220 @@
+series,legacy_id,paper_id,description
+H,1a,H1a,graph-relational hybrid
+H,1b,H1b,graph-relational hybrid
+H,1c,H1c,graph-relational hybrid
+H,2a,H2a,graph-relational hybrid
+H,2b,H2b,graph-relational hybrid
+H,2c,H2c,graph-relational hybrid
+H,3a,H3a,graph-relational hybrid
+H,3b,H3b,graph-relational hybrid
+H,3c,H3c,graph-relational hybrid
+H,4a,H4a,graph-relational hybrid
+H,4b,H4b,graph-relational hybrid
+H,4c,H4c,graph-relational hybrid
+H,5a,H5a,graph-relational hybrid
+H,5b,H5b,graph-relational hybrid
+H,5c,H5c,graph-relational hybrid
+H,6a,H6a,graph-relational hybrid
+H,6b,H6b,graph-relational hybrid
+H,6c,H6c,graph-relational hybrid
+H,7a,H7a,graph-relational hybrid
+H,7b,H7b,graph-relational hybrid
+H,7c,H7c,graph-relational hybrid
+H,8a,H8a,graph-relational hybrid
+H,8b,H8b,graph-relational hybrid
+H,8c,H8c,graph-relational hybrid
+H,9a,H9a,graph-relational hybrid
+H,9b,H9b,graph-relational hybrid
+H,9c,H9c,graph-relational hybrid
+H,10a,H10a,graph-relational hybrid
+H,10b,H10b,graph-relational hybrid
+H,10c,H10c,graph-relational hybrid
+H,11a,H11a,graph-relational hybrid
+H,11b,H11b,graph-relational hybrid
+H,11c,H11c,graph-relational hybrid
+H,12a,H12a,graph-relational hybrid
+H,12b,H12b,graph-relational hybrid
+H,12c,H12c,graph-relational hybrid
+H,13a,H13a,graph-relational hybrid
+H,13b,H13b,graph-relational hybrid
+H,13c,H13c,graph-relational hybrid
+H,14a,H14a,graph-relational hybrid
+H,14b,H14b,graph-relational hybrid
+H,14c,H14c,graph-relational hybrid
+H,15a,H15a,graph-relational hybrid
+H,15b,H15b,graph-relational hybrid
+H,15c,H15c,graph-relational hybrid
+H,16a,H16a,graph-relational hybrid
+H,16b,H16b,graph-relational hybrid
+H,16c,H16c,graph-relational hybrid
+H,17a,H17a,graph-relational hybrid
+H,17b,H17b,graph-relational hybrid
+H,17c,H17c,graph-relational hybrid
+H,18a,H18a,graph-relational hybrid
+H,18b,H18b,graph-relational hybrid
+H,18c,H18c,graph-relational hybrid
+H,19a,H19a,graph-relational hybrid
+H,19b,H19b,graph-relational hybrid
+H,19c,H19c,graph-relational hybrid
+H,20a,H20a,graph-relational hybrid
+H,20b,H20b,graph-relational hybrid
+H,20c,H20c,graph-relational hybrid
+H,21a,H21a,graph-relational hybrid
+H,21b,H21b,graph-relational hybrid
+H,21c,H21c,graph-relational hybrid
+H,22a,H22a,graph-relational hybrid
+H,22b,H22b,graph-relational hybrid
+H,22c,H22c,graph-relational hybrid
+H,23a,H23a,graph-relational hybrid
+H,23b,H23b,graph-relational hybrid
+H,23c,H23c,graph-relational hybrid
+H,24a,H24a,graph-relational hybrid
+H,24b,H24b,graph-relational hybrid
+H,24c,H24c,graph-relational hybrid
+G,25a,G1a,pure graph
+G,25b,G1b,pure graph
+G,25c,G1c,pure graph
+G,26a,G2a,pure graph
+G,26b,G2b,pure graph
+G,26c,G2c,pure graph
+G,27a,G3a,pure graph
+G,27b,G3b,pure graph
+G,27c,G3c,pure graph
+G,28a,G4a,pure graph
+G,28b,G4b,pure graph
+G,28c,G4c,pure graph
+G,29a,G5a,pure graph
+G,29b,G5b,pure graph
+G,29c,G5c,pure graph
+G,30a,G6a,pure graph
+G,30b,G6b,pure graph
+G,30c,G6c,pure graph
+G,31a,G7a,pure graph
+G,31b,G7b,pure graph
+G,31c,G7c,pure graph
+G,32a,G8a,pure graph
+G,32b,G8b,pure graph
+G,32c,G8c,pure graph
+RH,1a,RH1a,relational equivalent of H
+RH,1b,RH1b,relational equivalent of H
+RH,1c,RH1c,relational equivalent of H
+RH,2a,RH2a,relational equivalent of H
+RH,2b,RH2b,relational equivalent of H
+RH,2c,RH2c,relational equivalent of H
+RH,3a,RH3a,relational equivalent of H
+RH,3b,RH3b,relational equivalent of H
+RH,3c,RH3c,relational equivalent of H
+RH,4a,RH4a,relational equivalent of H
+RH,4b,RH4b,relational equivalent of H
+RH,4c,RH4c,relational equivalent of H
+RH,5a,RH5a,relational equivalent of H
+RH,5b,RH5b,relational equivalent of H
+RH,5c,RH5c,relational equivalent of H
+RH,6a,RH6a,relational equivalent of H
+RH,6b,RH6b,relational equivalent of H
+RH,6c,RH6c,relational equivalent of H
+RH,7a,RH7a,relational equivalent of H
+RH,7b,RH7b,relational equivalent of H
+RH,7c,RH7c,relational equivalent of H
+RH,8a,RH8a,relational equivalent of H
+RH,8b,RH8b,relational equivalent of H
+RH,8c,RH8c,relational equivalent of H
+RH,9a,RH9a,relational equivalent of H
+RH,9b,RH9b,relational equivalent of H
+RH,9c,RH9c,relational equivalent of H
+RH,10a,RH10a,relational equivalent of H
+RH,10b,RH10b,relational equivalent of H
+RH,10c,RH10c,relational equivalent of H
+RH,11a,RH11a,relational equivalent of H
+RH,11b,RH11b,relational equivalent of H
+RH,11c,RH11c,relational equivalent of H
+RH,12a,RH12a,relational equivalent of H
+RH,12b,RH12b,relational equivalent of H
+RH,12c,RH12c,relational equivalent of H
+RH,13a,RH13a,relational equivalent of H
+RH,13b,RH13b,relational equivalent of H
+RH,13c,RH13c,relational equivalent of H
+RH,14a,RH14a,relational equivalent of H
+RH,14b,RH14b,relational equivalent of H
+RH,14c,RH14c,relational equivalent of H
+RH,15a,RH15a,relational equivalent of H
+RH,15b,RH15b,relational equivalent of H
+RH,15c,RH15c,relational equivalent of H
+RH,16a,RH16a,relational equivalent of H
+RH,16b,RH16b,relational equivalent of H
+RH,16c,RH16c,relational equivalent of H
+RH,17a,RH17a,relational equivalent of H
+RH,17b,RH17b,relational equivalent of H
+RH,17c,RH17c,relational equivalent of H
+RH,18a,RH18a,relational equivalent of H
+RH,18b,RH18b,relational equivalent of H
+RH,18c,RH18c,relational equivalent of H
+RH,19a,RH19a,relational equivalent of H
+RH,19b,RH19b,relational equivalent of H
+RH,19c,RH19c,relational equivalent of H
+RH,20a,RH20a,relational equivalent of H
+RH,20b,RH20b,relational equivalent of H
+RH,20c,RH20c,relational equivalent of H
+RH,21a,RH21a,relational equivalent of H
+RH,21b,RH21b,relational equivalent of H
+RH,21c,RH21c,relational equivalent of H
+RH,22a,RH22a,relational equivalent of H
+RH,22b,RH22b,relational equivalent of H
+RH,22c,RH22c,relational equivalent of H
+RH,23a,RH23a,relational equivalent of H
+RH,23b,RH23b,relational equivalent of H
+RH,23c,RH23c,relational equivalent of H
+RH,24a,RH24a,relational equivalent of H
+RH,24b,RH24b,relational equivalent of H
+RH,24c,RH24c,relational equivalent of H
+RG,25a,RG1a,relational equivalent of G
+RG,25b,RG1b,relational equivalent of G
+RG,25c,RG1c,relational equivalent of G
+RG,26a,RG2a,relational equivalent of G
+RG,26b,RG2b,relational equivalent of G
+RG,26c,RG2c,relational equivalent of G
+RG,27a,RG3a,relational equivalent of G
+RG,27b,RG3b,relational equivalent of G
+RG,27c,RG3c,relational equivalent of G
+RG,28a,RG4a,relational equivalent of G
+RG,28b,RG4b,relational equivalent of G
+RG,28c,RG4c,relational equivalent of G
+RG,29a,RG5a,relational equivalent of G
+RG,29b,RG5b,relational equivalent of G
+RG,29c,RG5c,relational equivalent of G
+RG,30a,RG6a,relational equivalent of G
+RG,30b,RG6b,relational equivalent of G
+RG,30c,RG6c,relational equivalent of G
+RG,31a,RG7a,relational equivalent of G
+RG,31b,RG7b,relational equivalent of G
+RG,31c,RG7c,relational equivalent of G
+RG,32a,RG8a,relational equivalent of G
+RG,32b,RG8b,relational equivalent of G
+RG,32c,RG8c,relational equivalent of G
+S,1a,S1a,shortest path
+S,1b,S1b,shortest path
+S,1c,S1c,shortest path
+S,2a,S2a,shortest path
+S,2b,S2b,shortest path
+S,2c,S2c,shortest path
+S,3a,S3a,shortest path
+S,3b,S3b,shortest path
+S,3c,S3c,shortest path
+S,4a,S4a,shortest path
+S,4b,S4b,shortest path
+S,4c,S4c,shortest path
+S,5a,S5a,shortest path
+S,5b,S5b,shortest path
+S,5c,S5c,shortest path
+U,1a,U1a,update
+U,1b,U1b,update
+U,4a,U2a,update
+U,4b,U2b,update
+U,2a,U3a,update
+U,2b,U3b,update
+U,5a,U4a,update
+U,5b,U4b,update
+U,3a,U5a,update
+U,3b,U5b,update
+U,6a,U6a,update
+U,6b,U6b,update

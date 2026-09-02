@@ -455,7 +455,7 @@ EDGES: List[Edge] = [
 
 
 # ---------------------------------------------------------------------------
-# Plain tables (referenced in Pure_Join queries; no RAI needed)
+# Plain tables (referenced by RH/RG relational equivalents; no RAI needed)
 # ---------------------------------------------------------------------------
 
 PLAINS: List[PlainTable] = [

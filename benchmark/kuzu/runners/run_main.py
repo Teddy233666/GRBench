@@ -44,8 +44,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--sql-files", default="")
     parser.add_argument("--category", default="")
-    parser.add_argument("--skip-pure-join", action="store_true", default=True)
-    parser.add_argument("--include-pure-join", action="store_false", dest="skip_pure_join")
+    parser.add_argument(
+        "--skip-relational-equivalents",
+        "--skip-pure-join",
+        action="store_true",
+        default=True,
+        dest="skip_relational_equivalents",
+    )
+    parser.add_argument(
+        "--include-relational-equivalents",
+        "--include-pure-join",
+        action="store_false",
+        dest="skip_relational_equivalents",
+    )
     parser.add_argument("--dedupe-content", action="store_true")
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
@@ -77,7 +88,7 @@ def sql_sort_key(name: str) -> tuple[int, str]:
 def query_key(path: Path, query_root: Path) -> tuple[str, str, str]:
     rel = path.relative_to(query_root)
     category = rel.parts[0]
-    if category == "Pure_Join_Queries":
+    if category == "Relational_Equivalent_Queries":
         subcategory = Path(*rel.parts[1:-1]).as_posix() if len(rel.parts) > 2 else "."
     else:
         parent = path.parent.relative_to(query_root / category)
@@ -94,7 +105,7 @@ def find_queries(args: argparse.Namespace) -> list[tuple[str, str, str, Path]]:
         category, subcategory, sql_file = query_key(path, args.query_root)
         if category == "Shortest_Path_Queries":
             continue
-        if args.skip_pure_join and category == "Pure_Join_Queries":
+        if args.skip_relational_equivalents and category == "Relational_Equivalent_Queries":
             continue
         if args.category and category != args.category:
             continue

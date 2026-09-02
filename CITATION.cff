@@ -3,7 +3,36 @@ message: "If you use GRBench, cite this software and the SciSciNet dataset."
 title: "GRBench"
 type: software
 authors:
-  - name: "Zepeng Liu, Xinxin Huang, Xuanming Liu"
+  - family-names: "Liu"
+    given-names: "Zepeng"
+  - family-names: "Huang"
+    given-names: "Xinxin"
+  - family-names: "Liu"
+    given-names: "Xuanming"
+  - family-names: "Wang"
+    given-names: "Sheng"
+  - family-names: "Peng"
+    given-names: "Zhiyong"
 version: 0.1.0
-date-released: 2026-08-18
+date-released: 2026-08-31
 license: Apache-2.0
+repository-code: "https://github.com/Teddy233666/GRBench"
+identifiers:
+  - type: doi
+    value: "10.48550/arXiv.2608.31027"
+preferred-citation:
+  type: article
+  title: "GRBench: A Comprehensive Benchmark Evaluation for Graph-relational Data Management"
+  authors:
+    - family-names: "Liu"
+      given-names: "Zepeng"
+    - family-names: "Huang"
+      given-names: "Xinxin"
+    - family-names: "Liu"
+      given-names: "Xuanming"
+    - family-names: "Wang"
+      given-names: "Sheng"
+    - family-names: "Peng"
+      given-names: "Zhiyong"
+  year: 2026
+  doi: "10.48550/arXiv.2608.31027"

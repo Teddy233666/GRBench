@@ -1,0 +1,84 @@
+name: grbench
+
+services:
+  postgresql-age:
+    image: ${POSTGRES_AGE_IMAGE:-apache/age:release_PG15_1.6.0}
+    container_name: grbench-postgresql-age
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE:-grbench}
+      POSTGRES_USER: ${POSTGRES_USERNAME:-grbench}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - ../.local/docker/postgresql-age:/var/lib/postgresql/data
+      - ../data/processed:/data/processed:ro
+
+  arangodb:
+    image: ${ARANGODB_IMAGE:-arangodb:3.12.4}
+    container_name: grbench-arangodb
+    environment:
+      ARANGO_ROOT_PASSWORD: ${ARANGODB_PASSWORD:-}
+    ports:
+      - "8529:8529"
+    volumes:
+      - ../.local/docker/arangodb:/var/lib/arangodb3
+      - ../data/processed:/data/processed:ro
+
+  orientdb:
+    image: ${ORIENTDB_IMAGE:-orientdb:3.2.37}
+    container_name: grbench-orientdb
+    environment:
+      ORIENTDB_ROOT_PASSWORD: ${ORIENTDB_PASSWORD:-}
+    ports:
+      - "2424:2424"
+      - "2480:2480"
+    volumes:
+      - ../.local/docker/orientdb:/orientdb/databases
+      - ../data/processed:/data/processed:ro
+
+  agensgraph:
+    image: ${AGENSGRAPH_IMAGE:-bitnine/agensgraph:v2.14.1}
+    container_name: grbench-agensgraph
+    profiles: ["compat"]
+    environment:
+      POSTGRES_DB: ${AGENSGRAPH_DATABASE:-grbench}
+      POSTGRES_USER: ${AGENSGRAPH_USERNAME:-agens}
+      POSTGRES_PASSWORD: ${AGENSGRAPH_PASSWORD:-}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ../.local/docker/agensgraph:/var/lib/postgresql/data
+      - ../data/processed:/data/processed:ro
+
+  duckdb:
+    image: ${DUCKDB_IMAGE:-duckdb/duckdb:1.2.2}
+    container_name: grbench-duckdb
+    profiles: ["compat"]
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["sleep infinity"]
+    volumes:
+      - ..:/workspace
+      - ../data/processed:/data/processed:ro
+    working_dir: /workspace
+
+  kuzu:
+    image: python:3.10-slim
+    container_name: grbench-kuzu
+    profiles: ["compat"]
+    command: ["sleep", "infinity"]
+    volumes:
+      - ..:/workspace
+      - ../data/processed:/data/processed:ro
+    working_dir: /workspace
+
+  graindb:
+    image: ${GRAINDB_IMAGE:-grbench/graindb:be901b3}
+    container_name: grbench-graindb
+    profiles: ["custom"]
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["sleep infinity"]
+    volumes:
+      - ..:/workspace
+      - ../data/processed:/data/processed:ro
+    working_dir: /workspace
