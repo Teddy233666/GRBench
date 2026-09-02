@@ -4,13 +4,13 @@
 from __future__ import annotations
 
 import argparse
-import csv
+import importlib.util
 import os
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-PROFILE = REPO_ROOT / "benchmark" / "manifests" / "data_profile.csv"
+SCHEMA = REPO_ROOT / "data" / "schema" / "sciscinet.py"
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,8 +25,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def expected_files() -> list[str]:
-    with PROFILE.open(newline="", encoding="utf-8") as handle:
-        return sorted(row["source_csv"] for row in csv.DictReader(handle))
+    spec = importlib.util.spec_from_file_location("grbench_sciscinet_schema", SCHEMA)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load schema contract: {SCHEMA}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    files = module.source_csvs()
+    if len(files) != 30:
+        raise RuntimeError(f"schema contract must define 30 unique CSV files, found {len(files)}")
+    return files
 
 
 def main() -> int:

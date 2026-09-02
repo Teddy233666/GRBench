@@ -1,42 +1,36 @@
 # GRBench
 
-GRBench is a cross-model benchmark for relational, graph, and
-relational-graph database systems. It publishes one canonical SciSciNet workload
-and adapters for AgensGraph, ArangoDB, DuckDB, GrainDB, Kuzu, OrientDB, and
-PostgreSQL.
-
-## End-to-End Workflow
+GRBench is a cross-model SciSciNet benchmark for AgensGraph, ArangoDB,
+DuckDB, GrainDB, Kuzu, OrientDB, and PostgreSQL/Apache AGE. Each database owns
+its complete implementation under one directory:
 
 ```text
-data/raw
-   -> scripts/data_generation
-   -> data/processed/<sf>
-   -> adapters/<engine>/loaders
-   -> schema + data + indexes in .local/<engine>
-   -> adapters/<engine>/queries + runners
-   -> .local/results
-   -> reviewed results/<engine>
+benchmark/<database>/
+  loaders/   schema creation, data import, and index construction
+  queries/   database-specific Main, Pure Join, Shortest Path, and Update queries
+  runners/   benchmark entry points and measurement helpers
 ```
 
-Large datasets, databases, generated loader files, logs, caches, and secrets are
-never committed.
+Large datasets, database files, logs, caches, credentials, and generated result
+files are local artifacts and are not committed.
 
 ## Quick Start
 
-Python 3.10 or newer is required for repository tooling.
+Python 3.10 or newer is required for the Python loaders and runners.
 
 ```sh
 git clone https://github.com/Teddy233666/GRBench.git
 cd GRBench
 cp config/env.example .env
-# Edit .env, especially external data paths and database credentials.
 set -a; . ./.env; set +a
 python3 -m pip install -r requirements-dev.txt
 ```
 
-### 1. Prepare Data
+### Prepare Data
 
-Place the SciSciNet-v2 Parquet snapshot in `data/raw/sciscinet-v2/`, then:
+Place the external SciSciNet-v2 Parquet snapshot under
+`data/raw/sciscinet-v2/`, then generate the highest scale and derive lower
+scale factors:
 
 ```sh
 python3 -m venv .venv-data
@@ -44,102 +38,66 @@ python3 -m venv .venv-data
 .venv-data/bin/python scripts/data_generation/sciscinet/csv_generator.py
 .venv-data/bin/python scripts/data_generation/sciscinet/interface.py \
   --data-root data/processed --highest-scale 4
-python3 scripts/data_generation/validate_data_profile.py --sf sf10_0
+python3 scripts/data_generation/validate_data_profile.py \
+  --data-root data/processed --sf sf10_0
 ```
 
-Each `data/processed/sf10_N/` directory must contain the same 30 files listed
-in `benchmark/manifests/data_profile.csv`. See
-[`docs/data-preparation.md`](docs/data-preparation.md).
+Each `data/processed/sf10_N/` directory must contain the 30 CSV files defined
+by `data/schema/sciscinet.py`. See [data-preparation.md](docs/data-preparation.md).
 
-### 2. Load a Database and Build Indexes
+### Load and Run
 
 Kuzu example:
 
 ```sh
 python3 -m venv .venv-kuzu
 .venv-kuzu/bin/pip install 'kuzu==0.11.3' 'psutil==7.2.2'
-.venv-kuzu/bin/python adapters/kuzu/loaders/load.py \
+.venv-kuzu/bin/python benchmark/kuzu/loaders/load.py \
   --dataset sf10_0 --threads 8 --strict-rel-copy
-.venv-kuzu/bin/python adapters/kuzu/loaders/validate_database.py \
-  --db-path .local/kuzu/db/db_sf10_0
-```
-
-Commands and index behavior for all seven engines are documented in
-[`docs/database-loading.md`](docs/database-loading.md).
-
-### 3. Run Queries
-
-```sh
-.venv-kuzu/bin/python adapters/kuzu/runners/run_main.py \
+.venv-kuzu/bin/python benchmark/kuzu/runners/run_main.py \
   --dataset sf10_0 --results .local/results/kuzu/sf10_0/main.csv \
   --threads 8 --timeout-s 18000 --warmups 1 --repeats 3 --overwrite
 ```
 
-Formal execution defaults to one warmup, three measured repetitions, an 18,000
-second timeout, and same-run median metrics. See
-[`docs/benchmark-execution.md`](docs/benchmark-execution.md).
+PostgreSQL/AGE loader and runner commands are documented in
+[its loader README](benchmark/postgresql/loaders/README.md) and
+[runner README](benchmark/postgresql/runners/README.md). Other database
+directories expose their available loader and runner entry points directly.
 
-### 4. Validate Repository Artifacts
+## Query Inventory
 
-```sh
-python3 tools/generate_manifests.py
-python3 tools/audit_query_semantics.py
-python3 tools/sanitize_result_paths.py
-python3 tools/validate_repository.py --strict-paths
-```
+AgensGraph, ArangoDB, DuckDB, GrainDB, OrientDB, and PostgreSQL each publish
+219 query files: 96 Main, 96 Pure Join, 15 Shortest Path, and 12 Update. Kuzu
+publishes 123 logical queries and six additional zero-length path helper
+templates. Kuzu omits Pure Join because those historical Cypher files were
+byte-identical to its Main queries.
 
-### 5. Publish Reviewed Results
+The same query ID denotes the same benchmark task across database directories.
+Engine-specific syntax, physical graph modeling, and path expansion remain in
+the owning database directory.
 
-New runs stay in `.local/results/<engine>/<sf>/`. Only reviewed artifacts are
-copied to `results/<engine>/`; update `results/manifests/source_results.csv` and
-regenerate manifests before committing.
+## Local Outputs
 
-## Workload
+Use `.local/<database>/` for database state, generated staging files, logs, and
+results. Raw and processed datasets remain under `data/raw/` and
+`data/processed/` and are ignored by Git. This repository currently publishes
+benchmark implementations, not result snapshots.
 
-`benchmark/queries/canonical/` defines 219 executable query IDs:
+## Validation
 
-- 96 main relational-graph and graph queries;
-- 96 Pure Join physical variants of those logical main queries;
-- 15 Shortest Path queries;
-- 12 Update queries named `1a.sql` through `6b.sql`.
-
-Engine translations keep the same IDs under `adapters/<engine>/queries/`.
-Pure Join is measured separately because it uses a different physical query
-form. Kuzu's historical Pure Join Cypher is byte-identical to its main Cypher,
-so those duplicate files remain explicitly `duplicate_not_executed`.
-
-## Repository Layout
-
-- `data/`: raw-data landing documentation, processed SF layout, logical schema.
-- `scripts/data_generation/`: Parquet conversion, SF extraction, staging SQL.
-- `benchmark/`: canonical workload and deterministic manifests.
-- `adapters/<engine>/loaders/`: schema creation, imports, indexes.
-- `adapters/<engine>/queries/`: engine-specific query implementation.
-- `adapters/<engine>/runners/`: formal or explicitly legacy execution code.
-- `config/`: public environment templates without secrets.
-- `results/<engine>/`: reviewed, publishable result CSVs.
-- `.local/`: ignored databases, generated loaders, logs, caches, temporary runs.
-- `docs/`: workflow, deployment, benchmark contract, and maintenance guides.
-- `legacy/`: superseded artifacts retained for provenance.
-
-The complete migration map and Git boundary are in
-[`docs/repository-layout.md`](docs/repository-layout.md).
-
-Every adapter root contains exactly these three directories; tests, tools,
-dependencies, documentation, and legacy material live below the phase that owns
-them rather than beside the workflow directories.
+GitHub Actions validates Python compilation, the seven-directory layout, query
+inventory counts, PostgreSQL runner inventories, shell syntax, ArangoDB
+JavaScript syntax, cache hygiene, and file-size limits. The workflow does not
+perform data loading or full benchmark execution.
 
 ## Reproducibility Status
 
-Kuzu and OrientDB have maintained repository-relative formal runners. The other
-five adapters currently provide audited query translations, loader evidence,
-and execution smoke paths; their historical runners do not yet satisfy the full
-measurement contract. Execution success alone does not establish semantic
-correctness or cross-system comparability.
+Static validation does not prove live DBMS execution or cross-system result
+equivalence. Record the DBMS version, scale factor, timeout, repetition count,
+resource sampling method, query status, and result oracle when publishing a
+benchmark run.
 
 ## Licensing
 
-Code and documentation are Apache-2.0 (`LICENSE`). Published result tables are
-CC BY 4.0 (`RESULTS_LICENSE`). Dataset and DBMS licenses remain separate; see
-`THIRD_PARTY_NOTICES.md` and
-`docs/development/provenance-and-licensing.md`.
+Code and documentation are Apache-2.0 (`LICENSE`). Database systems and
+SciSciNet data retain their own licenses; see `THIRD_PARTY_NOTICES.md`.

@@ -11,8 +11,8 @@ data/processed/
   sf10_4/
 ```
 
-Every `sf10_N` directory must contain the same 30 filenames listed in
-`benchmark/manifests/data_profile.csv`. Generated CSV files are ignored by Git;
+Every `sf10_N` directory must contain the same 30 filenames defined in
+`data/schema/sciscinet.py`. Generated CSV files are ignored by Git;
 this README is the only tracked file in this directory.
 
 Database-specific projections that are not lossless canonical inputs must stay

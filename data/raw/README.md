@@ -10,7 +10,7 @@ data/raw/sciscinet-v2/
 ```
 
 The conversion code expects Parquet files corresponding to the 30 canonical
-CSV names in `benchmark/manifests/data_profile.csv`. `sciscinet_paperdetails`
+CSV names in `data/schema/sciscinet.py`. `sciscinet_paperdetails`
 may need to be obtained separately from the provider because of its size. See
 `THIRD_PARTY_NOTICES.md` and `docs/data-preparation.md` before downloading.
 

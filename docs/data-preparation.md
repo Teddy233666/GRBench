@@ -48,7 +48,7 @@ sciscinet_sources.csv
 sciscinet_twitter_metadata.csv
 ```
 
-`benchmark/manifests/data_profile.csv` is authoritative for logical names,
+`data/schema/sciscinet.py` is authoritative for logical names, source CSVs,
 keys, and edge endpoints.
 
 ## Generate the Highest Scale

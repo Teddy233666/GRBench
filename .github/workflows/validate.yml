@@ -19,28 +19,45 @@ jobs:
       - name: Install validation dependencies
         run: python3 -m pip install -r requirements-dev.txt
       - name: Compile Python
-        run: python3 -m compileall -q data scripts adapters tools
-      - name: Test workflow path tools
-        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
-      - name: Test PostgreSQL shell runners
-        run: python3 -m unittest discover -s adapters/postgresql/runners/tests -p 'test_*.py' -v
+        run: python3 -m compileall -q data scripts benchmark
+      - name: Validate benchmark layout and inventories
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          engines = {"agensgraph", "arangodb", "duckdb", "graindb", "kuzu", "orientdb", "postgresql"}
+          root = Path("benchmark")
+          assert {path.name for path in root.iterdir() if path.is_dir()} == engines
+          for engine in engines:
+              engine_root = root / engine
+              entries = {path.name for path in engine_root.iterdir() if path.is_dir()}
+              assert entries == {"loaders", "queries", "runners"}, (engine, entries)
+              suffix = ".js" if engine == "arangodb" else ".cypher" if engine == "kuzu" else ".sql"
+              queries = list((engine_root / "queries").rglob(f"*{suffix}"))
+              expected = 129 if engine == "kuzu" else 219
+              assert len(queries) == expected, (engine, len(queries))
+          for suite, expected in (("Shortest_Path_Queries", 15), ("Update", 12)):
+              manifest = json.loads((root / "kuzu" / "queries" / suite / "manifest.json").read_text())
+              assert len(manifest) == expected, (suite, len(manifest))
+          PY
+      - name: Test PostgreSQL runner inventories
+        run: |
+          benchmark/postgresql/runners/run_main_three_rounds.sh --list
+          benchmark/postgresql/runners/run_pure_join_three_rounds.sh --list
+          benchmark/postgresql/runners/run_update_single_round.sh --list
+          benchmark/postgresql/runners/run_update_three_rounds.sh --list
       - name: Check shell syntax
         run: |
           while IFS= read -r -d '' file; do
             bash -n "$file"
-          done < <(find adapters -type f -name '*.sh' -print0)
+          done < <(find benchmark -type f -name '*.sh' -print0)
       - name: Check ArangoDB JavaScript wrappers
         run: |
           while IFS= read -r -d '' file; do
             node --check "$file"
-          done < <(find adapters/arangodb -type f -name '*.js' -print0)
-      - name: Audit query semantic signatures
-        run: python3 tools/audit_query_semantics.py
-      - name: Check published result path sanitization
-        run: python3 tools/sanitize_result_paths.py
-      - name: Regenerate manifests
-        run: python3 tools/generate_manifests.py
-      - name: Reject manifest drift
-        run: git diff --exit-code -- benchmark/manifests results/manifests
-      - name: Validate repository contract
-        run: python3 tools/validate_repository.py --strict-paths
+          done < <(find benchmark/arangodb -type f -name '*.js' -print0)
+      - name: Reject tracked caches and large files
+        run: |
+          test -z "$(git ls-files | grep -E '(^|/)(__pycache__/|.*\.py[co]$|\.DS_Store$)' || true)"
+          test -z "$(find . -path ./.git -prune -o -type f -size +10M -print)"
