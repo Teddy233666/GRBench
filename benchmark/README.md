@@ -3,7 +3,9 @@
 Each system directory contains exactly three workflow phases:
 
 - `loaders/`: schema, import, and index construction;
-- `queries/`: native H, G, S, RH, RG, and U implementations;
+- `queries/`: native H, G, S, RH, RG, and U implementations; the six
+  relational-capable systems also provide S-series equivalents under
+  `Relational_Equivalent_Queries/Shortest_Path_Queries/`;
 - `runners/`: execution and resource measurement.
 
 Query IDs follow the paper and are documented in

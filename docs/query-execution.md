@@ -1,7 +1,9 @@
 # Query Execution and Results
 
 Queries are stored under `benchmark/<database>/queries/`. Filenames use the
-paper's H, G, S, RH, RG, and U series; see
+paper's H, G, S, RH, RG, and U series; the six relational-capable systems also
+provide S expressions under `Relational_Equivalent_Queries/Shortest_Path_Queries/`.
+See
 [`query-naming.md`](query-naming.md). Run from the repository root with a
 per-query timeout of 18,000 seconds, one warmup, and three measured repetitions.
 

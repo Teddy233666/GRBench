@@ -153,10 +153,10 @@ Queries live under `benchmark/<system>/queries/`. Filenames match the paper:
 | RH/RG | `RH1a`-`RH24c`, `RG1a`-`RG8c` | Relational equivalents |
 | U | `U1a`-`U6b` | Delete/restore update pairs |
 
-Six systems publish 219 query files. Kuzu publishes 123 logical H/G/S/U
-queries plus six zero-length S-series helper templates; its historical
-relational-equivalent files were byte-identical to H/G Cypher and are omitted
-rather than measured twice.
+Six relational-capable systems publish 234 query files: 219 H/G/S/RH/RG/U
+files plus 15 relational-equivalent S-series files. Kuzu publishes 129
+executable Cypher files and does not publish SQL relation expressions because
+Kuzu 0.11.3 accepts Cypher rather than SQL.
 
 Formal settings are one warmup, three measured repetitions, an 18,000-second
 timeout, and resource sampling from the database process tree. Examples:

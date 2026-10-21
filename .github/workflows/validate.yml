@@ -37,7 +37,7 @@ jobs:
               assert entries == {"loaders", "queries", "runners"}, (engine, entries)
               suffix = ".js" if engine == "arangodb" else ".cypher" if engine == "kuzu" else ".sql"
               queries = list((engine_root / "queries").rglob(f"*{suffix}"))
-              expected = 129 if engine == "kuzu" else 219
+              expected = 129 if engine == "kuzu" else 234
               assert len(queries) == expected, (engine, len(queries))
               for query in queries:
                   top = query.relative_to(engine_root / "queries").parts[0]
@@ -50,7 +50,11 @@ jobs:
                       "Shortest_Path_Queries": r"S[1-5][abc]",
                       "Update": r"U[1-6][ab]",
                   }
-                  assert top in patterns and re.fullmatch(patterns[top], stem), query
+                  relative_parts = query.relative_to(engine_root / "queries").parts
+                  if top == "Relational_Equivalent_Queries" and relative_parts[1] == "Shortest_Path_Queries":
+                      assert re.fullmatch(r"S[1-5][abc]", stem), query
+                  else:
+                      assert top in patterns and re.fullmatch(patterns[top], stem), query
           for suite, expected in (("Shortest_Path_Queries", 15), ("Update", 12)):
               manifest = json.loads((root / "kuzu" / "queries" / suite / "manifest.json").read_text())
               assert len(manifest) == expected, (suite, len(manifest))
@@ -77,7 +81,7 @@ jobs:
 
           expected = {f"U{number}{suffix}.sql" for number in range(1, 7) for suffix in "ab"}
           queries = discover_queries(Path("benchmark/orientdb/queries"))
-          assert len(queries) == 219
+          assert len(queries) == 234
           assert {query.path.name for query in queries if query.category == "update"} == expected
           assert set(UPDATE_BATCH_OPERATIONS) == expected
           assert UPDATE_SETUP_FILES == {f"U{number}b.sql": f"U{number}a.sql" for number in range(1, 7)}
