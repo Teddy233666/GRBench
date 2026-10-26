@@ -1,5 +1,5 @@
 // Relational equivalent of S5b; edge-collection expansion over PaperReferences.
-db._query(`
+print(JSON.stringify(db._query(`
 LET start = "Papers/W4211259235"
 LET candidates = (
   FOR v, e, p IN 0..1 OUTBOUND start PaperReferences
@@ -8,4 +8,4 @@ LET candidates = (
     RETURN v._key
 )
 RETURN MIN(candidates)
-`)
+`).toArray()));

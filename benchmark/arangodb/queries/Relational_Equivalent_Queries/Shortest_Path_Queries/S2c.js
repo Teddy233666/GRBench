@@ -1,10 +1,2 @@
-// Relational equivalent of S2c; edge-collection expansion, not AQL shortest-path syntax.
-db._query(`
-LET candidates = (
-  FOR v, e, p IN 1..3 OUTBOUND "Affiliations/I4210136388" affl_assoc_affl
-    OPTIONS { order: "bfs", uniqueVertices: "global", uniqueEdges: "path" }
-    FILTER v._key == 'I4210088668'
-    RETURN v._key
-)
-RETURN MIN(candidates) AS inst_asia_institutionid
-`)
+// Relational equivalent of S2c; bounded edge-table traversal over the loaded relation.
+var result = db._query(`LET candidates=(FOR v,e,p IN 1..3 OUTBOUND "Affiliations/I4210136388" affl_assoc_affl OPTIONS {order:"bfs",uniqueVertices:"global",uniqueEdges:"path"} FILTER v._key == 'I4210088668' RETURN v._key) RETURN MIN(candidates)`); print(JSON.stringify({inst_asia_institutionid: result.toArray()[0]}));

@@ -1,20 +1,15 @@
--- Relational equivalent of S3a; recursive edge joins plus a relational LEFT JOIN.
-WITH RECURSIVE reach(institutionid, depth, visited) AS (
-    SELECT a.institutionid, 0, LIST_VALUE(CAST(a.institutionid AS VARCHAR))
-    FROM Affiliations a
-    WHERE a.institutionid = 'I4210136388'
-    UNION ALL
-    SELECT e.associated_institution_id, r.depth + 1, list_append(r.visited, CAST(e.associated_institution_id AS VARCHAR))
-    FROM reach r
-    JOIN affl_assoc_affl e ON e.institution_id = r.institutionid
-    WHERE NOT list_contains(r.visited, e.associated_institution_id)
-      AND r.depth < 4
-), endpoints AS (
-    SELECT DISTINCT a.institutionid
-    FROM reach r
-    JOIN Affiliations a ON a.institutionid = r.institutionid
-    WHERE r.depth >= 1 AND a.productivity > 8000
+-- GrainDB-compatible explicit bounded relational expansion for S3a.
+WITH reach AS (
+    SELECT a.institutionid AS institutionid, 0 AS depth FROM Affiliations a WHERE a.institutionid = 'I4210136388'
+    UNION
+    SELECT e1.associated_institution_id, 1 FROM affl_assoc_affl e1 WHERE e1.institution_id = 'I4210136388'
+    UNION
+    SELECT e2.associated_institution_id, 2 FROM affl_assoc_affl e1 JOIN affl_assoc_affl e2 ON e2.institution_id=e1.associated_institution_id WHERE e1.institution_id='I4210136388' AND e2.associated_institution_id NOT IN ('I4210136388', e1.associated_institution_id)
+    UNION
+    SELECT e3.associated_institution_id, 3 FROM affl_assoc_affl e1 JOIN affl_assoc_affl e2 ON e2.institution_id=e1.associated_institution_id JOIN affl_assoc_affl e3 ON e3.institution_id=e2.associated_institution_id WHERE e1.institution_id='I4210136388' AND e2.associated_institution_id NOT IN ('I4210136388',e1.institution_id) AND e3.associated_institution_id NOT IN ('I4210136388',e1.associated_institution_id,e2.associated_institution_id)
+    UNION
+    SELECT e4.associated_institution_id, 4 FROM affl_assoc_affl e1 JOIN affl_assoc_affl e2 ON e2.institution_id=e1.associated_institution_id JOIN affl_assoc_affl e3 ON e3.institution_id=e2.associated_institution_id JOIN affl_assoc_affl e4 ON e4.institution_id=e3.associated_institution_id WHERE e1.institution_id='I4210136388' AND e2.associated_institution_id NOT IN ('I4210136388',e1.associated_institution_id) AND e3.associated_institution_id NOT IN ('I4210136388',e1.associated_institution_id,e2.associated_institution_id) AND e4.associated_institution_id NOT IN ('I4210136388',e1.associated_institution_id,e2.associated_institution_id,e3.associated_institution_id)
 )
-SELECT MIN(cf.institution_id) AS institutionid
-FROM endpoints e
-LEFT JOIN contributed_from cf ON cf.institution_id = e.institutionid;
+SELECT MIN(cf.institutionid) AS institutionid
+FROM reach r JOIN Affiliations a ON a.institutionid=r.institutionid LEFT JOIN contributed_from cf ON cf.institutionid=a.institutionid
+WHERE r.depth >= 1 AND a.productivity > 8000;

@@ -13,7 +13,7 @@ WITH RECURSIVE reach(institutionid, depth, visited) AS (
     SELECT DISTINCT a.institutionid
     FROM reach r
     JOIN Affiliations a ON a.institutionid = r.institutionid
-    WHERE r.depth >= 1 AND a.productivity > 8000
+    WHERE r.depth >= 1 AND a.productivity::double precision > 8000
 )
 SELECT MIN(cf.institution_id) AS institutionid
 FROM endpoints e

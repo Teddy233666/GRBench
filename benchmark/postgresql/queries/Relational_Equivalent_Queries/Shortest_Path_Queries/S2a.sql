@@ -14,4 +14,4 @@ SELECT MIN(a.institutionid) AS inst_for_institutionid
 FROM reach r
 JOIN Affiliations a ON a.institutionid = r.institutionid
 WHERE r.depth >= 1
-  AND a.productivity > 8000;
+  AND a.productivity::double precision > 8000;

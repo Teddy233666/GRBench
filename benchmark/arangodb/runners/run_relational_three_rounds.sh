@@ -31,8 +31,6 @@ TMP_DIR="/tmp/arangodb_test_$(date +%s%N)"
 mkdir -p "$TMP_DIR" || { echo "❌ Failed to create TMP_DIR"; exit 1; }
 mkdir -p "$(dirname "$RESULT_FILE")"
 
-TMP_OUT="$TMP_DIR/out.log"
-
 ############################################
 # CLEANUP
 ############################################
@@ -60,7 +58,7 @@ monitor_process() {
   local LOGFILE=$1
   local PARENT_PID=$2
 
-  touch "$LOGFILE"
+  : > "$LOGFILE"
 
   while true; do
     if ! ps -p "$PARENT_PID" > /dev/null 2>&1; then
@@ -80,7 +78,7 @@ calc_stats() {
   local LOGFILE=$1
 
   awk -F',' '
-  {
+  $1 ~ /^[0-9]+([.][0-9]+)?$/ && $2 ~ /^[0-9]+([.][0-9]+)?$/ {
     cpu_sum+=$1
     mem_sum+=$2
 
@@ -90,15 +88,26 @@ calc_stats() {
     count++
   }
   END{
-    if(count==0) count=1
+    if(count==0) {
+      print "# # # # 0"
+      exit
+    }
 
-    printf "%.2f %.2f %.2f %.2f",
+    printf "%.2f %.2f %.2f %.2f %d",
     cpu_peak,
     cpu_sum/count,
     mem_peak,
-    mem_sum/count
+    mem_sum/count,
+    count
   }
   ' "$LOGFILE"
+}
+
+csv_quote() {
+  local value=${1//$'\r'/ }
+  value=${value//$'\n'/ }
+  value=${value//\"/\"\"}
+  printf '"%s"' "$value"
 }
 
 ############################################
@@ -107,10 +116,22 @@ calc_stats() {
 
 run_js() {
   local FILE=$1
-  local result="#,#,#,#,#,\"#\""
-  local status="TIMEOUT"
+  local ROUND=$2
+  local QUERY_INDEX=$3
 
-  local MON_LOG="$TMP_DIR/monitor.log"
+  local MON_LOG="$TMP_DIR/monitor_${QUERY_INDEX}_r${ROUND}.csv"
+  local OUT_LOG="$TMP_DIR/query_${QUERY_INDEX}_r${ROUND}.out"
+  : > "$MON_LOG"
+  : > "$OUT_LOG"
+
+  JS_TIME="#"
+  JS_CPU_PEAK="#"
+  JS_CPU_AVG="#"
+  JS_MEM_PEAK="#"
+  JS_MEM_AVG="#"
+  JS_SAMPLE_COUNT=0
+  JS_RESULT_TEXT=""
+  JS_STATUS="FAILED"
 
   monitor_process "$MON_LOG" $$ &
   local MON_PID=$!
@@ -119,36 +140,35 @@ run_js() {
 
   timeout $MAX_EXECUTION_TIME \
     "${ARANGOSH[@]}" --javascript.execute "$FILE" \
-    > "$TMP_OUT" 2>&1
+    > "$OUT_LOG" 2>&1
 
   local EXIT_CODE=$?
 
   local END=$(date +%s.%N)
   local COST=$(calc_elapsed "$START" "$END")
+  JS_TIME="$COST"
 
   kill $MON_PID 2>/dev/null || true
   wait $MON_PID 2>/dev/null || true
 
   if [ $EXIT_CODE -eq 124 ]; then
+    JS_STATUS="TIMEOUT"
+    JS_RESULT_TEXT="timeout after ${MAX_EXECUTION_TIME}s"
     echo "❌ TIMEOUT: $FILE"
   elif [ $EXIT_CODE -ne 0 ]; then
+    JS_STATUS="FAILED"
+    JS_RESULT_TEXT=$(tail -n 1 "$OUT_LOG" 2>/dev/null)
     echo "❌ FAILED: $FILE"
-    cat "$TMP_OUT"
+    cat "$OUT_LOG"
   else
     local stats=$(calc_stats "$MON_LOG")
-    read cpu_peak cpu_avg mem_peak mem_avg <<< "$stats"
+    read -r JS_CPU_PEAK JS_CPU_AVG JS_MEM_PEAK JS_MEM_AVG JS_SAMPLE_COUNT <<< "$stats"
 
-    local query_result=$(tail -n 1 "$TMP_OUT")
-    query_result=$(echo "$query_result" | sed 's/"/'\''/g')
+    JS_RESULT_TEXT=$(tail -n 1 "$OUT_LOG" 2>/dev/null)
+    JS_STATUS="OK"
 
-    result="$COST,$cpu_peak,$cpu_avg,$mem_peak,$mem_avg,\"$query_result\""
-    status="OK"
-
-    echo "✅ DONE: $FILE (time: $COST sec)"
+    echo "✅ DONE: $FILE (time: $COST sec, samples: $JS_SAMPLE_COUNT)"
   fi
-
-  JS_RESULT="$result"
-  JS_STATUS="$status"
 }
 
 ############################################
@@ -189,34 +209,41 @@ done
 # STORAGE FOR EACH FILE
 ############################################
 
-declare -A TIME_LIST
-declare -A CPU_PEAK_LIST
-declare -A CPU_AVG_LIST
-declare -A MEM_PEAK_LIST
-declare -A MEM_AVG_LIST
-declare -A RESULT_LIST
+declare -A RUN_TIME
+declare -A RUN_CPU_PEAK
+declare -A RUN_CPU_AVG
+declare -A RUN_MEM_PEAK
+declare -A RUN_MEM_AVG
+declare -A RUN_SAMPLE_COUNT
+declare -A RUN_RESULT
+declare -A RUN_STATUS
 
 ############################################
 # OUTER ROUND LOOP (关键修改点)
 ############################################
 
+QUERY_INDEX=0
 for ROUND in 1 2 3; do
   echo "=============================="
   echo "🔥 ROUND $ROUND START"
   echo "=============================="
 
   for FILE in "${FILES[@]}"; do
+    QUERY_INDEX=$((QUERY_INDEX + 1))
     echo "📋 Running: $FILE"
 
-    run_js "$FILE"
+    run_js "$FILE" "$ROUND" "$QUERY_INDEX"
 
-    # append per file per round
-    TIME_LIST["$FILE"]+="$JS_RESULT|"
-    CPU_PEAK_LIST["$FILE"]+="$JS_RESULT|"
-    CPU_AVG_LIST["$FILE"]+="$JS_RESULT|"
-    MEM_PEAK_LIST["$FILE"]+="$JS_RESULT|"
-    MEM_AVG_LIST["$FILE"]+="$JS_RESULT|"
-    RESULT_LIST["$FILE"]+="$JS_RESULT|"
+    # Store one structured record per file and round; metrics stay correlated.
+    RECORD_KEY="${FILE}|${ROUND}"
+    RUN_TIME["$RECORD_KEY"]="$JS_TIME"
+    RUN_CPU_PEAK["$RECORD_KEY"]="$JS_CPU_PEAK"
+    RUN_CPU_AVG["$RECORD_KEY"]="$JS_CPU_AVG"
+    RUN_MEM_PEAK["$RECORD_KEY"]="$JS_MEM_PEAK"
+    RUN_MEM_AVG["$RECORD_KEY"]="$JS_MEM_AVG"
+    RUN_SAMPLE_COUNT["$RECORD_KEY"]="$JS_SAMPLE_COUNT"
+    RUN_RESULT["$RECORD_KEY"]="$JS_RESULT_TEXT"
+    RUN_STATUS["$RECORD_KEY"]="$JS_STATUS"
   done
 
 done
@@ -228,17 +255,58 @@ done
 echo "📊 Aggregating results..."
 
 for FILE in "${FILES[@]}"; do
+  OK_ROUNDS=()
+  ALL_ROUNDS=(1 2 3)
+  for ROUND in "${ALL_ROUNDS[@]}"; do
+    RECORD_KEY="${FILE}|${ROUND}"
+    if [[ "${RUN_STATUS[$RECORD_KEY]}" == "OK" ]]; then
+      OK_ROUNDS+=("$ROUND")
+    fi
+  done
 
-  # 拆 3 轮结果
-  IFS='|' read -r t1 t2 t3 <<< "${TIME_LIST[$FILE]}"
+  if ((${#OK_ROUNDS[@]} > 0)); then
+    TIMES=()
+    for ROUND in "${OK_ROUNDS[@]}"; do
+      RECORD_KEY="${FILE}|${ROUND}"
+      TIMES+=("${RUN_TIME[$RECORD_KEY]}")
+    done
+    TIME_MED=$(median "${TIMES[@]}")
 
-  # 这里只简单解析 time（你也可以扩展 CPU/MEM）
-  TIMES=($t1 $t2 $t3)
+    SELECTED_ROUND="${OK_ROUNDS[0]}"
+    for ROUND in "${OK_ROUNDS[@]}"; do
+      RECORD_KEY="${FILE}|${ROUND}"
+      if [[ "${RUN_TIME[$RECORD_KEY]}" == "$TIME_MED" ]]; then
+        SELECTED_ROUND="$ROUND"
+        break
+      fi
+    done
 
-  TIME_MED=$(median "${TIMES[@]}")
-
-  # 直接写（简化版：保留你原结构）
-  echo "\"$FILE\",$TIME_MED,#,#,#,#,#,OK" >> "$RESULT_FILE"
+    RECORD_KEY="${FILE}|${SELECTED_ROUND}"
+    STATUS="OK"
+    if ((${#OK_ROUNDS[@]} < 3)); then
+      STATUS="PARTIAL_OK"
+    fi
+    printf '%s,%s,%s,%s,%s,%s,%s,%s\n' \
+      "$(csv_quote "$FILE")" \
+      "${RUN_TIME[$RECORD_KEY]}" \
+      "${RUN_CPU_PEAK[$RECORD_KEY]}" \
+      "${RUN_CPU_AVG[$RECORD_KEY]}" \
+      "${RUN_MEM_PEAK[$RECORD_KEY]}" \
+      "${RUN_MEM_AVG[$RECORD_KEY]}" \
+      "$(csv_quote "${RUN_RESULT[$RECORD_KEY]}")" \
+      "$(csv_quote "$STATUS")" >> "$RESULT_FILE"
+  else
+    RECORD_KEY="${FILE}|1"
+    STATUS="FAILED"
+    if [[ "${RUN_STATUS[$RECORD_KEY]}" == "TIMEOUT" ]]; then
+      STATUS="TIMEOUT"
+    fi
+    printf '%s,%s,#,#,#,#,%s,%s\n' \
+      "$(csv_quote "$FILE")" \
+      "${RUN_TIME[$RECORD_KEY]}" \
+      "$(csv_quote "${RUN_RESULT[$RECORD_KEY]}")" \
+      "$(csv_quote "$STATUS")" >> "$RESULT_FILE"
+  fi
 
 done
 

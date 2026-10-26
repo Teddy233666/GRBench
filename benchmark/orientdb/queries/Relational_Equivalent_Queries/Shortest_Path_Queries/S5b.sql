@@ -1,4 +1,3 @@
--- Relational equivalent of S5b; OrientDB SQL over edge/vertex classes.
 SELECT MIN(paperid) AS ref_paperid
 FROM Papers
 WHERE (paperid = 'W4211259235' OR paperid IN (
